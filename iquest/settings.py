@@ -19,9 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'poek*=vtf!9%#xyg+q_y+a4nnt8+!aeg%p$go)g+gvf2meew$9'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -56,11 +53,31 @@ WSGI_APPLICATION = 'iquest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+isDev = ""
+configPath = os.path.join(os.path.dirname(__file__), ".config")
+if os.path.exists(configPath):
+    with open(configPath, "r") as config:
+        isDev = config.read().replace('\n', '')
+if isDev == "dev":
+    login = "iquest"
+    password = "dev-pass"
+    debug = True
+else:
+    login = "iquestdb"
+    password = "j3iosdgw89"
+    debug = False
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = debug
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'iquest',
+        'USER': login,
+        'PASSWORD': password,
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
