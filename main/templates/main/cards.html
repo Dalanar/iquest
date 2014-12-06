@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Подарочные карты</h1>
+    <div class="i-description">Вы можете приобрести подарочную карту у нас, по адресу ул. Алтайская 8/3 или заказать доставку на сайте. Для того чтобы оформить доставку – заполните представленную форму, после чего мы свяжемся с вами, для уточнения всех деталей.</div>
+    <div class="card-img"><img src="{% static 'main/images/card_itself.png' %}"></div>
+    <div class="red-title">Оформить заказ на подарочную карту</div>
+    <div class="form">
+        <form id="card-form" method="POST">
+            {% csrf_token %}
+            {% for input in form %}
+                <div class="row {{ input.field.widget.attrs.id }}"><div></div>{{ input }}</div>
+            {% endfor %}
+        </form>
+    </div>
+    <div class="order-button">
+        <a href="#" id="submit-card-form" class="button">СДЕЛАТЬ ЗАКАЗ</a>
+    </div>
+{% endblock %}

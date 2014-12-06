@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}" />
+    <script src="{% static 'main/js/jquery.js' %}" ></script>
+    <script src="{% static 'main/js/jquery.form.js' %}" ></script>
+    <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
+    <script src="{% static 'main/js/datepicker-ru.js' %}" ></script>
+    <script src="{% static 'main/js/main.js' %}" ></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="header-img"></div>
+        <div class="header-info">
+            <div class="brain"><img src="{% static 'main/images/logo.png' %}"></div>
+            <div class="title">Квесты в реальности</div>
+            <div class="contacts">
+                <div class="social">
+                    <img class="vk" src="{% static 'main/images/vk.png' %}">
+                    <img class="fb" src="{% static 'main/images/fb.png' %}">
+                    <img class="insta" src="{% static 'main/images/insta.png' %}">
+                </div>
+                <div class="phone"><img src="{% static 'main/images/phone.png' %}"> 94 - 29 - 10</div>
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="rules">
+                <a href="{% url 'main:rules' %}">
+                    <div class="circle rules-img"></div>
+                    <div class="text">Правила игры</div>
+                </a>
+            </div>
+            <div class="quests">
+                <div class="circle quests-img"></div>
+                <div class="text">Квесты</div>
+            </div>
+            <div class="cards">
+                <a href="{% url 'main:cards' %}">
+                    <div class="circle cards-img"></div>
+                    <div class="text">Подарочные карты</div>
+                </a>
+            </div>
+            <div class="contacts">
+                <a href="{% url 'main:contact' %}">
+                    <div class="circle contacts-img"></div>
+                    <div class="text">Контакты</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
+        <div class="footer-container">
+            <div class="brain"></div>
+            <div class="info">
+                <div class="menu">
+                    <div class="item"><a href="{% url 'main:index' %}">IQUEST</a></div>
+                    <div class="item"><a href="{% url 'main:rules' %}">ПРАВИЛА ИГРЫ</a></div>
+                    <div class="item"><a href="#">КВЕСТЫ</a></div>
+                    <div class="item"><a href="{% url 'main:cards' %}">ПОДАРОЧНЫЕ КАРТЫ</a></div>
+                    <div class="item"><a href="{% url 'main:contact' %}">КОНТАКТЫ</a></div>
+                </div>
+                <div class="last-info">
+                    <div class="copyright">Разрботал сам, охуенно же получилось</div>
+                    <div class="social">
+                        <div class="vk"></div>
+                        <div class="fb"></div>
+                        <div class="insta"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,593 @@
+@font-face {
+    font-family: roboto-light; /* Имя шрифта */
+    src: url('../fonts/Roboto-Light.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: roboto-bold; /* Имя шрифта */
+    src: url('../fonts/Roboto-Bold.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: roboto-regular; /* Имя шрифта */
+    src: url('../fonts/Roboto-Regular.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: roboto-medium; /* Имя шрифта */
+    src: url('../fonts/Roboto-Medium.ttf'); /* Путь к файлу со шрифтом */
+}
+
+html * {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'roboto-regular';
+}
+
+body > div.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/*** HEADER ***/
+body > div.wrapper .header {
+    height: 300px;
+}
+
+body > div.wrapper .header-img {
+    background-image: url('../images/bg_header_1200.png');
+    height: 200px;
+    position: absolute;
+    width: 1200px;
+    z-index: -1;
+}
+
+body div.header-info {
+    width: 80%;
+    margin: 0 auto;
+    height: 130px;
+    z-index: 10;
+}
+
+body div.header-info .brain {
+    float: left;
+    width: 146px;
+}
+
+body div.header-info .title {
+    float: left;
+    width: 69%;
+    font-family: 'roboto-light';
+}
+
+body div.header-info .contacts {
+    float: right;
+}
+
+body div.header-info .brain img {
+    height: 116px;
+}
+
+body div.header-info .title {
+    font-size: 36pt;
+    color: #767676;
+    vertical-align: middle;
+    line-height: 110px;
+}
+
+body div.header-info .contacts img {
+    width: 40px;
+}
+
+body div.header-info .contacts img.fb {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+body div.header-info .contacts .phone {
+    color: #ca624b;
+    font-size: 17pt;
+    font-family: 'roboto-bold';
+}
+
+body div.header-info .contacts .phone img {
+    width: 26px;
+    vertical-align: middle;
+}
+
+div.header-menu {
+    height: 145px;
+    width: 100%;
+}
+
+/*** CIRCLES ***/
+div.header-menu > div {
+    width: 170px;
+    height: 114px;
+    float: left;
+    margin: 0 40px;
+    font-family: 'roboto-regular';
+    font-size: 12pt;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.header-menu > div:hover a,
+div.header-menu > div:hover {
+    color: #ca624b;
+}
+
+div.header-menu a {
+    text-decoration: none;
+    color: black;
+}
+
+div.header-menu .circle {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+}
+
+div.header-menu .rules {
+    margin-left: 134px;
+}
+
+div.header-menu .cards,
+div.header-menu .quests {
+    padding-top: 20px;
+}
+
+div.header-menu .rules-img {
+    background-image: url('../images/circles/rules_circle.png');
+}
+
+div.header-menu > div:hover .rules-img {
+    background-image: url('../images/circles/rules_circle_selected.png');
+}
+
+div.header-menu .quests-img {
+    background-image: url('../images/circles/quests_circle.png');
+}
+
+div.header-menu > div:hover .quests-img {
+    background-image: url('../images/circles/quests_circle_selected.png');
+}
+
+div.header-menu .cards-img {
+    background-image: url('../images/circles/card_circle.png');
+}
+
+div.header-menu > div:hover .cards-img {
+    background-image: url('../images/circles/card_circle_selected.png');
+}
+
+div.header-menu .contacts-img {
+    background-image: url('../images/circles/contact_circle.png');
+}
+
+div.header-menu > div:hover .contacts-img {
+    background-image: url('../images/circles/contact_circle_selected.png');
+}
+
+/*** CONTENT ***/
+body > div.wrapper .content {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/*** FOOTER ***/
+body .wrapper > div.footer {
+    background-color: #767676;
+    height: 150px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+body .wrapper > div.footer .footer-container {
+    width: 1000px;
+    margin: 0 auto;
+    color: #f7f7f7;
+    padding-top: 20px;
+}
+
+div.footer .brain {
+    height: 126px;
+    width: 110px;
+    background-image: url('../images/logo_inverse.png');
+    float: left;
+}
+
+div.footer .brain {
+    float: left;
+}
+
+div.footer .info {
+    margin-left: 126px;
+    padding-top: 10px;
+}
+
+div.footer .menu {
+    border-top: 2px solid #f7f7f7;
+    border-bottom: 2px solid #f7f7f7;
+    font-size: 16pt;
+    font-family: 'roboto-regular';
+    height: 32px;
+}
+
+div.footer .menu .item {
+    float: left;
+    margin: 0 28px;
+}
+
+div.footer .menu .item a:visited,
+div.footer .menu .item a {
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+div.footer .menu .item:first-child,
+div.footer .menu .item:last-child {
+    margin: 0 10px;
+}
+
+div.footer .last-info {
+    margin-top: 40px;
+}
+
+div.footer .copyright {
+    float: left;
+    text-align: center;
+    width: 80%;
+}
+
+div.footer .social {
+    width: 130px;
+    float: right;
+}
+
+div.footer .social > div {
+    float: left;
+    width: 30px;
+    height: 30px;
+}
+
+div.footer .social .vk {
+    background-image: url('../images/socials/vk_white.png');
+}
+
+div.footer .social .insta {
+    background-image: url('../images/socials/insta_white.png');
+}
+
+div.footer .social .fb {
+    background-image: url('../images/socials/fb_white.png');
+    margin: 0 20px;
+}
+
+/*** INDEX ***/
+h1 {
+    text-align: center;
+    font-family: 'roboto-regular';
+    font-size: 60pt;
+}
+
+div.i-description {
+    text-align: center;
+    margin: 40px auto;
+    width: 800px;
+    font-size: 16pt;
+    color: #767676;
+}
+
+div.quests {
+    height: 410px;
+}
+
+div.quest {
+    width: 420px;
+    position: relative;
+    cursor: pointer;
+}
+
+div.quest.left {
+    float: left;
+}
+
+div.quest.right {
+    float: right;
+}
+
+div.quest.center {
+    margin: 0 auto;
+}
+
+div.quest .quest-title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+    font-size: 21pt;
+    font-family: 'roboto-medium';
+    text-align: center;
+    border-top: 1px solid #cacaca;
+    border-left: 1px solid #cacaca;
+    border-right: 1px solid #cacaca;
+}
+
+div.quest .quest-info {
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    width: 138px;
+    left: 30px;
+}
+
+div.quest .quest-info .quest-info-peoples {
+    float: left;
+    margin-right: 25px;
+}
+
+div.quest .quest-info .quest-info-peoples .peoples {
+    text-align: center;
+}
+
+div.quest .quest-info .img-peoples {
+    height: 13px;
+    width: 59px;
+    line-height: 0;
+}
+
+div.quest .quest-info .quest-info-time {
+    float: right;
+}
+
+div.quest .quest-info .img-time {
+    height: 13px;
+    width: 13px;
+    margin: 0 auto;
+    line-height: 0;
+}
+
+div.quest .quest-img {
+    position: relative;
+    height: 286px;
+}
+
+div.quest .img-select {
+    display: none;
+}
+
+div.quest:hover .img-select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0.7;
+    background-color: #ca624b;
+    display: block;
+}
+
+div.quest .img-select .message {
+    margin: 100px auto;
+    width: 160px;
+    text-align: center;
+    padding: 5px;
+    color: #ffffff;
+    border: 2px solid #f7f7f7;
+}
+
+.go-to-order {
+    text-align: center;
+    height: 60px;
+}
+
+/*** BUTTON ***/
+a.button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20pt;
+    font-family: 'roboto-regular';
+    background-color: #ca624b;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/*** CONTACT ***/
+h2 {
+    font-family: 'roboto-regular';
+    font-size: 36pt;
+    margin-bottom: 50px;
+}
+
+div.contact-main {
+    font-family: 'roboto-light';
+    font-size: 24pt;
+    color: #767676;
+    margin-bottom: 80px;
+}
+
+div.contact-main p {
+    margin-bottom: 40px;
+}
+
+div.contact-social {
+    margin-bottom: 80px;
+}
+
+div.contact-social p {
+    font-family: 'roboto-bold';
+    font-size: 24pt;
+    color: #ca624b;
+    margin-bottom: 30px;
+}
+
+div.contact-social p a {
+    margin-right: 15px;
+}
+
+div.map {
+    margin-bottom: 80px;
+}
+
+/*** RULES ***/
+div.rules .row {
+    height: 186px;
+}
+
+div.rules .rule {
+    width: 46%;
+    margin-bottom: 20px;
+}
+
+div.rules .rule:first-child {
+    float: left;
+}
+
+div.rules .rule:last-child {
+    float: right;
+}
+
+div.rules .rule.center {
+    float: none;
+    margin: 0 auto;
+}
+
+div.rules .rule .rule-img,
+div.rules .rule .rule-text {
+    float: left;
+}
+
+div.rules .rule .rule-img {
+    margin-right: 20px;
+}
+
+div.rules .rule .rule-text {
+    width: 67%;
+}
+
+div.rules .rule .title {
+    font-family: 'roboto-medium';
+    font-size: 16pt;
+}
+
+div.rules .rule .text {
+    font-family: 'roboto-light';
+    font-size: 13pt;
+}
+
+/*** CARDS ***/
+div.card-img {
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.red-title {
+    font-family: 'roboto-medium';
+    font-size: 20pt;
+    color: #ca624b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+div.order-button {
+    text-align: center;
+    width: 100%;
+}
+
+div.form .row {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+div.form .row div {
+    width: 50px;
+    height: 35px;
+    display: inline-block;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+div.form .row.name div{
+    background-image: url('../images/input/input_name.png');
+}
+
+div.form .row.phone div{
+    background-image: url('../images/input/input_phone.png');
+}
+
+div.form input {
+    height: 33px;
+    border-radius: 0 9px 9px 0;
+    outline: 0;
+    border: 1px solid #b5b5b5;
+    display: inline-block;
+    line-height: 35px;
+    padding-left: 5px;
+}
+
+/*** QUESTS ***/
+div.quests-description div.quest-description{
+    height: 300px;
+}
+
+div.quests-description .description,
+div.quests-description .gallery {
+    width: 45%;
+}
+
+div.quests-description .even .description,
+div.quests-description .odd .gallery {
+    float: left;
+}
+
+div.quests-description .odd .description,
+div.quests-description .even .gallery {
+    float: right
+}
+
+/*** datepicker ***/
+div#datepicker .ui-datepicker {
+    width: 100%;
+}
+
+div#datepicker .ui-datepicker-month {
+    font-size: 14pt;
+}
+
+div#datepicker .ui-icon {
+    background-image: url("../images/ui-icons_222222_256x240.png");
+}
+
+div#datepicker .ui-datepicker-prev .ui-icon {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -8px;
+    background-position: -80px -192px;
+}
+
+div#datepicker .ui-state-default {
+    font-size: 14pt;
+    text-align: center;
+}
+
+div#datepicker .ui-datepicker th,
+div#datepicker .ui-datepicker td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+div#datepicker .ui-datepicker th {
+    background-color: rgb(60, 60, 60);
+    color: white;
+    font-size: 14pt;
+    width: 14%;
+}
+
+div#datepicker .ui-datepicker td a:hover {
+    background-color: #ca624b;
+}

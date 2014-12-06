@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Правила игры</h1>
+    <div class="i-description">Вместе с командой, вы попадете в закрытое помещение, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы, и самое главное - включать свой ум и смекалку, для того чтобы найти выход, а может быть  разгадать тайну этого места.</div>
+    <div class="rules">
+        <div class="row">
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/1icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Количество игроков</div>
+                    <div class="text">2 - 4  человека (количество людей в команде может варьироваться в зависимости от специфики квеста)</div>
+                </div>
+            </div>
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/2icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Длительность игры</div>
+                    <div class="text">60 минут. Если за отведенное время вам не удалось выбраться или решить ключевую задачу, двери локации откроются оператором, и вы сможете выйти.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/3icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Возраст участников</div>
+                    <div class="text">Участники до 14 лет допускаются к игре только при наличии в команде совершеннолетних. </div>
+                </div>
+            </div>
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/4icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Перед началом игры</div>
+                    <div class="text">Участники команды оставляют свои сумки, гаджеты, инструменты, косметические принадлежности, заколки и прочие предметы которые могут быть использованы при прохождении квестов.</div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/5icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Чтобы пройти квест</div>
+                    <div class="text">Обязательно нужно общаться со своими товарищами, использовать логику, внимание и совершенно не нужно использовать грубую физическую силу.</div>
+                </div>
+            </div>
+            <div class="rule">
+                <div class="rule-img"><img src="{% static 'main/images/rules/6icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">Ответственность</div>
+                    <div class="text">Ответственность за нанесенный ущерб ложится на участников игры.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="rule center">
+                <div class="rule-img"><img src="{% static 'main/images/rules/7icon.png' %}" /></div>
+                <div class="rule-text">
+                    <div class="title">ЗАПРЕЩЕНО</div>
+                    <div class="text">К играм не допускаются участники, находящиеся под воздействием одурманивающих веществ.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

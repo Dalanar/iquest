@@ -1,3 +1,4 @@
 from django.contrib import admin
+from main.models import GiftCardOrder
 
-# Register your models here.
+admin.site.register(GiftCardOrder)
