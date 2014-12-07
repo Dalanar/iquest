@@ -21,7 +21,7 @@ SECRET_KEY = 'poek*=vtf!9%#xyg+q_y+a4nnt8+!aeg%p$go)g+gvf2meew$9'
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
