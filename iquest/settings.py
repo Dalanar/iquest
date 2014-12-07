@@ -62,19 +62,17 @@ if isDev == "dev":
     login = "iquest"
     password = "dev-pass"
     debug = True
-    engine = 'django.db.backends.mysql'
 else:
     login = "iquestdb"
     password = "j3iosdgw89"
     debug = False
-    engine = 'mysql.connector.django'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = debug
 
 DATABASES = {
     'default': {
-        'ENGINE': engine,
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'iquest',
         'USER': login,
         'PASSWORD': password,
