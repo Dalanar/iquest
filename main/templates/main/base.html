@@ -5,11 +5,13 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/magnific-popup.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}" />
     <script src="{% static 'main/js/jquery.js' %}" ></script>
     <script src="{% static 'main/js/jquery.form.js' %}" ></script>
     <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
     <script src="{% static 'main/js/datepicker-ru.js' %}" ></script>
+    <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}" ></script>
     <script src="{% static 'main/js/main.js' %}" ></script>
 </head>
 <body>
@@ -36,8 +38,10 @@
                 </a>
             </div>
             <div class="quests">
-                <div class="circle quests-img"></div>
-                <div class="text">Квесты</div>
+                <a href="{% url 'main:quests' %}">
+                    <div class="circle quests-img"></div>
+                    <div class="text">Квесты</div>
+                </a>
             </div>
             <div class="cards">
                 <a href="{% url 'main:cards' %}">
@@ -63,12 +67,12 @@
                 <div class="menu">
                     <div class="item"><a href="{% url 'main:index' %}">IQUEST</a></div>
                     <div class="item"><a href="{% url 'main:rules' %}">ПРАВИЛА ИГРЫ</a></div>
-                    <div class="item"><a href="#">КВЕСТЫ</a></div>
+                    <div class="item"><a href="{% url 'main:quests' %}">КВЕСТЫ</a></div>
                     <div class="item"><a href="{% url 'main:cards' %}">ПОДАРОЧНЫЕ КАРТЫ</a></div>
                     <div class="item"><a href="{% url 'main:contact' %}">КОНТАКТЫ</a></div>
                 </div>
                 <div class="last-info">
-                    <div class="copyright">Разрботал сам, охуенно же получилось</div>
+                    <div class="copyright">© 2014 «IQuest» Разработано F-group</div>
                     <div class="social">
                         <div class="vk"></div>
                         <div class="fb"></div>

@@ -18,7 +18,15 @@
     src: url('../fonts/Roboto-Medium.ttf'); /* Путь к файлу со шрифтом */
 }
 
-html * {
+.red-font {
+    color: #ca624b;
+}
+
+.grey-font {
+    color: #767676;
+}
+
+body {
     padding: 0px;
     margin: 0px;
     font-family: 'roboto-regular';
@@ -35,6 +43,7 @@ body > div.wrapper .header {
 }
 
 body > div.wrapper .header-img {
+    top: -1px;
     background-image: url('../images/bg_header_1200.png');
     height: 200px;
     position: absolute;
@@ -52,11 +61,12 @@ body div.header-info {
 body div.header-info .brain {
     float: left;
     width: 146px;
+    margin-top: 1px;
 }
 
 body div.header-info .title {
     float: left;
-    width: 69%;
+    width: 67%;
     font-family: 'roboto-light';
 }
 
@@ -397,13 +407,13 @@ a.button {
 /*** CONTACT ***/
 h2 {
     font-family: 'roboto-regular';
-    font-size: 36pt;
+    font-size: 36px;
     margin-bottom: 50px;
 }
 
 div.contact-main {
     font-family: 'roboto-light';
-    font-size: 24pt;
+    font-size: 24px;
     color: #767676;
     margin-bottom: 80px;
 }
@@ -418,7 +428,7 @@ div.contact-social {
 
 div.contact-social p {
     font-family: 'roboto-bold';
-    font-size: 24pt;
+    font-size: 24px;
     color: #ca624b;
     margin-bottom: 30px;
 }
@@ -494,6 +504,7 @@ div.red-title {
 div.order-button {
     text-align: center;
     width: 100%;
+    margin-bottom: 40px;
 }
 
 div.form .row {
@@ -518,23 +529,23 @@ div.form .row.phone div{
 }
 
 div.form input {
-    height: 33px;
+    height: 31px;
     border-radius: 0 9px 9px 0;
     outline: 0;
     border: 1px solid #b5b5b5;
     display: inline-block;
-    line-height: 35px;
+    line-height: 31px;
     padding-left: 5px;
 }
 
 /*** QUESTS ***/
 div.quests-description div.quest-description{
-    height: 300px;
+    height: 436px;
 }
 
 div.quests-description .description,
 div.quests-description .gallery {
-    width: 45%;
+    width: 48%;
 }
 
 div.quests-description .even .description,
@@ -547,7 +558,71 @@ div.quests-description .even .gallery {
     float: right
 }
 
+div.quest-description .description .title {
+    font-size: 38px;
+    font-family: 'roboto-medium';
+    margin-bottom: 35px;
+}
+
+div.quest-description .description .main-description {
+    font-family: 'roboto-light';
+    font-size: 20px;
+}
+
+div.gallery .main-image {
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+div.gallery .previews {
+    text-align: center;
+}
+
+div.gallery .previews a {
+    width: 140px;
+    display: inline-block;
+}
+
+div.gallery .previews a:first-child {
+    float: left;
+}
+
+div.gallery .previews a:last-child {
+    float: right;
+}
+
+div.gallery img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.select-quest .order-quest {
+    display: inline-block;
+    font-family: 'roboto-medium';
+    font-size: 20px;
+    color: white;
+    background-color: #ca624b;
+    padding: 3px;
+    border: 1px solid #ca624b;
+    width: 200px;
+    text-align: center;
+}
+
+.select-quest .order-quest.current {
+    background-color: white;
+    color: #ca624b;
+    border: 1px solid #ca624b;
+}
+
+.select-quest .order-quest:hover {
+    cursor: pointer;
+}
+
 /*** datepicker ***/
+div#datepicker {
+    margin-bottom: 30px;
+}
+
 div#datepicker .ui-datepicker {
     width: 100%;
 }
@@ -590,4 +665,60 @@ div#datepicker .ui-datepicker th {
 
 div#datepicker .ui-datepicker td a:hover {
     background-color: #ca624b;
+}
+
+.ui-datepicker-current-day {
+    background-color: #ca624b;
+}
+
+/*** dialog ***/
+.ui-dialog {
+    background-color: white;
+    border: 1px solid #ca624b;
+    border-radius: 5px;
+}
+
+.time-money .row .clock {
+    width: 25px;
+}
+
+.time-money .row {
+    margin-bottom: 10px;
+}
+
+.time-money .row:last-child {
+    margin-bottom: 0px;
+}
+
+.time-money .row:hover {
+    cursor: pointer;
+}
+
+.time-money .row > div {
+    display: inline-block;
+    text-align: center;
+}
+
+.time-money .row:hover > div{
+    text-decoration: underline;
+}
+
+.time-money .row > div:first-child {
+    width: 105px;
+}
+
+.ui-widget-overlay.ui-front {
+    background-color: rgba(165, 165, 165, 0.38);
+}
+
+.ui-state-default .ui-icon {
+    background-image: url("../images/close.png");
+    width: 16px;
+    height: 16px;
+}
+
+.confirm {
+    text-align: center;
+    font-family: 'roboto-regular';
+    font-size: 20px;
 }

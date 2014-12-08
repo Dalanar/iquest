@@ -1,22 +1,127 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% block content %}
+    <script>
+        var ordered = [
+            {
+                "date" : "dd:mm:YY",
+                "time" : [
+                    "today",
+                    "tommorow"
+                ]
+            },
+            {
+                "date" : "dd:mm:YY",
+                "time" : [
+                    "today",
+                    "tommorow"
+                ]
+            }
+        ];
+    </script>
     <h1>Описание квестов</h1>
     <div class="quests-description">
         <div class="quest-description odd">
-            <div class="gallery"></div>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                        <img src="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                    </a>
+                </div>
+                <div class="previews">
+                    <div class="popup-gallery">
+                        <a href="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                            <img src="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                        </a>
+                        <a class="center" href="{% static 'main/images/quests/Desert.jpg' %}">
+                            <img src="{% static 'main/images/quests/Desert.jpg' %}">
+                        </a>
+                        <a href="{% static 'main/images/quests/Hydrangeas.jpg' %}">
+                            <img src="{% static 'main/images/quests/Hydrangeas.jpg' %}">
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="description">
-                <div class="title">Случайный пациент</div>
-                <div class="main-description">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал. Звонки по больницам и клиникам не принесли результата, и вы решили отправиться на настоящие поиски. Добравшись до неприметной больницы, на окраине города, вы встретили санитара, который рассказал вам, что ваш друг находится в закрытом крыле больницы и его держат для проведения ужасного эксперимента. У вас есть всего один час, чтобы спасти своего друга и скрыться, чтобы самим не стать жертвами таинственного доктора.</div>
+                <div class="title red-font">Случайный пациент</div>
+                <div class="main-description grey-font">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал. Звонки по больницам и клиникам не принесли результата, и вы решили отправиться на настоящие поиски. Добравшись до неприметной больницы, на окраине города, вы встретили санитара, который рассказал вам, что ваш друг находится в закрытом крыле больницы и его держат для проведения ужасного эксперимента. У вас есть всего один час, чтобы спасти своего друга и скрыться, чтобы самим не стать жертвами таинственного доктора.</div>
+                <div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="quest-description even">
             <div class="gallery"></div>
             <div class="description">
-                <div class="title">Время «Z»</div>
-                <div class="main-description">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>
+                <div class="title red-font">Время «Z»</div>
+                <div class="main-description grey-font">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>
             </div>
         </div>
     </div>
-    <div id="datepicker"></div>
+    <div class="select-quest">
+        <div class="order-quest current" data-id="1">Случайный пациент</div><div class="order-quest" data-id="2">Время «Z»</div>
+    </div>
+    <div name="order" class="">
+        <div id="datepicker"></div>
+    </div>
+    <div class="confirm">
+        Вы бронируете квест  <span class="quest-name red-font">«Случайный пациент»</span> на дату <span class="date red-font">27 ноября 2014</span> на время <span class="time red-font">18:00</span>.
+    </div>
+    <div class="fields">
+        <form id="quest-order-form">
+            <input type=hidden name="quest" value="1" />
+            <input type=hidden name="date" time="0" />
+            <input type=hidden name="time" time="0" />
+            <div class="row">
+                <div class="input">
+                    <img src=""><input name=""/>
+                </div>
+                <div class="input">
+                    <img src=""><input name=""/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input">
+                    <img src=""><input name=""/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="order-time-menu">
+        <div class="time-money">
+            <div class="row">
+                <div><img class="clock" src="{% static 'main/images/quests/clock.png' %}"/></div>
+                <div><img src="{% static 'main/images/quests/rubl.png' %}"/></div>
+            </div>
+            <div class="row">
+                <div data-time="0">15:00-16:00</div>
+                <div>800</div>
+            </div>
+            <div class="row">
+                <div data-time="0">16:00-17:00</div>
+                <div>800</div>
+            </div>
+            <div class="row">
+                <div data-time="0">17:00-18:00</div>
+                <div>800</div>
+            </div>
+            <div class="row">
+                <div data-time="0">18:00-19:00</div>
+                <div>800</div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
