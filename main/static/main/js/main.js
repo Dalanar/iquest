@@ -2,6 +2,12 @@
  * Created by Stepan on 06.12.14.
  */
 $(document).ready(function(){
+    var genitive = [
+        "января", "февраля", "марта", "апреля", "мая", "июня", "июля",
+        "августа", "сентября", "октября", "ноября", "декабря"
+    ];
+
+    //  Скрипты для карт
     $('#submit-card-form').click(function(event){
         event.preventDefault();
         event.stopPropagation();
@@ -28,6 +34,7 @@ $(document).ready(function(){
         });
     });
 
+    // Скрипты для брони
    	$('.gallery .main-image > a').magnificPopup({
 		type: 'image',
 		closeOnContentClick: true
@@ -49,9 +56,11 @@ $(document).ready(function(){
     $("#datepicker").datepicker({
         minDate: 0,
         maxDate: "+1M +10D",
-        onSelect: function (date) {
+        onSelect: function (date, inst) {
+            var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
             $('[name=date]').val(date);
+            $('.confirm .date').text(text);
         }
     });
     $("#datepicker").find('.ui-datepicker-current-day').removeClass("ui-datepicker-current-day");
@@ -64,24 +73,42 @@ $(document).ready(function(){
     });
 
     $('.time-money .row').click(function(){
-        var time = $(this).find('div:first').data('time');
-        $('[name=time]').val(time);
+        var $time = $(this).find('div:first');
+        $('[name=time]').val($time.data('time'));
         $('.order-time-menu').dialog('close');
-        checkConfirm();
+        $('.confirm .time').text($time.text());
     });
 
     $(".select-quest .order-quest").click(function(){
         $('.select-quest .order-quest.current').removeClass('current');
         $(this).addClass('current');
         $('[name=quest]').val($(this).data('id'));
-        checkConfirm();
+        $('.confirm .quest-name').text($(this).text());
     });
 
-    function checkConfirm() {
-        $('.confirm .quest-name').text($('.select-quest .order-quest.current').text())
-        $('.confirm .quest-date').text($('[input=date]').val());
-        $('.confirm .quest-time').text($('[input=time]').val());
-    }
+    $('#book').click(function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        var isEmpty = false;
+        $('#quest-order-form input').each(function(){
+            if ($.trim($(this).val()) == "") {
+                isEmpty = true;
+            }
+        });
+        if (isEmpty) {
+            alert("Пожалуйста, заполните все поля");
+            return;
+        }
+        $('#quest-order-form').ajaxSubmit({
+            success: function() {
+                alert('Ваша заявка принята');
+                $('#card-form input').each(function(){
+                    $(this).val("");
+                });
+            },
+            error: function() {
+                alert('Произошла ошибка');
+            }
+        });
+    });
 });
-
-checkConfirm();

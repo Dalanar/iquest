@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views import generic
 from django.views.generic.edit import CreateView
+from django.views.generic.base import View
 from main.forms import GiftCardOrderForm, QuestOrderForm
 
 
