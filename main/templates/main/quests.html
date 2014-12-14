@@ -2,22 +2,8 @@
 {% load staticfiles %}
 {% block content %}
     <script>
-        var ordered = [
-            {
-                "date" : "dd:mm:YY",
-                "time" : [
-                    "today",
-                    "tommorow"
-                ]
-            },
-            {
-                "date" : "dd:mm:YY",
-                "time" : [
-                    "today",
-                    "tommorow"
-                ]
-            }
-        ];
+        {{ raw }}
+        var orders = {{ orderJson|safe }};
     </script>
     <h1>Описание квестов</h1>
     <div class="quests-description">
@@ -77,13 +63,14 @@
         <div id="datepicker"></div>
     </div>
     <div class="confirm">
-        Вы бронируете квест  <span class="quest-name red-font">Случайный пациент</span> на дату <span class="date red-font">27 ноября 2014</span> на время <span class="time red-font">18:00</span>.
+        Вы бронируете квест  <span class="quest-name red-font">Случайный пациент</span> <span class="hidden">на дату <span class="date red-font">27 ноября 2014</span></span><span class="hidden"> на время <span class="time red-font">18:00</span></span>.
     </div>
     <div class="fields">
         <form id="quest-order-form" method="POST">
+            {% csrf_token %}
             <input type=hidden name="quest" value="1" />
-            <input type=hidden name="date" time="1" />
-            <input type=hidden name="time" time="2" />
+            <input type=hidden name="date" />
+            <input type=hidden name="time" />
             <div class="row">
                 <div class="input">
                     <img src="{% static 'main/images/input/input_name.png' %}"><input placeholder="Имя" name="name" />
@@ -109,30 +96,14 @@
                 <div><img class="clock" src="{% static 'main/images/quests/clock.png' %}"/></div>
                 <div><img src="{% static 'main/images/quests/rubl.png' %}"/></div>
             </div>
-            <div class="row">
-                <div data-time="1">12:00-13:00</div>
-                <div>800</div>
-            </div>
-            <div class="row">
-                <div data-time="2">13:00-14:00</div>
-                <div>800</div>
-            </div>
-            <div class="row">
-                <div data-time="3">14:00-15:00</div>
-                <div>800</div>
-            </div>
-            <div class="row">
-                <div data-time="4">15:00-16:00</div>
-                <div>800</div>
-            </div>
-            <div class="row">
-                <div data-time="5">16:00-17:00</div>
-                <div>800</div>
-            </div>
-            <div class="row">
-                <div data-time="6">17:00-18:00</div>
-                <div>800</div>
-            </div>
+            <div class="choice-time">
+            {% for time in times %}
+                <div class="row">
+                    <div data-time="{{ time.id }}">{{ time.time }}</div>
+                    <div>800</div>
+                </div>
+            {% endfor %}
+             </div>
         </div>
     </div>
 {% endblock %}

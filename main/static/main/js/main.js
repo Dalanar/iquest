@@ -54,35 +54,54 @@ $(document).ready(function(){
 
     $.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
     $("#datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
         minDate: 0,
         maxDate: "+1M +10D",
         onSelect: function (date, inst) {
             var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
-            $('[name=date]').val(date);
-            $('.confirm .date').text(text);
+            $('[name=date]').val(inst.selectedYear+"-"+inst.selectedMonth+"-"+inst.selectedDay);
+            $('.confirm .date').text(text).closest('.hidden').removeClass('hidden');
         }
     });
-    $("#datepicker").find('.ui-datepicker-current-day').removeClass("ui-datepicker-current-day");
 
     $('.order-time-menu').dialog({
         autoOpen: false,
         title: 'Выберите время',
         width: 183,
-        modal: true
+        modal: true,
+        open: function() {
+            var date = $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            for (var i = 0; i < orders.length; i++) {
+                if (orders[i].fields.date != date) {
+                    continue;
+                }
+                $('.time-money .choice-time .row [data-time]').each(function(){
+                    if ($(this).data('time') == orders[i].fields.time) {
+                        $(this).closest('.row').addClass('disabled');
+                    }
+                });
+            }
+        },
+        close: function() {
+            $('.time-money .choice-time .row').removeClass('disabled');
+        }
     });
 
     $('.time-money .row').click(function(){
+        if ($(this).hasClass('disabled')) {
+            return;
+        }
         var $time = $(this).find('div:first');
         $('[name=time]').val($time.data('time'));
         $('.order-time-menu').dialog('close');
-        $('.confirm .time').text($time.text());
+        $('.confirm .time').text($time.text()).closest('.hidden').removeClass('hidden');
     });
 
     $(".select-quest .order-quest").click(function(){
         $('.select-quest .order-quest.current').removeClass('current');
         $(this).addClass('current');
-        $('[name=quest]').val($(this).data('id'));
+        $('[name=quest]').val($(this).text());
         $('.confirm .quest-name').text($(this).text());
     });
 
@@ -111,4 +130,10 @@ $(document).ready(function(){
             }
         });
     });
+
+    function init() {
+        $('.select-quest .order-quest.current').trigger('click');
+        $("#datepicker").find('.ui-datepicker-current-day').removeClass("ui-datepicker-current-day");
+    }
+    init();
 });

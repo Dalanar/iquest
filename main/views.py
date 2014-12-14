@@ -1,8 +1,12 @@
 from django.http import JsonResponse
 from django.views import generic
 from django.views.generic.edit import CreateView
-from django.views.generic.base import View
+from django.shortcuts import render
+from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
+from main.models import Time, QuestOrder, Quest
+from django.core import serializers
+import datetime, time as ftime
 
 
 class IndexView(generic.TemplateView):
@@ -11,6 +15,10 @@ class IndexView(generic.TemplateView):
 
 class ContactView(generic.TemplateView):
     template_name = 'main/contact.html'
+
+
+class StubView(generic.TemplateView):
+    template_name = 'main/stub.html'
 
 
 class RulesView(generic.TemplateView):
@@ -53,3 +61,40 @@ class QuestsView(AjaxableResponseMixin, CreateView):
     form_class = QuestOrderForm
     success_url = "/"
     template_name = 'main/quests.html'
+
+
+def questsOrder(request):
+    if request.method == "POST":
+        try:
+            time = int(request.POST['time'])
+            time_obj = Time.objects.filter(pk=time)
+            if not time_obj:
+                return JsonResponse("Wrong request", status=400)
+            date = request.POST['date']
+            timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
+            if timestamp < int(ftime.time()):
+                return JsonResponse("Wrong time", status=400)
+            quest = int(request.POST['quest'])
+            quest = Quest.objects.filter(pk=quest)
+            if not quest:
+                return JsonResponse("Wrong request", status=400)
+            name = request.POST['name']
+            phone = request.POST['phone']
+            email = request.POST['email']
+            if name.strip() == "" or phone.strip() or email.strip() == "":
+                return JsonResponse("Wrong request", status=400)
+            quest_order = QuestOrder(quest=quest, name=name, phone=phone, email=email, time=time, date=date)
+            quest_order.save()
+        except:
+            return JsonResponse("Something error", status=400)
+    else:
+        orders = QuestOrder.objects.filter(date__gte=timezone.now())
+        orderJson = serializers.serialize("json", orders)
+        return render(
+            request,
+            'main/quests.html',
+            {
+                "orderJson" : orderJson,
+                "times": Time.objects.all()
+            }
+        )

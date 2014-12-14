@@ -18,6 +18,10 @@
     src: url('../fonts/Roboto-Medium.ttf'); /* Путь к файлу со шрифтом */
 }
 
+.hidden {
+    display: none;
+}
+
 .red-font {
     color: #ca624b;
 }
@@ -690,8 +694,14 @@ div#datepicker .ui-datepicker td a:hover {
     margin-bottom: 0px;
 }
 
-.time-money .row:hover {
+.time-money .choice-time .row:hover {
     cursor: pointer;
+}
+
+.time-money .choice-time .row.disabled,
+.time-money .choice-time .row.disabled:hover {
+    color: grey;
+    cursor: default;
 }
 
 .time-money .row > div {
@@ -699,8 +709,12 @@ div#datepicker .ui-datepicker td a:hover {
     text-align: center;
 }
 
-.time-money .row:hover > div{
+.time-money .choice-time .row:hover > div{
     text-decoration: underline;
+}
+
+.time-money .choice-time .row.disabled:hover > div{
+    text-decoration: none;
 }
 
 .time-money .row > div:first-child {
