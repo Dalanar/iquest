@@ -337,6 +337,15 @@ div.quest .quest-title {
     border-top: 1px solid #cacaca;
     border-left: 1px solid #cacaca;
     border-right: 1px solid #cacaca;
+    color: #000;
+    text-decoration: none;
+}
+
+div.quest a,
+div.quest a:visited,
+div.quest a:hover {
+    color: #000;
+    text-decoration: none;
 }
 
 div.quest .quest-info {
