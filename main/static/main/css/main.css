@@ -239,10 +239,16 @@ div.footer .menu .item a {
     color: #f7f7f7;
 }
 
-div.footer .menu .item:first-child,
-div.footer .menu .item:last-child {
-    margin: 0 10px;
+div.footer .menu .item:first-child {
+    margin-left: 9px;
+    margin-right: 10px;
 }
+
+div.footer .menu .item:last-child {
+    margin-left: 10px;
+    margin-right: 9px;
+}
+
 
 div.footer .last-info {
     margin-top: 40px;
@@ -254,12 +260,18 @@ div.footer .copyright {
     width: 80%;
 }
 
+div.footer .copyright a,
+div.footer .copyright a:hover,
+div.footer .copyright a:visited {
+    color: #f7f7f7;
+}
+
 div.footer .social {
     width: 130px;
     float: right;
 }
 
-div.footer .social > div {
+div.footer .social a > div {
     float: left;
     width: 30px;
     height: 30px;
