@@ -401,6 +401,17 @@ div.quest:hover .img-select {
     display: block;
 }
 
+div.quest.center:hover .img-select,
+div.quest.center .img-select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0.7;
+    background-color: #b4b1b6;
+    display: block;
+}
+
 div.quest .img-select .message {
     margin: 100px auto;
     width: 160px;
