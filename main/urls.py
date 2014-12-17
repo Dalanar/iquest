@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     url(r'^rules$', views.RulesView.as_view(), name='rules'),
     url(r'^cards', views.CardsView.as_view(), name='cards'),
     url(r'^quests', views.StubView.as_view(), name='quests'),
-    # url(r'^quests', views.questsOrder, name='quests'),
+    # url(r'^quests', views.quests_order, name='quests'),
 )

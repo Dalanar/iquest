@@ -7,6 +7,7 @@ from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import Time, QuestOrder, Quest
 from django.core import serializers
 import datetime, time as ftime
+from django.http import HttpResponse
 
 
 class IndexView(generic.TemplateView):
@@ -63,30 +64,45 @@ class QuestsView(AjaxableResponseMixin, CreateView):
     template_name = 'main/quests.html'
 
 
-def questsOrder(request):
+def error_json_response(message):
+    return JsonResponse({"success": False, "message": message}, status=400)
+
+
+def json_response(message):
+    return JsonResponse({"success": True, "message": message}, status=200)
+
+
+def quests_order(request):
     if request.method == "POST":
         try:
             time = int(request.POST['time'])
-            time_obj = Time.objects.filter(pk=time)
+            time_obj = Time.objects.get(pk=time)
             if not time_obj:
-                return JsonResponse("Wrong request", status=400)
+                return error_json_response("Wrong request")
             date = request.POST['date']
             timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
-            if timestamp < int(ftime.time()):
-                return JsonResponse("Wrong time", status=400)
+            current_time = int(ftime.time()) - 86400
+            if timestamp < current_time:
+                return error_json_response("Wrong time")
             quest = int(request.POST['quest'])
-            quest = Quest.objects.filter(pk=quest)
+            quest = Quest.objects.get(pk=quest)
             if not quest:
-                return JsonResponse("Wrong request", status=400)
-            name = request.POST['name']
-            phone = request.POST['phone']
-            email = request.POST['email']
-            if name.strip() == "" or phone.strip() or email.strip() == "":
-                return JsonResponse("Wrong request", status=400)
-            quest_order = QuestOrder(quest=quest, name=name, phone=phone, email=email, time=time, date=date)
-            quest_order.save()
-        except:
-            return JsonResponse("Something error", status=400)
+                return error_json_response("Wrong request")
+            name = request.POST['name'].strip()
+            phone = request.POST['phone'].strip()
+            email = request.POST['email'].strip()
+            if name == "" or phone == "" or email == "":
+                return error_json_response("Wrong request")
+            try:
+                QuestOrder.objects.get(time=time_obj, quest=quest, date=date)
+            except QuestOrder.DoesNotExist:
+                quest_order = QuestOrder(quest=quest, name=name, phone=phone, email=email, time=time_obj, date=date)
+                quest_order.save()
+                return json_response("OK")
+            else:
+                return error_json_response("Quest already ordered")
+        except Exception:
+            return error_json_response("Something error")
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
         orderJson = serializers.serialize("json", orders)

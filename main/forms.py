@@ -12,6 +12,7 @@ class GiftCardOrderForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'placeholder': 'Телефон', 'id': 'phone'}),
         }
 
+
 class QuestOrderForm(forms.ModelForm):
     class Meta:
         model = QuestOrder

@@ -60,7 +60,7 @@ $(document).ready(function(){
         onSelect: function (date, inst) {
             var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
-            $('[name=date]').val(inst.selectedYear+"-"+inst.selectedMonth+"-"+inst.selectedDay);
+            $('[name=date]').val(inst.selectedYear+"-"+(inst.selectedMonth+1)+"-"+inst.selectedDay);
             $('.confirm .date').text(text).closest('.hidden').removeClass('hidden');
         }
     });
@@ -73,14 +73,16 @@ $(document).ready(function(){
         open: function() {
             var date = $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
             for (var i = 0; i < orders.length; i++) {
-                if (orders[i].fields.date != date) {
-                    continue;
+                if (
+                    orders[i].fields.date == date &&
+                        orders[i].fields.quest == $('.select-quest .order-quest.current').data("id")
+                    ) {
+                    $('.time-money .choice-time .row [data-time]').each(function(){
+                        if ($(this).data('time') == orders[i].fields.time) {
+                            $(this).closest('.row').addClass('disabled');
+                        }
+                    });
                 }
-                $('.time-money .choice-time .row [data-time]').each(function(){
-                    if ($(this).data('time') == orders[i].fields.time) {
-                        $(this).closest('.row').addClass('disabled');
-                    }
-                });
             }
         },
         close: function() {
@@ -101,7 +103,12 @@ $(document).ready(function(){
     $(".select-quest .order-quest").click(function(){
         $('.select-quest .order-quest.current').removeClass('current');
         $(this).addClass('current');
-        $('[name=quest]').val($(this).text());
+        $('[name=quest]').val($(this).data("id"));
+        $('[name=time]').val("");
+        var confirmTime = $('.confirm .time').closest('span');
+        if (!confirmTime.hasClass('hidden')) {
+            $('.confirm .time').closest('span').addClass('hidden');
+        }
         $('.confirm .quest-name').text($(this).text());
     });
 
