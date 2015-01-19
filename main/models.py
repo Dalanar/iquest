@@ -13,17 +13,6 @@ class GiftCardOrder(models.Model):
         verbose_name_plural = "Подарочные карты"
 
 
-class Time(models.Model):
-    time = models.CharField(max_length=50, verbose_name="Время")
-
-    def __str__(self):
-        return self.time
-
-    class Meta:
-        verbose_name = "Время"
-        verbose_name_plural = "Время"
-
-
 class Quest(models.Model):
     quest = models.CharField(max_length=255, verbose_name="Квест")
 
@@ -41,10 +30,11 @@ class QuestOrder(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     date = models.DateField(verbose_name="Дата")
-    time = models.ForeignKey(Time, verbose_name="Время")
+    time = models.CharField(max_length=10, verbose_name="Время")
+    cost = models.IntegerField(max_length=10, verbose_name="Стоимость", primary_key=False, null=True)
 
     def __str__(self):
-        return self.quest.quest + ": " + self.time.time + ", " + self.date.isoformat()
+        return self.quest.quest + ": " + self.time + ", " + self.date.isoformat()
 
     class Meta:
         verbose_name = "Забронированый квест"

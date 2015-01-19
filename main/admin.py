@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import GiftCardOrder, QuestOrder, Time, Quest
+from main.models import GiftCardOrder, QuestOrder, Quest
 
 
 class QuestOrderAdmin(admin.ModelAdmin):
@@ -8,5 +8,4 @@ class QuestOrderAdmin(admin.ModelAdmin):
 
 admin.site.register(GiftCardOrder)
 admin.site.register(QuestOrder, QuestOrderAdmin)
-admin.site.register(Time)
 admin.site.register(Quest)

@@ -56,7 +56,7 @@ $(document).ready(function(){
     $("#datepicker").datepicker({
         dateFormat: "yy-mm-dd",
         minDate: 0,
-        maxDate: "+1M +10D",
+        maxDate: "+1M",
         onSelect: function (date, inst) {
             var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
@@ -71,34 +71,43 @@ $(document).ready(function(){
         width: 183,
         modal: true,
         open: function() {
-            var date = $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            var date = $("#datepicker").datepicker('getDate');
+            var dayOfWeek = date.getUTCDay();
+            var $choiceTime = $('.order-time-menu .choice-time').empty();
+            $.each(schedule[dayOfWeek], function(index, value) {
+                $choiceTime.append('<div class="row"><div class="time" >' + value.time + '</div><div class="cost">' + value.cost + '</div></div>');
+            });
+            date = $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
             for (var i = 0; i < orders.length; i++) {
                 if (
                     orders[i].fields.date == date &&
                         orders[i].fields.quest == $('.select-quest .order-quest.current').data("id")
                     ) {
-                    $('.time-money .choice-time .row [data-time]').each(function(){
-                        if ($(this).data('time') == orders[i].fields.time) {
+                    $('.time-money .choice-time .row .time').each(function(){
+                        if ($(this).text() == orders[i].fields.time) {
                             $(this).closest('.row').addClass('disabled');
                         }
                     });
                 }
             }
+            $('.time-money .row').click(clickTimeCostHandler);
         },
         close: function() {
             $('.time-money .choice-time .row').removeClass('disabled');
         }
     });
 
-    $('.time-money .row').click(function(){
+    function clickTimeCostHandler(){
         if ($(this).hasClass('disabled')) {
             return;
         }
-        var $time = $(this).find('div:first');
-        $('[name=time]').val($time.data('time'));
+        var time = $(this).find('.time').text();
+        $('[name=time]').val(time);
+        var cost = $(this).find('.cost').text();
+        $('[name=cost]').val(cost);
         $('.order-time-menu').dialog('close');
-        $('.confirm .time').text($time.text()).closest('.hidden').removeClass('hidden');
-    });
+        $('.confirm .time').text(time).closest('.hidden').removeClass('hidden');
+    };
 
     $(".select-quest .order-quest").click(function(){
         $('.select-quest .order-quest.current').removeClass('current');

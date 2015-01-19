@@ -185,7 +185,7 @@ div.header-menu > div:hover .contacts-img {
 
 /*** CONTENT ***/
 body > div.wrapper .content {
-    width: 1000px;
+    width: 1060px;
     margin: 0 auto;
 }
 
@@ -575,13 +575,19 @@ div.form input {
 }
 
 /*** QUESTS ***/
-div.quests-description div.quest-description{
-    height: 436px;
+div.quests-description div.quest-description {
+    margin-bottom: 50px;
+}
+
+div.quests-description div.quest-description:after {
+    clear: both;
+    content: "";
+    display: block;
 }
 
 div.quests-description .description,
 div.quests-description .gallery {
-    width: 48%;
+    width: 480px;
 }
 
 div.quests-description .even .description,
@@ -597,16 +603,39 @@ div.quests-description .even .gallery {
 div.quest-description .description .title {
     font-size: 38px;
     font-family: 'roboto-medium';
-    margin-bottom: 35px;
+    margin-bottom: 25px;
+}
+
+div.quest-description .quest-info > div {
+    display: inline-block;
+}
+
+div.quest-description .quest-info .quest-info-peoples {
+    margin-right: 70px;
+}
+
+div.quest-description .quest-info .peoples {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+div.quest-description .quest-info .time {
+    margin-bottom: 20px;
+}
+
+div.quest-description .quest-info .quest-info-time {
+    text-align: center;
 }
 
 div.quest-description .description .main-description {
     font-family: 'roboto-light';
     font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 17px;
 }
 
 div.gallery .main-image {
-    height: 300px;
+    height: 361px;
     margin-bottom: 20px;
 }
 
@@ -663,22 +692,36 @@ div#datepicker .ui-datepicker {
     width: 100%;
 }
 
-div#datepicker .ui-datepicker-month {
+div#datepicker .ui-datepicker-title {
+    text-transform: uppercase;
     font-size: 14pt;
 }
 
-div#datepicker .ui-icon {
-    background-image: url("../images/ui-icons_222222_256x240.png");
+#datepicker .ui-datepicker-next {
+    right: 400px;
 }
 
-div#datepicker .ui-datepicker-prev .ui-icon {
+#datepicker .ui-datepicker-prev {
+    left: 400px;
+}
+
+div#datepicker .ui-icon {
+    width: 15px;
     display: block;
     position: absolute;
     left: 50%;
     margin-left: -8px;
-    top: 50%;
+    top: 68%;
     margin-top: -8px;
-    background-position: -80px -192px;
+    cursor: pointer;
+}
+
+div#datepicker .ui-datepicker-prev .ui-icon {
+    background-image: url("../images/left.gif");
+}
+
+div#datepicker .ui-datepicker-next .ui-icon {
+    background-image: url("../images/right.gif");
 }
 
 div#datepicker .ui-state-default {
@@ -750,7 +793,7 @@ div#datepicker .ui-datepicker td a:hover {
 }
 
 .time-money .row > div:first-child {
-    width: 105px;
+    width: 90px;
 }
 
 .ui-widget-overlay.ui-front {

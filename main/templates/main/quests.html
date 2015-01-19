@@ -4,26 +4,27 @@
     <script>
         {{ raw }}
         var orders = {{ orderJson|safe }};
+        var schedule = {{ schedule|safe }};
     </script>
     <h1>Описание квестов</h1>
     <div class="quests-description">
         <div class="quest-description odd">
             <div class="gallery">
                 <div class="main-image">
-                    <a href="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
-                        <img src="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                    <a href="{% static 'main/images/quests/rand/main.jpg' %}">
+                        <img src="{% static 'main/images/quests/rand/preview_main.png' %}">
                     </a>
                 </div>
                 <div class="previews">
                     <div class="popup-gallery">
-                        <a href="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
-                            <img src="{% static 'main/images/quests/Chrysanthemum.jpg' %}">
+                        <a href="{% static 'main/images/quests/rand/1.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_1.png' %}">
                         </a>
-                        <a class="center" href="{% static 'main/images/quests/Desert.jpg' %}">
-                            <img src="{% static 'main/images/quests/Desert.jpg' %}">
+                        <a class="center" href="{% static 'main/images/quests/rand/2.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_2.png' %}">
                         </a>
-                        <a href="{% static 'main/images/quests/Hydrangeas.jpg' %}">
-                            <img src="{% static 'main/images/quests/Hydrangeas.jpg' %}">
+                        <a href="{% static 'main/images/quests/rand/3.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_3.png' %}">
                         </a>
                     </div>
                 </div>
@@ -48,16 +49,17 @@
                 </div>
             </div>
         </div>
-        <div class="quest-description even">
-            <div class="gallery"></div>
-            <div class="description">
-                <div class="title red-font">Время «Z»</div>
-                <div class="main-description grey-font">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>
-            </div>
-        </div>
+{#        <div class="quest-description even">#}
+{#            <div class="gallery"></div>#}
+{#            <div class="description">#}
+{#                <div class="title red-font">Время «Z»</div>#}
+{#                <div class="main-description grey-font">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
     <div class="select-quest">
-        <div class="order-quest current" data-id="1">Случайный пациент</div><div class="order-quest" data-id="2">Время «Z»</div>
+        <div class="order-quest current" data-id="1">Случайный пациент</div>
+{#        <div class="order-quest" data-id="2">Время «Z»</div>#}
     </div>
     <div name="order" class="">
         <div id="datepicker"></div>
@@ -71,6 +73,7 @@
             <input type=hidden name="quest" value="1" />
             <input type=hidden name="date" />
             <input type=hidden name="time" />
+            <input type=hidden name="cost" />
             <div class="row">
                 <div class="input">
                     <img src="{% static 'main/images/input/input_name.png' %}"><input placeholder="Имя" name="name" />
@@ -97,12 +100,12 @@
                 <div><img src="{% static 'main/images/quests/rubl.png' %}"/></div>
             </div>
             <div class="choice-time">
-            {% for time in times %}
-                <div class="row">
-                    <div data-time="{{ time.id }}">{{ time.time }}</div>
-                    <div>800</div>
-                </div>
-            {% endfor %}
+{#                {% for time in times %}#}
+{#                    <div class="row">#}
+{#                        <div data-time="{{ time.id }}">{{ time.time }}</div>#}
+{#                        <div>800</div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
              </div>
         </div>
     </div>

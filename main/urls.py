@@ -6,6 +6,6 @@ urlpatterns = patterns('',
     url(r'^contact$', views.ContactView.as_view(), name='contact'),
     url(r'^rules$', views.RulesView.as_view(), name='rules'),
     url(r'^cards', views.CardsView.as_view(), name='cards'),
-    url(r'^quests', views.StubView.as_view(), name='quests'),
-    # url(r'^quests', views.quests_order, name='quests'),
+    # url(r'^quests', views.StubView.as_view(), name='quests'),
+    url(r'^quests', views.quests_order, name='quests'),
 )
