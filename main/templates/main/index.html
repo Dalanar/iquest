@@ -4,11 +4,11 @@
     <h1>IQuest</h1>
     <div class="i-description">IQuest - это интеллектуальная игра. Вы попадаете в закрытое помещение, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы и самое главное включать свой ум и смекалку. Все это понадобится вам для того, чтобы найти выход, а может быть и разгадать тайну этого места.</div>
     <div class="quests">
-        <a href="https://vk.com/iquest" target="_blank">
+        <a href="{% url 'main:quests' %}" target="_blank">
         <div class="quest left">
             <div class="quest-title">Случайный пациент</div>
             <div class="quest-img">
-                <img src="{% static 'main/images/quests/q1.png' %}" alt=""/>
+                <img src="{% static 'main/images/quests/rand/img-on-main.jpg' %}" alt=""/>
                 <div class="img-select"><div class="message">Скоро открытие</div></div>
             </div>
             <div class="quest-info">
