@@ -105,8 +105,8 @@ $(document).ready(function(){
         $('[name=time]').val(time);
         var cost = $(this).find('.cost').text();
         $('[name=cost]').val(cost);
-        $('.order-time-menu').dialog('close');
         $('.confirm .time').text(time).closest('.hidden').removeClass('hidden');
+        $('.order-time-menu').dialog('close');
     };
 
     $(".select-quest .order-quest").click(function(){
@@ -114,9 +114,9 @@ $(document).ready(function(){
         $(this).addClass('current');
         $('[name=quest]').val($(this).data("id"));
         $('[name=time]').val("");
-        var confirmTime = $('.confirm .time').closest('span');
+        var confirmTime = $('.confirm .time').parents('span');
         if (!confirmTime.hasClass('hidden')) {
-            $('.confirm .time').closest('span').addClass('hidden');
+            confirmTime.addClass('hidden');
         }
         $('.confirm .quest-name').text($(this).text());
     });
