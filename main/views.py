@@ -73,7 +73,7 @@ def json_response(message):
 
 
 def check_time_in_schedule(date, time, cost):
-    weekday = int(datetime.datetime.strptime(date, "%Y-%m-%d").strftime('%w'))
+    weekday = int(datetime.datetime.strptime(date, "%Y-%m-%d").weekday())
     for key in schedule[weekday]:
         if schedule[weekday][key]["time"] == time and schedule[weekday][key]["cost"] == cost:
             return True
@@ -122,7 +122,6 @@ def quests_order(request):
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
         orderJson = serializers.serialize("json", orders)
-        # scheduleJson = serializers.serialize("json", schedule)
         return render(
             request,
             'main/quests.html',
