@@ -7,7 +7,7 @@ from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import QuestOrder, Quest, Ban
 from main.schedule import schedule
 from django.core import serializers
-import datetime, time as ftime
+import datetime, time as ftime, re
 
 
 class IndexView(generic.TemplateView):
@@ -104,7 +104,7 @@ def quests_order(request):
             name = request.POST['name'].strip()
             phone = request.POST['phone'].strip()
             email = request.POST['email'].strip()
-            if name == "" or phone == "" or email == "":
+            if not data_validate(name, email, phone):
                 return error_json_response("Wrong request")
             try:
                 QuestOrder.objects.get(time=time, quest=quest, date=date)
@@ -136,6 +136,14 @@ def quests_order(request):
                 "schedule": schedule
             }
         )
+
+
+def data_validate(name, email, phone):
+    if name == "" or phone == "" or email == "" or len(name) < 3:
+        return False
+    if not re.match(r"^[0-9\+\- ]+$", phone):
+        return False
+    return True
 
 
 def get_client_ip(request):

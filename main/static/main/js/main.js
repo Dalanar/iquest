@@ -97,7 +97,7 @@ $(document).ready(function(){
         }
     });
 
-    function clickTimeCostHandler(){
+    function clickTimeCostHandler() {
         if ($(this).hasClass('disabled')) {
             return;
         }
@@ -107,7 +107,7 @@ $(document).ready(function(){
         $('[name=cost]').val(cost);
         $('.confirm .time').text(time).closest('.hidden').removeClass('hidden');
         $('.order-time-menu').dialog('close');
-    };
+    }
 
     $(".select-quest .order-quest").click(function(){
         $('.select-quest .order-quest.current').removeClass('current');
@@ -124,14 +124,42 @@ $(document).ready(function(){
     $('#book').click(function(event){
         event.preventDefault();
         event.stopPropagation();
-        var isEmpty = false;
+        var error = null;
         $('#quest-order-form input').each(function(){
             if ($.trim($(this).val()) == "") {
-                isEmpty = true;
+                error = "Пожалуйста, заполните все поля";
+                return;
+            }
+            var value = $(this).val();
+            if (
+                $(this).is('[name=name]') &&
+                    (
+                        value.length < 3 ||
+                        !/^[а-яёА-ЯЁ0-9 ]+$/.test(value)
+                    )
+            ) {
+                error = 'Некоректно заполнено имя';
+                return;
+            }
+            if (
+                $(this).is('[name=phone]') &&
+                    (
+                        value.length < 5 ||
+                        !/^[0-9\+\- ]+$/.test(value)
+                    )
+            ) {
+                error = 'Некоректно заполнен телефон';
+                return;
+            }
+            if (
+                $(this).is('[name=email]') && !validateEmail(value)
+            ) {
+                error = 'Некоректно заполнен email';
+                return;
             }
         });
-        if (isEmpty) {
-            alert("Пожалуйста, заполните все поля");
+        if (error) {
+            alert(error);
             return;
         }
         $('#quest-order-form').ajaxSubmit({
@@ -150,6 +178,11 @@ $(document).ready(function(){
     function init() {
         $('.select-quest .order-quest.current').trigger('click');
         $("#datepicker").find('.ui-datepicker-current-day').removeClass("ui-datepicker-current-day");
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
     init();
 });

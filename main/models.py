@@ -27,6 +27,13 @@ class Quest(models.Model):
 class Ban(models.Model):
     ip = models.CharField(max_length=11)
 
+    def __str__(self):
+        return self.ip
+
+    class Meta:
+        verbose_name = "Бан"
+        verbose_name_plural = "Баны"
+
 
 class QuestOrder(models.Model):
     quest = models.ForeignKey(Quest, verbose_name="Квест")
