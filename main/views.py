@@ -127,7 +127,7 @@ def quests_order(request):
             return error_json_response("Something error")
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
-        orderJson = serializers.serialize("json", orders)
+        orderJson = replace_orders(orders)
         return render(
             request,
             'main/quests.html',
@@ -136,6 +136,23 @@ def quests_order(request):
                 "schedule": schedule
             }
         )
+
+
+def replace_orders(orders):
+    """
+    QuestOrder[] orders
+    """
+    new_orders = []
+    for order in orders:
+        new_orders.append({
+            'fields': {
+                "quest": order.quest.id,
+                "time": order.time,
+                "date": order.date.isoformat(),
+                "cost": order.cost
+            }
+        })
+    return new_orders
 
 
 def data_validate(name, email, phone):
