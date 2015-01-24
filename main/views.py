@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
-from main.models import QuestOrder, Quest
+from main.models import QuestOrder, Quest, Ban
 from main.schedule import schedule
 from django.core import serializers
 import datetime, time as ftime
@@ -83,6 +83,11 @@ def check_time_in_schedule(date, time, cost):
 def quests_order(request):
     if request.method == "POST":
         try:
+            ip = get_client_ip(request)
+            bans = Ban.objects.all()
+            for ban in bans:
+                if ban.ip == ip:
+                    return error_json_response("Banned")
             time = request.POST['time']
             cost = int(request.POST['cost'])
             date = request.POST['date']
@@ -111,7 +116,8 @@ def quests_order(request):
                     email=email,
                     time=time,
                     date=date,
-                    cost=cost
+                    cost=cost,
+                    ip=ip
                 )
                 quest_order.save()
                 return json_response("OK")
@@ -130,3 +136,12 @@ def quests_order(request):
                 "schedule": schedule
             }
         )
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

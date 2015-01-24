@@ -24,6 +24,10 @@ class Quest(models.Model):
         verbose_name_plural = "Квесты"
 
 
+class Ban(models.Model):
+    ip = models.CharField(max_length=11)
+
+
 class QuestOrder(models.Model):
     quest = models.ForeignKey(Quest, verbose_name="Квест")
     name = models.CharField(max_length=255, verbose_name="Имя")
@@ -32,6 +36,7 @@ class QuestOrder(models.Model):
     date = models.DateField(verbose_name="Дата")
     time = models.CharField(max_length=10, verbose_name="Время")
     cost = models.IntegerField(max_length=10, verbose_name="Стоимость", primary_key=False, null=True)
+    ip = models.CharField(null=True, max_length=11)
 
     def __str__(self):
         return self.quest.quest + ": " + self.time + ", " + self.date.isoformat()
