@@ -4,25 +4,39 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
-from main.models import QuestOrder, Quest, Ban
+from main.models import QuestOrder, Quest, Ban, Setting
 from main.schedule import schedule
 from django.core import serializers
 import datetime, time as ftime, re
 
 
-class IndexView(generic.TemplateView):
+def get_keywords():
+    try:
+        return Setting.objects.get(key="keywords").value
+    except:
+        return ""
+
+
+class KeywordsMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(KeywordsMixin, self).get_context_data(**kwargs)
+        context["keywords"] = get_keywords()
+        return context
+
+
+class IndexView(KeywordsMixin, generic.TemplateView):
     template_name = 'main/index.html'
 
 
-class ContactView(generic.TemplateView):
+class ContactView(KeywordsMixin, generic.TemplateView):
     template_name = 'main/contact.html'
 
 
-class StubView(generic.TemplateView):
+class StubView(KeywordsMixin, generic.TemplateView):
     template_name = 'main/stub.html'
 
 
-class RulesView(generic.TemplateView):
+class RulesView(KeywordsMixin, generic.TemplateView):
     template_name = 'main/rules.html'
 
 
@@ -52,13 +66,13 @@ class AjaxableResponseMixin(object):
             return response
 
 
-class CardsView(AjaxableResponseMixin, CreateView):
+class CardsView(KeywordsMixin, AjaxableResponseMixin, CreateView):
     form_class = GiftCardOrderForm
     success_url = "/"
     template_name = 'main/cards.html'
 
 
-class QuestsView(AjaxableResponseMixin, CreateView):
+class QuestsView(KeywordsMixin, AjaxableResponseMixin, CreateView):
     form_class = QuestOrderForm
     success_url = "/"
     template_name = 'main/quests.html'
@@ -133,7 +147,8 @@ def quests_order(request):
             'main/quests.html',
             {
                 "orderJson" : orderJson,
-                "schedule": schedule
+                "schedule": schedule,
+                "keywords": get_keywords()
             }
         )
 

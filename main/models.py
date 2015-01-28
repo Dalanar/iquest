@@ -51,3 +51,15 @@ class QuestOrder(models.Model):
     class Meta:
         verbose_name = "Забронированый квест"
         verbose_name_plural = "Забронированные квесты"
+
+
+class Setting(models.Model):
+    key = models.CharField(max_length=255, verbose_name="Ключ")
+    value = models.TextField(verbose_name="Значение")
+
+    def __str__(self):
+        return self.key + ": " + self.value
+
+    class Meta:
+        verbose_name = "Настройки"
+        verbose_name_plural = "Настройки"
