@@ -83,7 +83,8 @@
                     <div class="item"><a href="{% url 'main:contact' %}">КОНТАКТЫ</a></div>
                 </div>
                 <div class="last-info">
-                    <div class="copyright">© 2014 «IQuest» created by <a href="mailto:stepan.franchuk@yandex.ru">Stepan Franchuk</a></div>
+{#                    <div class="copyright">© 2014 «IQuest» created by <a href="mailto:stepan.franchuk@yandex.ru">Stepan Franchuk</a><br/></div>#}
+                    <div style="font-size: 3px; color: #767676">{{ keywords }}</div>
                     <div class="social">
                         <a target="_blank" href="http://vk.com/iquest"><div class="vk"></div></a>
                         <a target="_blank" href="https://www.facebook.com/iqtomsk"><div class="fb"></div></a>
@@ -94,6 +95,5 @@
         </div>
     </div>
 </div>
-<div class="keywords" style="font-size: 0">{{ keywords }}</div>
 </body>
 </html>
