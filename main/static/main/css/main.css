@@ -252,6 +252,15 @@ div.footer .menu .item:last-child {
 
 div.footer .last-info {
     margin-top: 40px;
+    position: relative;
+}
+
+div.footer .last-info .keywords {
+    font-size: 7px;
+    color: #767676;
+    font-weight: bold;
+    position: absolute;
+    top: -25px;
 }
 
 div.footer .copyright {
