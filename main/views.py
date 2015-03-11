@@ -122,6 +122,7 @@ def quests_order(request):
             name = request.POST['name'].strip()
             phone = request.POST['phone'].strip()
             email = request.POST['email'].strip()
+            email = email.lower()
             if not data_validate(name, email, phone):
                 return error_json_response("Wrong request")
             try:

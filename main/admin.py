@@ -81,10 +81,6 @@ def send_emails(title, text):
             "title": title,
             "text": text
         }
-        a = ""
-        for email in emails:
-            a += email + ", "
-        logger.error(a)
         message = get_template('admin/tools/email_template.html').render(Context(ctx))
         emails = ("xcorter@mail.ru", "perseidsstarfall@gmail.com",)
         msg = EmailMessage(title, message, to=emails, from_email="noreply@iquest.tomsk.ru")
