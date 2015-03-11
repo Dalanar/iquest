@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from main import views
+from django.contrib import admin
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
@@ -8,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^cards', views.CardsView.as_view(), name='cards'),
     # url(r'^quests', views.StubView.as_view(), name='quests'),
     url(r'^quests', views.quests_order, name='quests'),
+    #url(r'^admin/tools/delivery$', views.AdminDeliveryView.as_view(), name='admin-delivery'),
 )

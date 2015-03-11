@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+{% if error %}
+    <p>Произошла ошибка при отправке рассылки: {{ error }}</p>
+{% endif %}
+{% if success %}
+    <p>Расссылка успешно создана</p>
+{% endif %}
+<h2>Сделать рассылку</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Введите название письма</td>
+            <td><input name="mail-title"></td>
+        </tr>
+        <tr>
+            <td>Текст письма</td>
+            <td><textarea name="text"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Отправить"></td>
+        </tr>
+    </table>
+</form>
+</div>
+{% endblock %}

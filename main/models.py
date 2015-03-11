@@ -63,3 +63,8 @@ class Setting(models.Model):
     class Meta:
         verbose_name = "Настройки"
         verbose_name_plural = "Настройки"
+
+
+class Delivery(models.Model):
+    class Meta(object):
+        verbose_name = 'Рассылка'

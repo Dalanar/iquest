@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import platform
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -94,6 +95,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -102,3 +104,41 @@ STATIC_URL = '/static/'
 _PATH = os.path.abspath(os.path.dirname(__file__))
 
 STATIC_ROOT = os.path.join(_PATH, 'static')
+
+if platform.system() == "Windows":
+    log_path = "iquest.log"
+else:
+    log_path = "/var/log/iquest.log"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': log_path,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'ERROR',
+        },
+        'main': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+        },
+    }
+}

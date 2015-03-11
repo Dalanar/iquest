@@ -78,6 +78,10 @@ class QuestsView(KeywordsMixin, AjaxableResponseMixin, CreateView):
     template_name = 'main/quests.html'
 
 
+# class AdminDeliveryView(generic.TemplateView):
+#     template_name = 'admin/tools/delivery.html'
+
+
 def error_json_response(message):
     return JsonResponse({"success": False, "message": message}, status=400)
 
