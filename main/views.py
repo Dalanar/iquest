@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import QuestOrder, Quest, Ban, Setting
-from main.schedule import schedule
+from main.schedule import get_schedule
 from django.core import serializers
 import datetime, time as ftime, re
 
@@ -91,10 +91,16 @@ def json_response(message):
 
 
 def check_time_in_schedule(date, time, cost):
-    weekday = int(datetime.datetime.strptime(date, "%Y-%m-%d").weekday())
-    for key in schedule[weekday]:
-        if schedule[weekday][key]["time"] == time and schedule[weekday][key]["cost"] == cost:
-            return True
+    schedule = get_schedule()
+    order_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+    for schedule_date in schedule:
+        if schedule_date[0] == order_date.year and \
+                        schedule_date[1] == order_date.month and \
+                        schedule_date[2] == order_date.day:
+            for key in schedule_date[4]:
+                if schedule_date[4][key]["time"] == time and \
+                                schedule_date[4][key]["cost"] == cost:
+                    return True
     return False
 
 
@@ -152,7 +158,7 @@ def quests_order(request):
             'main/quests.html',
             {
                 "orderJson" : orderJson,
-                "schedule": schedule,
+                "schedule": get_schedule(),
                 "keywords": get_keywords()
             }
         )
@@ -184,9 +190,10 @@ def data_validate(name, email, phone):
 
 
 def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
+    # x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    # if x_forwarded_for:
+    #     ip = x_forwarded_for.split(',')[0]
+    # else:
+    #     ip = request.META.get('REMOTE_ADDR')
+    ip = request.META.get('REMOTE_ADDR')
     return ip

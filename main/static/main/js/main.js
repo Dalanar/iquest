@@ -60,10 +60,27 @@ $(document).ready(function(){
         onSelect: function (date, inst) {
             var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
-            $('[name=date]').val(inst.selectedYear+"-"+(inst.selectedMonth+1)+"-"+inst.selectedDay);
-            $('.confirm .date').text(text).closest('.hidden').removeClass('hidden');
+            $('[name=date]').val(
+                inst.selectedYear + "-" + (inst.selectedMonth + 1) + "-" + inst.selectedDay
+            );
+            $('.confirm .date')
+                .text(text)
+                .closest('.hidden')
+                .removeClass('hidden');
         }
     });
+
+	function getTimesFromSchedule(date) {
+		for (var i = 0; i < schedule.length; i++) {
+			if (
+				schedule[i][2] == date[2] &&
+				schedule[i][1] == date[1] &&
+				schedule[i][0] == date[0]
+			) {
+				return schedule[i][4];
+			}
+		}
+	}
 
     $('.order-time-menu').dialog({
         autoOpen: false,
@@ -71,18 +88,26 @@ $(document).ready(function(){
         width: 183,
         modal: true,
         open: function() {
-            var date = $("#datepicker").datepicker('getDate');
-            var dayOfWeek = date.getUTCDay();
+			var date =
+				$("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+			var date_arr = $.map(date.split('-'), function(el){
+				return parseInt(el);
+			});
             var $choiceTime = $('.order-time-menu .choice-time').empty();
-            $.each(schedule[dayOfWeek], function(index, value) {
-                $choiceTime.append('<div class="row"><div class="time" >' + value.time + '</div><div class="cost">' + value.cost + '</div></div>');
+            $.each(getTimesFromSchedule(date_arr), function(index, value) {
+                $choiceTime.append(
+                    '<div class="row">' +
+                        '<div class="time" >' + value.time + '</div>' +
+                        '<div class="cost">' + value.cost + '</div>' +
+                    '</div>'
+                );
             });
-            date = $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
             for (var i = 0; i < orders.length; i++) {
                 if (
                     orders[i].fields.date == date &&
-                        orders[i].fields.quest == $('.select-quest .order-quest.current').data("id")
-                    ) {
+                    orders[i].fields.quest ==
+						$('.select-quest .order-quest.current').data("id")
+                ) {
                     $('.time-money .choice-time .row .time').each(function(){
                         if ($(this).text() == orders[i].fields.time) {
                             $(this).closest('.row').addClass('disabled');
