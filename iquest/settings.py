@@ -87,7 +87,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'NOVT'
+TIME_ZONE = 'Asia/Novosibirsk'
 
 USE_I18N = True
 
