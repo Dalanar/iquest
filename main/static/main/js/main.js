@@ -56,7 +56,7 @@ $(document).ready(function(){
     $("#datepicker").datepicker({
         dateFormat: "yy-mm-dd",
         minDate: 0,
-        maxDate: "+1M",
+        maxDate: "+29d",
         onSelect: function (date, inst) {
             var text = inst.selectedDay + " " + genitive[inst.selectedMonth] + " " + inst.selectedYear;
             $('.order-time-menu').dialog("open");
