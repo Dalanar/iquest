@@ -190,9 +190,10 @@ def data_validate(name, email, phone):
 
 
 def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for
-    else:
-        ip = request.META.get('REMOTE_ADDR')
+    # x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    # if x_forwarded_for:
+    #     ip = x_forwarded_for
+    # else:
+    #     ip = request.META.get('REMOTE_ADDR')
+    ip = request.META['HTTP_X_REAL_IP']
     return ip
