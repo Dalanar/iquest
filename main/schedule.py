@@ -330,7 +330,7 @@ def get_shifted_date():
         return [year, month, day - 2]
     else:
         if month > 1:
-            days_in_month = calendar.monthrange(year, month)[1]
+            days_in_month = calendar.monthrange(year, month - 1)[1]
             return [year, month - 1, days_in_month + day - 2]
         else:
             month = 12

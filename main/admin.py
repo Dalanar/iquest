@@ -4,7 +4,7 @@ from django.shortcuts import render
 from main.models import *
 from django.template import Context
 from django.template.loader import get_template
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 import logging
 
 logger = logging.getLogger(__name__)
@@ -81,9 +81,18 @@ def send_emails(title, text):
             "title": title,
             "text": text
         }
-        message = get_template('admin/tools/email_template.html').render(Context(ctx))
         emails = ("xcorter@mail.ru", "perseidsstarfall@gmail.com",)
-        msg = EmailMessage(title, message, to=emails, from_email="noreply@iquest.tomsk.ru")
-        msg.content_subtype = 'html'
+        EmailMultiAlternatives()
+        text_content = \
+            get_template('admin/tools/email_template.plain').render(Context(ctx))
+        html_content = \
+            get_template('admin/tools/email_template.html').render(Context(ctx))
+        msg = EmailMultiAlternatives(
+            title,
+            text_content,
+            "noreply@iquest.tomsk.ru",
+            emails
+        )
+        msg.attach_alternative(html_content, "text/html")
         msg.send()
         i+=1
