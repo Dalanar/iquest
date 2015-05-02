@@ -107,7 +107,10 @@ def check_time_in_schedule(date, time, cost):
 def quests_order(request):
     if request.method == "POST":
         try:
-            ip = get_client_ip(request)
+            try:
+                ip = get_client_ip(request)
+            except Exception:
+                ip = ""
             bans = Ban.objects.all()
             for ban in bans:
                 if ban.ip == ip:
@@ -195,5 +198,9 @@ def get_client_ip(request):
     #     ip = x_forwarded_for
     # else:
     #     ip = request.META.get('REMOTE_ADDR')
-    ip = request.META['HTTP_X_REAL_IP']
+    http_x_real_ip = request.META.get('HTTP_X_FORWARDED_FOR')
+    if http_x_real_ip:
+        ip = http_x_real_ip
+    else:
+        ip = request.META.get('REMOTE_ADDR')
     return ip
