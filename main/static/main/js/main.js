@@ -135,6 +135,10 @@ $(document).ready(function(){
     }
 
     $(".select-quest .order-quest").click(function(){
+		if ($(this).hasClass('time-z')) {
+			window.open("https://vk.com/iquest", '_blank');
+			return;
+		}
         $('.select-quest .order-quest.current').removeClass('current');
         $(this).addClass('current');
         $('[name=quest]').val($(this).data("id"));

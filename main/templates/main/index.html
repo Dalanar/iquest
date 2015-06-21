@@ -1,10 +1,8 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <h1>Реалити-квест Томск</h1>
-    <div class="i-description">IQuest - это интеллектуальная игра. Вы попадаете в закрытое помещение - квеструм, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы и самое главное включать свой ум и смекалку. Все это понадобится вам для того, чтобы найти выход, а может быть и разгадать тайну этого места.</div>
     <div class="quests">
-        <a href="{% url 'main:quests' %}">
+        <a href="{% url 'main:quests' %}#q1">
         <div class="quest left">
             <div class="quest-title">Случайный пациент</div>
             <div class="quest-img">
@@ -24,12 +22,12 @@
         </div>
         </a>
 
-        <a href="https://vk.com/iquest" target="_blank">
+        <a href="{% url 'main:quests' %}#q2">
         <div class="quest right">
             <div class="quest-title">Время Z</div>
             <div class="quest-img">
                 <img src="{% static 'main/images/quests/q2.png' %}" alt=""/>
-                <div class="img-select"><div class="message">Скоро открытие</div></div>
+                <div class="img-select"><div class="message">Перейти к квесту</div></div>
             </div>
             <div class="quest-info">
                 <div class="quest-info-peoples">
@@ -66,6 +64,9 @@
         </div>
     </div>
     <div class="go-to-order">
-        <a href="{% url 'main:quests' %}" class="button">Перейти к бронированию</a>
+        <a href="{% url 'main:quests' %}#select-quest" class="button">Перейти к бронированию</a>
     </div>
+
+	<h1>Реалити-квест Томск</h1>
+    <div class="i-description">IQuest - это интеллектуальная игра. Вы попадаете в закрытое помещение - квеструм, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы и самое главное включать свой ум и смекалку. Все это понадобится вам для того, чтобы найти выход, а может быть и разгадать тайну этого места.</div>
 {% endblock %}

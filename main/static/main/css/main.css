@@ -699,6 +699,10 @@ div.gallery img {
     cursor: pointer;
 }
 
+.select-quest .order-quest.wide {
+	width: 420px;
+}
+
 /*** datepicker ***/
 div#datepicker {
     margin-bottom: 30px;
