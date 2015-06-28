@@ -4,10 +4,24 @@ __author__ = 'Stepan'
 import calendar
 import datetime
 
+from copy import deepcopy
 
-low_cost = 1500
-middle_cost = 2000
-high_cost = 2500
+costs = {
+    "quest1": {
+        "low_cost": 1500,
+        "middle_cost": 2000,
+        "high_cost": 2500
+    },
+    "quest2": {
+        "low_cost": 2000,
+        "middle_cost": 2500,
+        "high_cost": 3000
+    }
+}
+
+low_cost = "low_cost"
+middle_cost = "middle_cost"
+high_cost = "high_cost"
 
 
 # понедельник, вторник, среда, четверг
@@ -339,19 +353,36 @@ def get_shifted_date():
             return [year, month, days_in_month]
 
 
+# Заполняет шаблон расписания ценами для соответствующего квеста
+def to_form_costs(template, quest):
+    clone = deepcopy(template)
+    for i in clone.keys():
+        cost = clone[i]["cost"]
+        clone[i]["cost"] = costs[quest][cost]
+    return clone
+
+
+# Создает расписание для двух квестов с различными ценами
+def create_schedule_form_template(template):
+    schedule = []
+    schedule.append(to_form_costs(template, "quest1"))
+    schedule.append(to_form_costs(template, "quest2"))
+    return schedule
+
+
 # Добавляем время с учетом следующего дня
 def add_times(schedule):
     for i in range(len(schedule) - 1):
         day = schedule[i]
         next_day = schedule[i + 1]
         if not day[3] and not next_day[3]:
-            schedule[i].append(weekday)
+            schedule[i].append(create_schedule_form_template(weekday))
         elif not day[3] and next_day[3]:
-            schedule[i].append(before_weekend)
+            schedule[i].append(create_schedule_form_template(before_weekend))
         elif day[3] and next_day[3]:
-            schedule[i].append(weekend)
+            schedule[i].append(create_schedule_form_template(weekend))
         elif day[3] and not next_day[3]:
-            schedule[i].append(weekend_before_weekday)
+            schedule[i].append(create_schedule_form_template(weekend_before_weekday))
     return schedule
 
 

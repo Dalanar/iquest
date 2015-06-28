@@ -90,16 +90,16 @@ def json_response(message):
     return JsonResponse({"success": True, "message": message}, status=200)
 
 
-def check_time_in_schedule(date, time, cost):
+def check_time_in_schedule(date, time, cost, quest):
     schedule = get_schedule()
     order_date = datetime.datetime.strptime(date, "%Y-%m-%d")
     for schedule_date in schedule:
         if schedule_date[0] == order_date.year and \
                         schedule_date[1] == order_date.month and \
                         schedule_date[2] == order_date.day:
-            for key in schedule_date[4]:
-                if schedule_date[4][key]["time"] == time and \
-                                schedule_date[4][key]["cost"] == cost:
+            for key in schedule_date[4][quest]:
+                if schedule_date[4][quest][key]["time"] == time and \
+                                schedule_date[4][quest][key]["cost"] == cost:
                     return True
     return False
 
@@ -118,16 +118,17 @@ def quests_order(request):
             time = request.POST['time']
             cost = int(request.POST['cost'])
             date = request.POST['date']
-            if not check_time_in_schedule(date, time, cost):
+            quest_id = int(request.POST['quest'])
+            quest = Quest.objects.get(pk=quest_id)
+            if not quest:
+                return error_json_response("Wrong request")
+            quest_id = quest_id - 1
+            if not check_time_in_schedule(date, time, cost, quest_id):
                 return error_json_response("Error data")
             timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
             current_time = int(ftime.time()) - 86400
             if timestamp < current_time:
                 return error_json_response("Wrong time")
-            quest = int(request.POST['quest'])
-            quest = Quest.objects.get(pk=quest)
-            if not quest:
-                return error_json_response("Wrong request")
             name = request.POST['name'].strip()
             phone = request.POST['phone'].strip()
             email = request.POST['email'].strip()
@@ -156,13 +157,19 @@ def quests_order(request):
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
         orderJson = replace_orders(orders)
+        quests = Quest.objects.all()
+        questsIds = {
+            "quest1": quests[0].id,
+            "quest2": quests[1].id
+        }
         return render(
             request,
             'main/quests.html',
             {
                 "orderJson" : orderJson,
                 "schedule": get_schedule(),
-                "keywords": get_keywords()
+                "keywords": get_keywords(),
+                'questsIds': questsIds
             }
         )
 

@@ -76,8 +76,8 @@
             </div>
             <div class="gallery">
                 <div class="main-image">
-                    <a href="{% static 'main/images/quests/q2.png' %}">
-                        <img src="{% static 'main/images/quests/q2.png' %}">
+                    <a href="{% static 'main/images/quests/q2-new.png' %}">
+                        <img src="{% static 'main/images/quests/q2-new.png' %}">
                     </a>
                 </div>
 {#                <div class="previews">#}
@@ -99,8 +99,8 @@
 	<a name="select-quest"></a>
     <div class="select-quest">
 	{% spaceless %}
-        <div class="order-quest current" data-id="1">Случайный пациент</div>
-        <div class="order-quest wide time-z" data-id="2">Предварительная запись на зомби-квест</div>
+        <div class="order-quest current" data-id="{{ questsIds.quest1 }}">Случайный пациент</div>
+        <div class="order-quest wide time-z" data-id="{{ questsIds.quest2 }}">Предварительная запись на зомби-квест</div>
 	{% endspaceless %}
     </div>
     <div name="order" class="">

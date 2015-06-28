@@ -70,14 +70,14 @@ $(document).ready(function(){
         }
     });
 
-	function getTimesFromSchedule(date) {
+	function getTimesFromSchedule(date, quest) {
 		for (var i = 0; i < schedule.length; i++) {
 			if (
 				schedule[i][2] == date[2] &&
 				schedule[i][1] == date[1] &&
 				schedule[i][0] == date[0]
 			) {
-				return schedule[i][4];
+				return schedule[i][4][quest];
 			}
 		}
 	}
@@ -94,14 +94,22 @@ $(document).ready(function(){
 				return parseInt(el);
 			});
             var $choiceTime = $('.order-time-menu .choice-time').empty();
-            $.each(getTimesFromSchedule(date_arr), function(index, value) {
-                $choiceTime.append(
-                    '<div class="row">' +
-                        '<div class="time" >' + value.time + '</div>' +
-                        '<div class="cost">' + value.cost + '</div>' +
-                    '</div>'
-                );
-            });
+			var currentQuest = $('.order-quest.current').data('id');
+			currentQuest--;
+            $.each(
+				getTimesFromSchedule(
+					date_arr,
+					currentQuest
+				),
+				function(index, value) {
+					$choiceTime.append(
+						'<div class="row">' +
+							'<div class="time" >' + value.time + '</div>' +
+							'<div class="cost">' + value.cost + '</div>' +
+						'</div>'
+					);
+            	}
+			);
             for (var i = 0; i < orders.length; i++) {
                 if (
                     orders[i].fields.date == date &&
@@ -135,10 +143,21 @@ $(document).ready(function(){
     }
 
     $(".select-quest .order-quest").click(function(){
-		if ($(this).hasClass('time-z')) {
-			window.open("https://vk.com/iquest", '_blank');
-			return;
+		var today = new Date(), dd = today.getDate(),
+			mm = today.getMonth() + 1, yyyy = today.getFullYear();
+		var $datepicker = $("#datepicker");
+		if (
+			$(this).hasClass('time-z') &&
+			((mm < 7 && yyyy == 2015) || (mm == 7 && dd < 15 && yyyy == 2015))
+		) {
+			$datepicker.datepicker('option', 'minDate', "2015-07-15");
+		} else {
+			$datepicker.datepicker('option', 'minDate', 0);
 		}
+		$datepicker.datepicker("setDate", null);
+		$datepicker
+			.find('.ui-datepicker-current-day')
+			.removeClass('ui-datepicker-current-day');
         $('.select-quest .order-quest.current').removeClass('current');
         $(this).addClass('current');
         $('[name=quest]').val($(this).data("id"));
