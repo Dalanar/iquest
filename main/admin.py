@@ -24,7 +24,7 @@ class SettingAdmin(admin.ModelAdmin):
     readonly_fields = ('key',)
 
 
-admin.site.register(Setting, SettingAdmin)
+admin.site.register(Setting)
 
 
 class DeliveryAdmin(admin.ModelAdmin):
@@ -64,7 +64,7 @@ class DeliveryAdmin(admin.ModelAdmin):
         )
 
 
-admin.site.register(Delivery, DeliveryAdmin)
+#admin.site.register(Delivery, DeliveryAdmin)
 
 
 def send_emails(title, text):

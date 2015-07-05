@@ -8,6 +8,8 @@ from main.models import QuestOrder, Quest, Ban, Setting
 from main.schedule import get_schedule
 from django.core import serializers
 import datetime, time as ftime, re
+from main.smsc import SMSC
+from main.utils import *
 
 
 def get_keywords():
@@ -130,7 +132,8 @@ def quests_order(request):
             if timestamp < current_time:
                 return error_json_response("Wrong time")
             name = request.POST['name'].strip()
-            phone = request.POST['phone'].strip()
+            phone = request.POST['phone']
+            phone = phone_validate(phone)
             email = request.POST['email'].strip()
             email = email.lower()
             if not data_validate(name, email, phone):
@@ -149,6 +152,7 @@ def quests_order(request):
                     ip=ip
                 )
                 quest_order.save()
+                send_sms(quest_order)
                 return json_response("OK")
             else:
                 return error_json_response("Quest already ordered")
@@ -211,3 +215,25 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+def get_additional_sms_field():
+    try:
+        setting = Setting.objects.get(key="sms-additional")
+    except Setting.DoesNotExist:
+        return ""
+    else:
+        return setting.value
+
+
+def send_sms(quest_order):
+    try:
+        smsc = SMSC()
+        template = 'Вы забронировали игру в IQuest :) "' + \
+                   quest_order.quest.quest + '" ' + \
+                   quest_order.date + ' ' +\
+                   quest_order.time + ' Алтайская 8/3. ' + \
+                   get_additional_sms_field()
+        smsc.send_sms(quest_order.phone, template, sender="iquest")
+    except Exception:
+        return

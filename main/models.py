@@ -44,6 +44,7 @@ class QuestOrder(models.Model):
     time = models.CharField(max_length=10, verbose_name="Время")
     cost = models.IntegerField(max_length=10, verbose_name="Стоимость", primary_key=False, null=True)
     ip = models.CharField(null=True, max_length=11)
+    notified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.quest.quest + ": " + self.time + ", " + self.date.isoformat()
