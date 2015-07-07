@@ -9,6 +9,9 @@ import datetime, time as ftime
 
 
 class Command(BaseCommand):
+    """
+    Отправить смс о забронированном квесте
+    """
     help = 'Tasks or cron'
     notifyTime = 3600
 

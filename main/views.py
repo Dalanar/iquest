@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
-from main.models import QuestOrder, Quest, Ban, Setting
+from main.models import QuestOrder, Quest, Ban, Setting, Phone
 from main.schedule import get_schedule
 from django.core import serializers
 import datetime, time as ftime, re
@@ -153,6 +153,7 @@ def quests_order(request):
                 )
                 quest_order.save()
                 send_sms(quest_order)
+                add_phone_to_subscription(phone)
                 return json_response("OK")
             else:
                 return error_json_response("Quest already ordered")
@@ -224,6 +225,14 @@ def get_additional_sms_field():
         return ""
     else:
         return setting.value
+
+
+def add_phone_to_subscription(phone):
+    try:
+        phone = Phone.objects.get(number=phone)
+    except Phone.DoesNotExist:
+        phone = Phone(number=phone)
+        phone.save()
 
 
 def send_sms(quest_order):

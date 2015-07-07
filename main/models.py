@@ -36,6 +36,9 @@ class Ban(models.Model):
 
 
 class QuestOrder(models.Model):
+    """
+    Бронирование квеста
+    """
     quest = models.ForeignKey(Quest, verbose_name="Квест")
     name = models.CharField(max_length=255, verbose_name="Имя")
     email = models.EmailField()
@@ -55,6 +58,9 @@ class QuestOrder(models.Model):
 
 
 class Setting(models.Model):
+    """
+    Таблица настроек
+    """
     key = models.CharField(max_length=255, verbose_name="Ключ")
     value = models.TextField(verbose_name="Значение")
 
@@ -69,3 +75,44 @@ class Setting(models.Model):
 class Delivery(models.Model):
     class Meta(object):
         verbose_name = 'Рассылка'
+
+
+class Phone(models.Model):
+    """
+    База телефонов для спама
+    """
+    number = models.CharField(max_length=20, verbose_name="Телефон")
+
+    def __str__(self):
+        return self.number
+
+    class Meta:
+        verbose_name = "Телефон"
+        verbose_name_plural = "Телефоны"
+
+
+class SmsDelivery(models.Model):
+    """
+    Смс рассылка
+    """
+    text = models.TextField(verbose_name="Текст сообщения")
+    is_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        if self.is_completed:
+            text = "Завешено: "
+        else:
+            text = "Ожидает выполнения: "
+        return text + self.text
+
+    class Meta:
+        verbose_name = "Смс рассылка"
+        verbose_name_plural = "Смс рассылка"
+
+
+class PhoneDeliveryRelation(models.Model):
+    """
+    Таблица связи между телефонами и рассылкой
+    """
+    sms_delivery = models.ForeignKey(SmsDelivery)
+    phone = models.ForeignKey(Phone)
