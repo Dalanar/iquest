@@ -13,7 +13,7 @@ class Command(BaseCommand):
     Отправить смс о забронированном квесте
     """
     help = 'Tasks or cron'
-    notifyTime = 3600
+    notifyTime = 10800
 
 
     def handle(self, *args, **options):
