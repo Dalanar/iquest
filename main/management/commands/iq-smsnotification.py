@@ -41,7 +41,7 @@ class Command(BaseCommand):
     def __send_sms(self, order):
         template = 'Напоминаем, что Вы забронировали игру в IQuest :) "' + \
                order.quest.quest + '" ' + \
-               order.date + ' ' +\
+               order.date.strftime("%Y-%m-%d") + ' ' +\
                order.time + ' Алтайская 8/3. ' + \
                self.__get_additional_sms_field()
         smsc = SMSC()
