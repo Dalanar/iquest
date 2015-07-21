@@ -58,7 +58,6 @@ class SMSC(object):
     # либо массив (<id>, -<код ошибки>) в случае ошибки
 
     def send_sms(self, phones, message, translit=0, time="", id=0, format=0, sender=False, query=""):
-        return
         formats = ["flash=1", "push=1", "hlr=1", "bin=1", "bin=2", "ping=1", "mms=1", "mail=1", "call=1"]
 
         m = self._smsc_send_cmd("send", "cost=3&phones=" + quote(phones) + "&mes=" + quote(message) + \
