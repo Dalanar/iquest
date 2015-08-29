@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     url(r'^cards', views.CardsView.as_view(), name='cards'),
     # url(r'^quests', views.StubView.as_view(), name='quests'),
     url(r'^quests', views.quests_order, name='quests'),
+    url(r'^franchise', views.FranchiseView.as_view(), name='franchise'),
     #url(r'^admin/tools/delivery$', views.AdminDeliveryView.as_view(), name='admin-delivery'),
 )

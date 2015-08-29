@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/magnific-popup.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}?1" />
     <script src="{% static 'main/js/jquery.js' %}" ></script>
     <script src="{% static 'main/js/jquery.form.js' %}" ></script>
     <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
@@ -57,7 +57,13 @@
             <div class="cards">
                 <a href="{% url 'main:cards' %}">
                     <div class="circle cards-img"></div>
-                    <div class="text">Подарочные карты</div>
+                    <div class="text">Подарок</div>
+                </a>
+            </div>
+            <div class="franchise">
+                <a href="{% url 'main:franchise' %}">
+                    <div class="circle franchise-img"></div>
+                    <div class="text">Франшиза</div>
                 </a>
             </div>
             <div class="contacts">

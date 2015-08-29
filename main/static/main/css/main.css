@@ -48,7 +48,7 @@ body > div.wrapper .header {
 
 body > div.wrapper .header-img {
     top: -1px;
-    background-image: url('../images/bg_header_1200.png');
+    background-image: url('../images/header_bg_arrows.png');
     height: 200px;
     position: absolute;
     width: 1200px;
@@ -116,10 +116,10 @@ div.header-menu {
 
 /*** CIRCLES ***/
 div.header-menu > div {
-    width: 170px;
+    width: 150px;
     height: 114px;
     float: left;
-    margin: 0 40px;
+    margin: 0 23px;
     font-family: 'roboto-regular';
     font-size: 12pt;
     text-align: center;
@@ -137,8 +137,8 @@ div.header-menu a {
 }
 
 div.header-menu .circle {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
 }
 
@@ -146,41 +146,53 @@ div.header-menu .rules {
     margin-left: 134px;
 }
 
-div.header-menu .cards,
-div.header-menu .quests {
+div.header-menu .quests,
+div.header-menu .franchise {
     padding-top: 20px;
 }
 
+div.header-menu .cards {
+	padding-top: 30px;
+}
+
 div.header-menu .rules-img {
-    background-image: url('../images/circles/rules_circle.png');
+    background-image: url('../images/circles_80/rules_circle.png');
 }
 
 div.header-menu > div:hover .rules-img {
-    background-image: url('../images/circles/rules_circle_selected.png');
+    background-image: url('../images/circles_80/rules_circle_selected.png');
 }
 
 div.header-menu .quests-img {
-    background-image: url('../images/circles/quests_circle.png');
+    background-image: url('../images/circles_80/quests_circle.png');
 }
 
 div.header-menu > div:hover .quests-img {
-    background-image: url('../images/circles/quests_circle_selected.png');
+    background-image: url('../images/circles_80/quests_circle_selected.png');
+}
+
+div.header-menu .franchise-img {
+    background-image: url('../images/circles_80/franchise_circle.png');
+}
+
+div.header-menu > div:hover .franchise-img {
+    background-image: url('../images/circles_80/franchise_circle_selected.png');
 }
 
 div.header-menu .cards-img {
-    background-image: url('../images/circles/card_circle.png');
+    background-image: url('../images/circles_80/card_circle.png');
 }
 
 div.header-menu > div:hover .cards-img {
-    background-image: url('../images/circles/card_circle_selected.png');
+    background-image: url('../images/circles_80/card_circle_selected.png');
 }
 
 div.header-menu .contacts-img {
-    background-image: url('../images/circles/contact_circle.png');
+    background-image: url('../images/circles_80/contact_circle.png');
 }
 
 div.header-menu > div:hover .contacts-img {
-    background-image: url('../images/circles/contact_circle_selected.png');
+    background-image: url('../images/circles_80/contact_circle_selected.png');
 }
 
 /*** CONTENT ***/
@@ -545,13 +557,14 @@ div.red-title {
     font-size: 20pt;
     color: #ca624b;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 
 div.order-button {
     text-align: center;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 div.form .row {
@@ -583,6 +596,18 @@ div.form input {
     display: inline-block;
     line-height: 31px;
     padding-left: 5px;
+}
+
+#card-form input {
+	width: 370px;
+}
+
+.cards-order-notification {
+	width: 420px;
+	margin: 0 auto;
+	font-family: 'roboto-regular';
+	font-size: 16px;
+	margin-bottom: 40px;
 }
 
 /*** QUESTS ***/
@@ -858,4 +883,38 @@ div#datepicker .ui-datepicker td a:hover {
     line-height: 31px;
     padding-left: 5px;
     width: 290px;
+}
+
+/* FRANCHISE + CARDS */
+.cards-content,
+.franchise-content {
+	width: 100%;
+	overflow: auto;
+	font-family: 'roboto-light';
+}
+
+.cards-content .cards-img,
+.cards-text-wrapper,
+.franchise-content .franchise-img,
+.franchise-text-wrapper {
+	width: 50%;
+}
+
+.cards-text-wrapper,
+.franchise-text-wrapper {
+	float: left;
+}
+
+.cards-text,
+.franchise-text {
+	padding-right: 30px;
+}
+
+.cards-content .cards-img,
+.franchise-content .franchise-img {
+	float: right;
+}
+
+.franchise-content .franchise-email {
+	color: #0099cc;
 }

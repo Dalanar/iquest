@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Франшиза</h1>
+	<div class="franchise-content">
+		<div class="franchise-text-wrapper">
+			<div class="franchise-text">
+				Компания «IQuest» предлагает открытие квеструмов по франшизе.<br/><br/>
+				Наша компания является лидирующей на рынке реалити-квестов города Томска. Мы открыты для сотрудничества и готовы предоставить вам всю необходимую помощь и поддержку
+				от самого начала и до запуска вашего проекта.<br/><br/>
+				Для того, чтобы с нами связаться – просто вышлите письмо с краткой информацией о себе, своих планах и городе (стране) в котором вы собираетесь создавать свои замечательные квесты<br/><br/>
+				<span class="red-font">e-mail:</span> <span class="franchise-email">iquest.tsk@gmail.com</span>
+			</div>
+		</div>
+		<div class="franchise-img">
+			<img src="{% static 'main/images/franchise/franchise_browser.jpg' %}" alt="" />
+		</div>
+	</div>
+{% endblock %}

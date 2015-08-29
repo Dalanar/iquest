@@ -42,6 +42,10 @@ class RulesView(KeywordsMixin, generic.TemplateView):
     template_name = 'main/rules.html'
 
 
+class FranchiseView(KeywordsMixin, generic.TemplateView):
+    template_name = 'main/franchise.html'
+
+
 class AjaxableResponseMixin(object):
     """
     Mixin to add AJAX support to a form.
