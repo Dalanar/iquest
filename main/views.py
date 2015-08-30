@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import QuestOrder, Quest, Ban, Setting, Phone
-from main.schedule import get_schedule
+from main.schedule.api import get_schedule
 from django.core import serializers
 import datetime, time as ftime, re
 from main.smsc import SMSC
