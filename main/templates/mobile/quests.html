@@ -1,0 +1,32 @@
+{% extends "mobile/base.html" %}
+{% load staticfiles %}
+{% block content %}
+	<h1>Описание Квеструм</h1>
+	<div class="quests-content">
+		<div class="quest">
+			<div class="quest-name">«Случайный пациент»</div>
+			<div class="quest-img">
+				<img src="{% static 'main/images/quests/rand/preview_main.png' %}">
+			</div>
+			<div class="quest-description">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал.</div>
+			<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
+			<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
+			<div class="quest-button">
+	        	<a href="#" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
+	    	</div>
+		</div>
+
+		<div class="quest">
+			<div class="quest-name">«Время Z»</div>
+			<div class="quest-img">
+				<img src="{% static 'main/images/quests/q2-new.png' %}">
+			</div>
+			<div class="quest-description">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли.</div>
+			<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
+			<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
+			<div class="quest-button">
+	        	<a href="#" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
+	    	</div>
+		</div>
+	</div>
+{% endblock %}

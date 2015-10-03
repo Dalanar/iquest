@@ -1,0 +1,53 @@
+{% extends "mobile/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+	<h1>Контакты</h1>
+	<div class="contact-main">
+        <div class="contact-line">
+			<div class="contact-img">
+				<img src="{% static 'main/images/contact/location.png' %}">
+			</div>
+			<div class="contact-info">
+				г. Томск, ул. Алтайская 8/3
+			</div>
+        </div>
+		<div class="contact-line">
+			<div class="contact-img">
+				<img src="{% static 'main/images/contact/mail.png' %}">
+			</div>
+			<div class="contact-info">
+				iquest.tsk@gmail.com
+			</div>
+        </div>
+		<div class="contact-line">
+			<div class="contact-img">
+				<img src="{% static 'main/images/contact/phone.png' %}">
+			</div>
+			<div class="contact-info">
+				94-29-10
+			</div>
+        </div>
+    </div>
+    <div class="contact-social">
+        <div class="contact-social-title">Социальные сети</div>
+        <p>
+            <a target="_blank" href="http://vk.com/iquest"><img src="{% static 'main/images/contact/vk.png' %}"></a>
+            <a target="_blank" href="https://www.facebook.com/iqtomsk"><img src="{% static 'main/images/contact/fb.png' %}"></a>
+            <a target="_blank" href="http://instagram.com/i_quest"><img src="{% static 'main/images/contact/insta.png' %}"></a>
+        </p>
+    </div>
+    <div id="jmap" class="map">
+
+    </div>
+{#	        <script type="text/javascript" charset="utf-8" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=tW30mFQ4zJvOEP_uvt8lC4IAQAPeFlla&width=1000&height=583"></script>#}
+	<script>
+		var width = screen.width - 40;
+		var url = "//api-maps.yandex.ru/services/constructor/1.0/js/?sid=tW30mFQ4zJvOEP_uvt8lC4IAQAPeFlla&height=220&width=" + width;
+		var oHead = document.getElementById('jmap');
+		var oScript = document.createElement("script");
+		oScript.type = "text/javascript";
+		oScript.src= url;
+		oHead.appendChild( oScript);
+	</script>
+{% endblock %}

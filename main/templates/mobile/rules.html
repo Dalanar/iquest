@@ -1,0 +1,60 @@
+{% extends "mobile/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+	<h1>Правила игры</h1>
+	<div class="description">
+		Вместе с командой, вы попадете в закрытое помещение, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы, и самое главное - включать свой ум и смекалку, для того чтобы найти выход, а может быть разгадать тайну этого места.
+	</div>
+	<table class="rules">
+		<tr class="rule">
+			<td class="number">1</td>
+			<td class="rule-info">
+				<div class="rule-title">Количество игроков</div>
+				<div class="rule-desc">2 - 4 человека (количество людей в команде может варьироваться в зависимости от специфики квеста)</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">2</td>
+			<td class="rule-info">
+				<div class="rule-title">Длительность игры</div>
+				<div class="rule-desc">60 минут. Если за отведенное время вам не удалось выбраться или решить ключевую задачу, двери локации откроются оператором, и вы сможете выйти.</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">3</td>
+			<td class="rule-info">
+				<div class="rule-title">Возраст участников</div>
+				<div class="rule-desc">Участники до 14 лет допускаются к игре только при наличии в команде совершеннолетних.</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">4</td>
+			<td class="rule-info">
+				<div class="rule-title">Перед началом игры</div>
+				<div class="rule-desc">Участники команды оставляют свои сумки, гаджеты, инструменты, косметические принадлежности, заколки и прочие предметы которые могут быть использованы при прохождении квестов.</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">5</td>
+			<td class="rule-info">
+				<div class="rule-title">Чтобы пройти квест</div>
+				<div class="rule-desc">Обязательно нужно общаться со своими товарищами, использовать логику, внимание и совершенно не нужно использовать грубую физическую силу.</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">6</td>
+			<td class="rule-info">
+				<div class="rule-title">Ответственность</div>
+				<div class="rule-desc">Ответственность за нанесенный ущерб ложится на участников игры.</div>
+			</td>
+		</tr>
+		<tr class="rule">
+			<td class="number">7</td>
+			<td class="rule-info">
+				<div class="rule-title">ЗАПРЕЩЕНО</div>
+				<div class="rule-desc">К играм не допускаются участники, находящиеся под воздействием одурманивающих веществ.</div>
+			</td>
+		</tr>
+	</table>
+{% endblock %}
