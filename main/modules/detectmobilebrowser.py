@@ -5,8 +5,34 @@ reg_v = re.compile(r"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er
 
 
 def detect_mobile(request):
+    if request.COOKIES.get('desktop'):
+        return False
+    return is_mobile(request)
+
+
+
+def is_mobile(request):
     if request.META.get('HTTP_USER_AGENT'):
         user_agent = request.META['HTTP_USER_AGENT']
         b = reg_b.search(user_agent)
         v = reg_v.search(user_agent[0:4])
         return (b or v)
+    return False
+
+
+class SetDesktopCookieProcessingMiddleware(object):
+
+    def process_request(self, request):
+        if request.GET.get('desktop'):
+            if not request.COOKIES.get('desktop'):
+                request.COOKIES['desktop'] = 1
+        if request.GET.get('mobile'):
+            request.COOKIES['desktop'] = 0
+
+    # your desired cookie will be available in every HttpResponse parser like browser but not in django view
+    def process_response(self, request, response):
+        if request.COOKIES.get('desktop'):
+            response.set_cookie('desktop', 1)
+        if request.COOKIES.get('mobile'):
+            response.set_cookie('desktop', 0)
+        return response

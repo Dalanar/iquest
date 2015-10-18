@@ -6,6 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/magnific-popup.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'main/css/main-mobile.css' %}?1" />
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -18,27 +21,47 @@
 	</script>
 </head>
 <body>
+{% spaceless %}
 <div class="menu">
-	<div class="menu-open"><img src="{% static 'main/images/mobile/menu.png' %}" /></div>
+	<div class="menu-open">
+		<img src="{% static 'main/images/mobile/menu.png' %}" />
+		<div class="menu-list">
+			<div class="menu-li">
+				<a href="{% url 'main:cards' %}">Подарок</a>
+				<a href="{% url 'main:quests' %}">Квесты</a>
+			</div>
+			<div class="menu-li">
+				<a href="{% url 'main:franchise' %}">Франшиза</a>
+				<a href="{% url 'main:contact' %}">Контакты</a>
+			</div>
+			<div class="menu-li">
+				<a href="{% url 'main:rules' %}">Правила</a>
+			</div>
+		</div>
+	</div>
 	<div class="title">IQuest</div>
 	<div class="phone">94-29-10</div>
 </div>
+{% endspaceless %}
 <div class="content">
 {% block content %}{% endblock %}
 
+{% block full-url %}
 	<div class="full-version">
-		<a href="#">Перейти к полной версии сайта &gt;&gt;</a>
+		<a href="?desktop=1">Перейти к полной версии сайта &gt;&gt;</a>
 	</div>
+{% endblock %}
+
 </div>
 <div class="footer">
 	<div class="footer-title">IQuest. Реалити-квест</div>
 	<div class="footer-list">
-		<a href="#">Главная</a>
-		<a href="#">Бронирование</a>
-		<a href="#">Франшиза</a>
-		<a href="#">Правила</a>
-		<a href="#">Подарочные карты</a>
-		<a href="#">Контакты</a>
+		<a href="{% url 'main:index' %}">Главная</a>
+		<a href="{% url 'main:quests' %}">Бронирование</a>
+		<a href="{% url 'main:franchise' %}">Франшиза</a>
+		<a href="{% url 'main:rules' %}">Правила</a>
+		<a href="{% url 'main:cards' %}">Подарочные карты</a>
+		<a href="{% url 'main:contact' %}">Контакты</a>
 	</div>
 	<div class="footer-info">
 		<div class="info">© 2015 «IQuest»</div>
@@ -49,5 +72,15 @@
 		</div>
 	</div>
 </div>
+
+    <script src="{% static 'main/js/jquery.js' %}" ></script>
+    <script src="{% static 'main/js/jquery.form.js' %}" ></script>
+    <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
+    <script src="{% static 'main/js/datepicker-ru.js' %}" ></script>
+    <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}" ></script>
+    <script src="{% static 'main/js/order.js' %}" ></script>
+    <script src="{% static 'main/js/main-mobile.js' %}" ></script>
+	<script src="{% static 'main/js/present.js' %}" ></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>

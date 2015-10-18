@@ -1,11 +1,6 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <script>
-        {{ raw }}
-        var orders = {{ orderJson|safe }};
-        var schedule = {{ schedule|safe }};
-    </script>
     <h1>Описание Квеструм</h1>
 	<div class="anchor-to-order">
 		<a class="button small" href="#select-quest">Забронировать</a>
@@ -96,59 +91,49 @@
             </div>
         </div>
     </div>
-	<a name="select-quest"></a>
-    <div class="select-quest">
-	{% spaceless %}
-        <div class="order-quest current" data-id="{{ questsIds.quest1 }}">Случайный пациент</div>
-        <div class="order-quest time-z" data-id="{{ questsIds.quest2 }}">Время "Z"</div>
-	{% endspaceless %}
-    </div>
-    <div name="order" class="">
-        <div id="datepicker"></div>
-    </div>
-    <div class="confirm">
-        Вы бронируете квест  <span class="quest-name red-font">Случайный пациент</span> <span class="hidden">на дату <span class="date red-font">27 ноября 2014</span></span><span class="hidden"> на время <span class="time red-font">18:00</span></span>.
-    </div>
-    <div class="fields">
-        <form id="quest-order-form" method="POST">
-            {% csrf_token %}
-            <input type=hidden name="quest" value="1" />
-            <input type=hidden name="date" />
-            <input type=hidden name="time" />
-            <input type=hidden name="cost" />
-            <div class="row">
-                <div class="input">
-                    <img src="{% static 'main/images/input/input_name.png' %}"><input placeholder="Имя" name="name" />
-                </div>
-                <div class="input">
-                    <img src="{% static 'main/images/input/input_phone.png' %}"><input placeholder="Телефон" name="phone"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input">
-                    <img src="{% static 'main/images/input/mail_badge.png' %}"><input placeholder="E-mail" name="email"/>
-                </div>
-            </div>
-            <div class="row">
-                <a href="#" id="book" class="button">ЗАБРОНИРОВАТЬ</a>
-            </div>
-        </form>
-    </div>
 
-    <div class="order-time-menu">
-        <div class="time-money">
-            <div class="row">
-                <div><img class="clock" src="{% static 'main/images/quests/clock.png' %}"/></div>
-                <div><img src="{% static 'main/images/quests/rubl.png' %}"/></div>
-            </div>
-            <div class="choice-time">
-{#                {% for time in times %}#}
-{#                    <div class="row">#}
-{#                        <div data-time="{{ time.id }}">{{ time.time }}</div>#}
-{#                        <div>800</div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
-             </div>
-        </div>
-    </div>
+	{% include "blocks/order/select-quests.html" %}
+    {% include "blocks/order/datepicker.html" %}
+
+	{% include "blocks/order/confirm.html" %}
+
+	<div class="fields">
+		<form id="quest-order-form" method="POST">
+			{% csrf_token %}
+			<input type=hidden name="quest" value="1" />
+			<input type=hidden name="date" />
+			<input type=hidden name="time" />
+			<input type=hidden name="cost" />
+			<div class="row">
+				<div class="input">
+					<img src="{% static 'main/images/input/input_name.png' %}"><input placeholder="Имя" name="name" />
+				</div>
+				<div class="input">
+					<img src="{% static 'main/images/input/input_phone.png' %}"><input placeholder="Телефон" name="phone"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input">
+					<img src="{% static 'main/images/input/mail_badge.png' %}"><input placeholder="E-mail" name="email"/>
+				</div>
+			</div>
+			<div class="row">
+				<a href="#" id="book" class="button">ЗАБРОНИРОВАТЬ</a>
+			</div>
+		</form>
+	</div>
+
+	{% include "blocks/order/time-menu.html" %}
+{% endblock %}
+
+{% block scripts %}
+	<script>
+	$(document).ready(function(){
+		Order.init(
+			{{ orderJson|safe }},
+			{{ schedule|safe }},
+			false
+		);
+	});
+	</script>
 {% endblock %}

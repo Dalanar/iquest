@@ -38,3 +38,11 @@
 		При бронировании игры, <span class="red-font">уточните</span>, что используете <span class="red-font">подарочную карту</span> в качестве оплаты.
 	</div>
 {% endblock %}
+
+{% block scripts %}
+	<script>
+	$(document).ready(function(){
+		Present.init();
+	});
+	</script>
+{% endblock %}

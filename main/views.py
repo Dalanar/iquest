@@ -9,7 +9,7 @@ from main.schedule.api import get_schedule
 import datetime, time as ftime, re
 from main.smsc import SMSC
 from main.utils import *
-from main.modules.detectmobilebrowser import detect_mobile
+from main.modules.detectmobilebrowser import detect_mobile, is_mobile
 
 
 def get_keywords():
@@ -30,6 +30,7 @@ class BaseMixin(object):
     def get_context_data(self, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
         context["keywords"] = get_keywords()
+        context["isMobile"] = is_mobile(self.request)
         return context
 
 
@@ -145,9 +146,13 @@ def quests_order(request):
             name = request.POST['name'].strip()
             phone = request.POST['phone']
             phone = phone_validate(phone)
-            email = request.POST['email'].strip()
-            email = email.lower()
-            if not data_validate(name, email, phone):
+            email = request.POST.get('email')
+            if email:
+                email = request.POST['email'].strip()
+                email = email.lower()
+            else:
+                email = ""
+            if not data_validate(name, phone):
                 return error_json_response("Wrong request")
             try:
                 QuestOrder.objects.get(time=time, quest=quest, date=date)
@@ -210,8 +215,8 @@ def replace_orders(orders):
     return new_orders
 
 
-def data_validate(name, email, phone):
-    if name == "" or phone == "" or email == "" or len(name) < 3:
+def data_validate(name, phone):
+    if name == "" or phone == "" or len(name) < 3:
         return False
     if not re.match(r"^[0-9\+\- ]+$", phone):
         return False
