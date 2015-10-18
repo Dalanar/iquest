@@ -616,7 +616,6 @@ div#datepicker .ui-datepicker-next .ui-icon {
     border-radius: 0 9px 9px 0;
     outline: 0;
     border: 1px solid #b5b5b5;
-    display: block;
     float: left;
     line-height: 31px;
     padding-left: 5px;
