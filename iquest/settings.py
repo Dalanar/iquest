@@ -45,6 +45,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'main.modules.detectmobilebrowser.SetDesktopCookieProcessingMiddleware',
 )
 
 ROOT_URLCONF = 'iquest.urls'

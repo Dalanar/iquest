@@ -1,0 +1,40 @@
+{% extends "mobile/base.html" %}
+{% load staticfiles %}
+{% block content %}
+	<h1>Подарочная карта</h1>
+	<div class="cards-content">
+		<div class="cards-description">Приобретая подарочную карту на игру в наших квестах, вы дарите своим друзьям и близким незабываемые эмоции и впечатления.</div>
+		<div class="cards-description">Помимо этого, к карте прилагается оригинальная подарочная упаковка из натурального материала, сделанная в виде головоломки. Для счастливчика квест начнется уже в процессе ее открытия.</div>
+		<div class="cards-description">Карта действительна для команды от 2 до 4 человек и может быть использована только один раз. Срок действия карты ограничен. Вы можете приобрести подарочную карту в нашей локации, по адресу ул. Алтайская 8/3 или заказать доставку на сайте.</div>
+
+		<div class="cards-img">
+			<img src="{% static 'main/images/cards/card_browser.jpg' %}" alt="" />
+		</div>
+
+		<div class="cards-description">Для того чтобы оформить доставку – заполните представленную форму, после чего мы свяжемся с вами для уточнения всех деталей.</div>
+
+	    <div class="red-title">Оформить заказ на подарочную карту</div>
+	    <div class="form">
+	        <form id="card-form" method="POST">
+	            {% csrf_token %}
+	            {% for input in form %}
+	                <div class="row {{ input.field.widget.attrs.id }}"><div></div>{{ input }}</div>
+	            {% endfor %}
+	        </form>
+	    </div>
+	    <div class="order-button">
+	        <a href="#" id="submit-card-form" class="button">СДЕЛАТЬ ЗАКАЗ</a>
+	    </div>
+		<div class="cards-order-notification">
+			При бронировании игры, <span class="red-font">уточните</span>, что используете <span class="red-font">подарочную карту</span> в качестве оплаты.
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+	$(document).ready(function(){
+		Present.init();
+	});
+	</script>
+{% endblock %}

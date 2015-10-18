@@ -6,10 +6,10 @@ from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import QuestOrder, Quest, Ban, Setting, Phone
 from main.schedule.api import get_schedule
-from django.core import serializers
 import datetime, time as ftime, re
 from main.smsc import SMSC
 from main.utils import *
+from main.modules.detectmobilebrowser import detect_mobile, is_mobile
 
 
 def get_keywords():
@@ -19,30 +19,38 @@ def get_keywords():
         return ""
 
 
-class KeywordsMixin(object):
+class BaseMixin(object):
+
+    def get_template_names(self):
+        if detect_mobile(self.request):
+            return self.template_name.replace('main', 'mobile')
+        return self.template_name
+
+
     def get_context_data(self, **kwargs):
-        context = super(KeywordsMixin, self).get_context_data(**kwargs)
+        context = super(BaseMixin, self).get_context_data(**kwargs)
         context["keywords"] = get_keywords()
+        context["isMobile"] = is_mobile(self.request)
         return context
 
 
-class IndexView(KeywordsMixin, generic.TemplateView):
+class IndexView(BaseMixin, generic.TemplateView):
     template_name = 'main/index.html'
 
 
-class ContactView(KeywordsMixin, generic.TemplateView):
+class ContactView(BaseMixin, generic.TemplateView):
     template_name = 'main/contact.html'
 
 
-class StubView(KeywordsMixin, generic.TemplateView):
+class StubView(BaseMixin, generic.TemplateView):
     template_name = 'main/stub.html'
 
 
-class RulesView(KeywordsMixin, generic.TemplateView):
+class RulesView(BaseMixin, generic.TemplateView):
     template_name = 'main/rules.html'
 
 
-class FranchiseView(KeywordsMixin, generic.TemplateView):
+class FranchiseView(BaseMixin, generic.TemplateView):
     template_name = 'main/franchise.html'
 
 
@@ -72,13 +80,13 @@ class AjaxableResponseMixin(object):
             return response
 
 
-class CardsView(KeywordsMixin, AjaxableResponseMixin, CreateView):
+class CardsView(BaseMixin, AjaxableResponseMixin, CreateView):
     form_class = GiftCardOrderForm
     success_url = "/"
     template_name = 'main/cards.html'
 
 
-class QuestsView(KeywordsMixin, AjaxableResponseMixin, CreateView):
+class QuestsView(BaseMixin, AjaxableResponseMixin, CreateView):
     form_class = QuestOrderForm
     success_url = "/"
     template_name = 'main/quests.html'
@@ -138,9 +146,13 @@ def quests_order(request):
             name = request.POST['name'].strip()
             phone = request.POST['phone']
             phone = phone_validate(phone)
-            email = request.POST['email'].strip()
-            email = email.lower()
-            if not data_validate(name, email, phone):
+            email = request.POST.get('email')
+            if email:
+                email = request.POST['email'].strip()
+                email = email.lower()
+            else:
+                email = ""
+            if not data_validate(name, phone):
                 return error_json_response("Wrong request")
             try:
                 QuestOrder.objects.get(time=time, quest=quest, date=date)
@@ -171,9 +183,12 @@ def quests_order(request):
             "quest1": quests[0].id,
             "quest2": quests[1].id
         }
+        template = 'main/quests.html'
+        if detect_mobile(request):
+            template = 'mobile/quests.html'
         return render(
             request,
-            'main/quests.html',
+            template,
             {
                 "orderJson" : orderJson,
                 "schedule": get_schedule(),
@@ -200,8 +215,8 @@ def replace_orders(orders):
     return new_orders
 
 
-def data_validate(name, email, phone):
-    if name == "" or phone == "" or email == "" or len(name) < 3:
+def data_validate(name, phone):
+    if name == "" or phone == "" or len(name) < 3:
         return False
     if not re.match(r"^[0-9\+\- ]+$", phone):
         return False
