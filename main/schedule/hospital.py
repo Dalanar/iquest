@@ -16,7 +16,7 @@ hospital_weekday = {
     },
     2: {
         "time": "14:30",
-        "cost": low_cost,
+        "cost": middle_cost,
         "order": 2
     },
     3: {
