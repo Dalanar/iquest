@@ -61,6 +61,11 @@ html, body {
 	line-height: 35px;
 }
 
+.menu .phone a {
+	text-decoration: none;
+	color: white;
+}
+
 .menu .phone:before {
 	content: url('../images/mobile/phone.png');
 	position: relative;
