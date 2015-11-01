@@ -42,7 +42,7 @@ class Command(BaseCommand):
         template = 'Напоминаем, что Вы забронировали игру в IQuest :) "' + \
                order.quest.quest + '" ' + \
                order.date.strftime("%Y-%m-%d") + ' ' +\
-               order.time + ' Алтайская 8/3. ' + \
+               order.time + ' ' + order.quest.address + '. ' + \
                self.__get_additional_sms_field()
         smsc = SMSC()
         phone = phone_validate(order.phone)

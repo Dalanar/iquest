@@ -15,6 +15,8 @@ class GiftCardOrder(models.Model):
 
 class Quest(models.Model):
     quest = models.CharField(max_length=255, verbose_name="Квест")
+    alias = models.CharField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True)
+    address = models.CharField(max_length=255, verbose_name="Адрес", null=True, blank=True)
 
     def __str__(self):
         return self.quest
@@ -96,7 +98,7 @@ class SmsDelivery(models.Model):
     Смс рассылка
     """
     text = models.TextField(verbose_name="Текст сообщения")
-    is_completed = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False, verbose_name="Завершена")
 
     def __str__(self):
         if self.is_completed:

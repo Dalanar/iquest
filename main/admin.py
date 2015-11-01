@@ -18,18 +18,22 @@ class QuestOrderAdmin(admin.ModelAdmin):
         return qs.filter(id=1)
 
 
-admin.site.register(GiftCardOrder)
-admin.site.register(QuestOrder, QuestOrderAdmin)
-admin.site.register(Quest)
-admin.site.register(Ban)
-admin.site.register(Phone)
-admin.site.register(SmsDelivery)
-
 
 class SettingAdmin(admin.ModelAdmin):
     readonly_fields = ('key',)
 
 
+class SmsDeliveryAdmin(admin.ModelAdmin):
+    readonly_fields = ('is_completed',)
+
+
+
+admin.site.register(GiftCardOrder)
+admin.site.register(QuestOrder, QuestOrderAdmin)
+admin.site.register(Quest)
+admin.site.register(Ban)
+admin.site.register(Phone)
+admin.site.register(SmsDelivery, SmsDeliveryAdmin)
 admin.site.register(Setting)
 admin.site.register(PhoneImporter, PhoneImporterAdmin)
 #admin.site.register(Delivery, DeliveryAdmin)
