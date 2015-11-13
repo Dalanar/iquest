@@ -181,7 +181,8 @@ def quests_order(request):
         quests = Quest.objects.all()
         questsIds = {
             "quest1": quests[0].id,
-            "quest2": quests[1].id
+            "quest2": quests[1].id,
+            "quest3": quests[2].id
         }
         template = 'main/quests.html'
         if detect_mobile(request):

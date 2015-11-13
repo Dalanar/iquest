@@ -519,15 +519,15 @@ div#datepicker .ui-datepicker-next .ui-icon {
     text-align: center;
 }
 
-.select-quest .order-quest.medic {
-	border-bottom-left-radius: 5px;
-	border-top-left-radius: 5px;
-}
+/*.select-quest .order-quest.medic {*/
+	/*border-bottom-left-radius: 5px;*/
+	/*border-top-left-radius: 5px;*/
+/*}*/
 
-.select-quest .order-quest.zombie {
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
-}
+/*.select-quest .order-quest.zombie {*/
+	/*border-bottom-right-radius: 5px;*/
+	/*border-top-right-radius: 5px;*/
+/*}*/
 
 .select-quest .order-quest.current {
     color: white;

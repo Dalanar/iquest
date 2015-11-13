@@ -326,29 +326,31 @@ div.i-description {
     color: #767676;
 }
 
-div.quests {
+.quests {
     height: 410px;
 }
 
-div.quest {
+.quest {
     width: 420px;
     position: relative;
     cursor: pointer;
+	display: block;
+	text-decoration: none;
 }
 
-div.quest.left {
+.quest.left {
     float: left;
 }
 
-div.quest.right {
+.quest.right {
     float: right;
 }
 
-div.quest.center {
+.quest.center {
     margin: 0 auto;
 }
 
-div.quest .quest-title {
+.quest .quest-title {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: white;
@@ -362,14 +364,14 @@ div.quest .quest-title {
     text-decoration: none;
 }
 
-div.quest a,
-div.quest a:visited,
-div.quest a:hover {
+.quest a,
+.quest a:visited,
+.quest a:hover {
     color: #000;
     text-decoration: none;
 }
 
-div.quest .quest-info {
+.quest .quest-info {
     position: absolute;
     bottom: 10px;
     color: white;
@@ -377,42 +379,42 @@ div.quest .quest-info {
     left: 30px;
 }
 
-div.quest .quest-info .quest-info-peoples {
+.quest .quest-info .quest-info-peoples {
     float: left;
     margin-right: 25px;
 }
 
-div.quest .quest-info .quest-info-peoples .peoples {
+.quest .quest-info .quest-info-peoples .peoples {
     text-align: center;
 }
 
-div.quest .quest-info .img-peoples {
+.quest .quest-info .img-peoples {
     height: 13px;
     width: 59px;
     line-height: 0;
 }
 
-div.quest .quest-info .quest-info-time {
+.quest .quest-info .quest-info-time {
     float: right;
 }
 
-div.quest .quest-info .img-time {
+.quest .quest-info .img-time {
     height: 13px;
     width: 13px;
     margin: 0 auto;
     line-height: 0;
 }
 
-div.quest .quest-img {
+.quest .quest-img {
     position: relative;
     height: 286px;
 }
 
-div.quest .img-select {
+.quest .img-select {
     display: none;
 }
 
-div.quest:hover .img-select {
+.quest:hover .img-select {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -422,8 +424,8 @@ div.quest:hover .img-select {
     display: block;
 }
 
-div.quest.center:hover .img-select,
-div.quest.center .img-select {
+.quest.soon:hover .img-select,
+.quest.soon .img-select {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -433,7 +435,7 @@ div.quest.center .img-select {
     display: block;
 }
 
-div.quest .img-select .message {
+.quest .img-select .message {
     margin: 100px auto;
     width: 160px;
     text-align: center;

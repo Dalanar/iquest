@@ -13,6 +13,9 @@ class QuestOrderAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(QuestOrderAdmin, self).get_queryset(request)
+        # TODO переписать на установку в админке
+        if request.user.username == "iquestA":
+            return qs.filter(quest__alias="enemy")
         if request.user.is_superuser:
             return qs
         return qs.filter(id=1)
