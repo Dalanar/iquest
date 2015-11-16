@@ -17,6 +17,7 @@ class Quest(models.Model):
     quest = models.CharField(max_length=255, verbose_name="Квест")
     alias = models.CharField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True)
     address = models.CharField(max_length=255, verbose_name="Адрес", null=True, blank=True)
+    phone = models.CharField(max_length=255, verbose_name="Телефон", null=True, blank=True)
 
     def __str__(self):
         return self.quest

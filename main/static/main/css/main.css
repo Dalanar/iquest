@@ -654,16 +654,32 @@ div.quest-description .quest-info > div {
 }
 
 div.quest-description .quest-info .quest-info-peoples {
-    margin-right: 70px;
+    margin-right: 43px;
 }
 
 div.quest-description .quest-info .peoples {
     text-align: center;
-    margin-bottom: 20px;
+	margin-top: 3px;
+    margin-bottom: 17px;
+}
+
+div.quests-description .quest-address-phone {
+	vertical-align: top;
+	margin-left: 43px;
+}
+
+div.quests-description .quest-address-phone .quest-address {
+	margin-bottom: 15px;
+}
+
+div.quests-description .quest-address-phone img {
+	vertical-align: middle;
+	margin-right: 10px;
 }
 
 div.quest-description .quest-info .time {
-    margin-bottom: 20px;
+	margin-top: 3px;
+    margin-bottom: 17px;
 }
 
 div.quest-description .quest-info .quest-info-time {
