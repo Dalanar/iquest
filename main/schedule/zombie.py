@@ -37,11 +37,6 @@ zombie_weekday = {
         "time": "22:00",
         "cost": high_cost,
         "order": 6
-    },
-    7: {
-        "time": "00:00",
-        "cost": high_cost,
-        "order": 7
     }
 }
 
@@ -80,10 +75,5 @@ zombie_weekend = {
         "time": "22:00",
         "cost": high_cost,
         "order": 6
-    },
-    7: {
-        "time": "00:00",
-        "cost": high_cost,
-        "order": 7
     }
 }

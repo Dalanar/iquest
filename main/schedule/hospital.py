@@ -38,11 +38,6 @@ hospital_weekday = {
         "time": "22:30",
         "cost": high_cost,
         "order": 6
-    },
-    7: {
-        "time": "00:30",
-        "cost": high_cost,
-        "order": 7
     }
 }
 
@@ -142,11 +137,6 @@ hospital_weekend = {
         "time": "22:30",
         "cost": high_cost,
         "order": 6
-    },
-    7: {
-        "time": "00:30",
-        "cost": high_cost,
-        "order": 7
     }
 }
 

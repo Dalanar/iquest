@@ -6,7 +6,7 @@ from main.schedule.costs import *
 enemy_weekday = {
     0: {
         "time": "15:45",
-        "cost": low_cost,
+        "cost": middle_cost,
         "order": 3
     },
     1: {
