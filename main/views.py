@@ -261,7 +261,8 @@ def send_sms(quest_order):
         template = 'Вы забронировали игру в IQuest :) "' + \
                    quest_order.quest.quest + '" ' + \
                    quest_order.date + ' ' +\
-                   quest_order.time + ' ' + quest_order.quest.address + '. ' + \
+                   quest_order.time + ' ' + \
+                   quest_order.quest.branch.address + '. ' + \
                    get_additional_sms_field()
         smsc.send_sms(quest_order.phone, template, sender="iquest")
     except Exception:

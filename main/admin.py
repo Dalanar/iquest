@@ -30,10 +30,25 @@ class SmsDeliveryAdmin(admin.ModelAdmin):
     readonly_fields = ('is_completed',)
 
 
+class GiftCardAdmin(admin.ModelAdmin):
+    list_display = ('card_number', 'activated',)
+    list_filter = ('activated',)
+    search_fields = ['card_number']
+    readonly_fields = ('activated',)
+
+    def save_model(self, request, card, form, change):
+        if card.activated_in:
+            card.activated = True
+        else:
+            card.activated = False
+        card.save()
+
 
 admin.site.register(GiftCardOrder)
 admin.site.register(QuestOrder, QuestOrderAdmin)
 admin.site.register(Quest)
+admin.site.register(Branch)
+admin.site.register(GiftCard, GiftCardAdmin)
 admin.site.register(Ban)
 admin.site.register(Phone)
 admin.site.register(SmsDelivery, SmsDeliveryAdmin)
