@@ -176,21 +176,24 @@
 	<div class="fields">
 		<form id="quest-order-form" method="POST">
 			{% csrf_token %}
-			<input type=hidden name="quest" value="1" />
-			<input type=hidden name="date" />
-			<input type=hidden name="time" />
-			<input type=hidden name="cost" />
+			{{  form.quest }}
+			{{  form.date }}
+			{{  form.time }}
+			{{  form.cost }}
 			<div class="row">
 				<div class="input">
-					<img src="{% static 'main/images/input/input_name.png' %}"><input placeholder="Имя" name="name" />
+					<img src="{% static 'main/images/input/input_name.png' %}">
+					{{  form.name }}
 				</div>
 				<div class="input">
-					<img src="{% static 'main/images/input/input_phone.png' %}"><input placeholder="Телефон" name="phone"/>
+					<img src="{% static 'main/images/input/input_phone.png' %}">
+					{{  form.phone }}
 				</div>
 			</div>
 			<div class="row">
 				<div class="input">
-					<img src="{% static 'main/images/input/mail_badge.png' %}"><input placeholder="E-mail" name="email"/>
+					<img src="{% static 'main/images/input/mail_badge.png' %}">
+					{{  form.email }}
 				</div>
 			</div>
 			<div class="row">

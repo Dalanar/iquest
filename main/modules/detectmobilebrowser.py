@@ -10,7 +10,6 @@ def detect_mobile(request):
     return is_mobile(request)
 
 
-
 def is_mobile(request):
     if request.META.get('HTTP_USER_AGENT'):
         user_agent = request.META['HTTP_USER_AGENT']

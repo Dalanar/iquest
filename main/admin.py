@@ -1,6 +1,8 @@
+from daterange_filter.filter import DateRangeFilter
 from django.contrib import admin
 from main.models import *
 from main.admin2.admin_models import PhoneImporter, PhoneImporterAdmin
+from django.contrib.admin.models import LogEntry
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,8 +33,8 @@ class SmsDeliveryAdmin(admin.ModelAdmin):
 
 
 class GiftCardAdmin(admin.ModelAdmin):
-    list_display = ('card_number', 'activated',)
-    list_filter = ('activated',)
+    list_display = ('card_number', 'activated_in', 'activated',)
+    list_filter = ('activated',('selling_time', DateRangeFilter), 'activated_in',)
     search_fields = ['card_number']
     readonly_fields = ('activated',)
 
@@ -44,6 +46,9 @@ class GiftCardAdmin(admin.ModelAdmin):
         card.save()
 
 
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'user', 'action_time')
+
 admin.site.register(GiftCardOrder)
 admin.site.register(QuestOrder, QuestOrderAdmin)
 admin.site.register(Quest)
@@ -53,5 +58,6 @@ admin.site.register(Ban)
 admin.site.register(Phone)
 admin.site.register(SmsDelivery, SmsDeliveryAdmin)
 admin.site.register(Setting)
+admin.site.register(LogEntry, LogEntryAdmin)
 admin.site.register(PhoneImporter, PhoneImporterAdmin)
 #admin.site.register(Delivery, DeliveryAdmin)

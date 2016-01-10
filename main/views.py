@@ -121,14 +121,11 @@ def check_time_in_schedule(date, time, cost, quest):
 def quests_order(request):
     if request.method == "POST":
         try:
-            try:
-                ip = get_client_ip(request)
-            except Exception:
-                ip = ""
-            bans = Ban.objects.all()
-            for ban in bans:
-                if ban.ip == ip:
-                    return error_json_response("Banned")
+            ip = get_client_ip(request)
+            # bans = Ban.objects.all()
+            # for ban in bans:
+            #     if ban.ip == ip:
+            #         return error_json_response("Banned")
             time = request.POST['time']
             cost = int(request.POST['cost'])
             date = request.POST['date']
@@ -194,7 +191,8 @@ def quests_order(request):
                 "orderJson" : orderJson,
                 "schedule": get_schedule(),
                 "keywords": get_keywords(),
-                'questsIds': questsIds
+                'questsIds': questsIds,
+                'form': QuestOrderForm()
             }
         )
 
@@ -230,12 +228,14 @@ def get_client_ip(request):
     #     ip = x_forwarded_for
     # else:
     #     ip = request.META.get('REMOTE_ADDR')
-    http_x_real_ip = request.META.get('HTTP_X_FORWARDED_FOR')
-    if http_x_real_ip:
-        ip = http_x_real_ip
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+    try:
+        http_x_real_ip = request.META.get('HTTP_X_FORWARDED_FOR')
+        if http_x_real_ip:
+            return http_x_real_ip
+        else:
+            return request.META.get('REMOTE_ADDR')
+    except Exception:
+        return ""
 
 
 def get_additional_sms_field():

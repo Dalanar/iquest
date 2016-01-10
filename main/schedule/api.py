@@ -11,6 +11,10 @@ from main.schedule.enemy import *
 
 
 def increment_month(year, month):
+    """
+    Функция для инкремента месяца, если месяц - декабрь,
+    то инкремент года + месяц = 1
+    """
     if month == 12:
         year += 1
         month = 1
@@ -20,6 +24,9 @@ def increment_month(year, month):
 
 
 def is_holiday(month, day):
+    """
+    Праздничный ли день
+    """
     holidays = [
         [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
         [2, 23],
@@ -35,6 +42,9 @@ def is_holiday(month, day):
 
 
 def is_weekend(year, month, day):
+    """
+    Является ли день выходным
+    """
     weekends = [5, 6]
     date = datetime.datetime(year, month, day)
     if date.weekday() in weekends:
