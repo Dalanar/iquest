@@ -6,32 +6,32 @@ from main.schedule.costs import *
 enemy_weekday = {
     0: {
         "time": "15:45",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 3
     },
     1: {
         "time": "17:00",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 4
     },
     2: {
         "time": "18:15",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 5
     },
     3: {
         "time": "19:30",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 6
     },
     4: {
         "time": "20:45",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 7
     },
     5: {
         "time": "22:00",
-        "cost": middle_cost,
+        "cost": high_cost,
         "order": 7
     }
 }
