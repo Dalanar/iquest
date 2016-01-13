@@ -33,16 +33,33 @@ class SmsDeliveryAdmin(admin.ModelAdmin):
 
 
 class GiftCardAdmin(admin.ModelAdmin):
-    list_display = ('card_number', 'activated_in', 'activated',)
-    list_filter = ('activated',('selling_time', DateRangeFilter), 'activated_in',)
+    list_display = ('card_number', 'activated_in', 'status',)
+    list_filter = ('status',('selling_time', DateRangeFilter), 'activated_in',)
     search_fields = ['card_number']
-    readonly_fields = ('activated',)
+    readonly_fields = ('card_number',)
+
+    def get_readonly_fields(self, request, card=None):
+        if card and not card.activated_in: # editing an existing object
+            return self.readonly_fields
+        return self.readonly_fields + ('status',)
 
     def save_model(self, request, card, form, change):
-        if card.activated_in:
-            card.activated = True
+        is_exist = bool(card.id)
+        prefix = card.branch.prefix
+        card.save()
+        if is_exist:
+            return
+        id = str(card.id)
+        if len(id) == 1:
+            id = '000' + id
+        elif len(id) == 2:
+            id = '00' + id
+        elif len(id) == 3:
+            id = '0' + id
+        if prefix:
+            card.card_number = prefix + id
         else:
-            card.activated = False
+            card.card_number = id
         card.save()
 
 

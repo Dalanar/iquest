@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Филиал
 class Branch(models.Model):
@@ -17,17 +18,45 @@ class Branch(models.Model):
 
 # Подарочная карта
 class GiftCard(models.Model):
-    card_number = models.CharField(max_length=255, verbose_name="Номер карты")
+    STATUS_CHOICES = (
+        ('1', 'В печати'),
+        ('2', 'В точке продажи'),
+        ('3', 'Продана'),
+        ('4', 'Активирована'),
+    )
+
+    card_number = models.CharField(max_length=255, verbose_name="Номер карты", null=True, blank=True)
     selling_time = models.DateField(verbose_name="Дата продажи")
-    activated_in = models.ForeignKey(Branch, verbose_name="Активирована в", null=True, blank=True)
-    activated = models.BooleanField(default=False, verbose_name="Карта активирована")
+    branch = models.ForeignKey(Branch, verbose_name="Локация", related_name='card_branch')
+    activated_in = models.ForeignKey(Branch, verbose_name="Активирована в", null=True, blank=True, related_name='card_activated_in')
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=1)
 
     def __str__(self):
-        return self.card_number
+        if self.card_number:
+            return self.card_number
+        else:
+            return 0
 
     class Meta:
         verbose_name = "Подарочная карта"
         verbose_name_plural = "Подарочные карты"
+
+
+# @receiver(post_save, sender=GiftCard, dispatch_uid="generate_card_number_uid")
+# def generate_card_number(sender, instance, **kwargs):
+#     prefix = instance.branch.prefix
+#     id = str(instance.id)
+#     if len(id) == 1:
+#         id = '000' + id
+#     elif len(id) == 2:
+#         id = '00' + id
+#     elif len(id) == 3:
+#         id = '0' + id
+#     if prefix:
+#         instance.card_number = prefix + id
+#     else:
+#         instance.card_number = id
+#     instance.save()
 
 
 # Заявка на карту
@@ -155,3 +184,7 @@ class PhoneDeliveryRelation(models.Model):
     """
     sms_delivery = models.ForeignKey(SmsDelivery)
     phone = models.ForeignKey(Phone)
+
+
+# class Report(models.Model):
+#     quest = models.ForeignKey(Quest, verbose_name="Квест")

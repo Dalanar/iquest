@@ -4,4 +4,5 @@ __pycache__/
 .config
 /iquest/static/
 /iquest/static/*
+iqreports/*
 iquest.log

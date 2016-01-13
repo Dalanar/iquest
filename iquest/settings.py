@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'daterange_filter'
+    'daterange_filter',
 )
 
 MIDDLEWARE_CLASSES = (
