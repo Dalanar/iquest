@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block content %}
+	<div>
+        <form id="card-form" method="POST">
+            {% csrf_token %}
+			{% for field in form %}
+				<div class="fieldWrapper">
+					{{ field.errors }}
+					{{ field.label_tag }} {{ field }}
+				</div>
+			{% endfor %}
+			<div>
+				<input type="submit" value="Посчитать" />
+			</div>
+        </form>
+	</div>
+	<br/>
+	{% if counts %}
+		<div>
+			<div>Количество забронированных игр: {{ counts.quest_count }}</div>
+			<div>Сумма за все игры: {{ counts.quest_sum }}</div>
+			<div>Количество купленных карт: {{ counts.gift_count }}</div>
+			<div>Количество активированных карт: {{ counts.gift_activated_count }}</div>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% prepopulated_fields_js %}
