@@ -3,6 +3,7 @@ from django.contrib import admin
 from main.models import *
 from main.admin2.admin_models import PhoneImporter, PhoneImporterAdmin
 from django.contrib.admin.models import LogEntry
+import datetime
 import logging
 
 logger = logging.getLogger(__name__)
@@ -33,10 +34,11 @@ class SmsDeliveryAdmin(admin.ModelAdmin):
 
 
 class GiftCardAdmin(admin.ModelAdmin):
-    list_display = ('card_number', 'activated_in', 'status',)
+    list_display = ('card_number', 'branch', 'activated_in', 'status',
+                    'activated_time',)
     list_filter = ('status',('selling_time', DateRangeFilter), 'activated_in',)
     search_fields = ['card_number']
-    readonly_fields = ('card_number',)
+    readonly_fields = ('card_number', 'activated_time',)
 
     def get_readonly_fields(self, request, card=None):
         if card and not card.activated_in: # editing an existing object
@@ -46,6 +48,10 @@ class GiftCardAdmin(admin.ModelAdmin):
     def save_model(self, request, card, form, change):
         is_exist = bool(card.id)
         prefix = card.branch.prefix
+        if card.activated_in:
+            card.status = 4
+        if not card.activated_time and card.status == 4:
+            card.activated_time = datetime.datetime.now()
         card.save()
         if is_exist:
             return

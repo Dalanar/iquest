@@ -25,10 +25,16 @@ class GiftCard(models.Model):
         ('4', 'Активирована'),
     )
 
-    card_number = models.CharField(max_length=255, verbose_name="Номер карты", null=True, blank=True)
+    card_number = models.CharField(max_length=255, verbose_name="Номер карты",
+                                   null=True, blank=True)
     selling_time = models.DateField(verbose_name="Дата продажи")
-    branch = models.ForeignKey(Branch, verbose_name="Локация", related_name='card_branch')
-    activated_in = models.ForeignKey(Branch, verbose_name="Активирована в", null=True, blank=True, related_name='card_activated_in')
+    activated_time = models.DateField(verbose_name="Дата активации", null=True,
+                                    blank=True)
+    branch = models.ForeignKey(Branch, verbose_name="Локация",
+                               related_name='card_branch')
+    activated_in = models.ForeignKey(Branch, verbose_name="Активирована в",
+                                     null=True, blank=True,
+                                     related_name='card_activated_in')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=1)
 
     def __str__(self):
