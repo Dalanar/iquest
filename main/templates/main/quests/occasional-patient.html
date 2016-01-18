@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+        <div class="quest-description odd">
+			<a name="q1"></a>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/rand/main.jpg' %}">
+                        <img src="{% static 'main/images/quests/rand/preview_main.png' %}">
+                    </a>
+                </div>
+                <div class="previews">
+                    <div class="popup-gallery">
+                        <a href="{% static 'main/images/quests/rand/1.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_1.png' %}">
+                        </a>
+                        <a class="center" href="{% static 'main/images/quests/rand/2.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_2.png' %}">
+                        </a>
+                        <a href="{% static 'main/images/quests/rand/3.jpg' %}">
+                            <img src="{% static 'main/images/quests/rand/preview_3.png' %}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <div class="title red-font">Случайный пациент</div>
+                <div class="main-description grey-font">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал. Звонки по больницам и клиникам не принесли результата, и вы решили отправиться на настоящие поиски. Добравшись до неприметной больницы, на окраине города, вы встретили санитара, который рассказал вам, что ваш друг находится в закрытом крыле больницы и его держат для проведения ужасного эксперимента. У вас есть всего один час, чтобы спасти своего друга и скрыться, чтобы самим не стать жертвами таинственного доктора.</div>
+                <div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/location.png' %}"> ул. Алтайская, 8/3
+							</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

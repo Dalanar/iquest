@@ -13,15 +13,3 @@ class ReportForm(forms.Form):
     branch = forms.ChoiceField(initial='', widget=forms.Select(),
                                required=True, choices=branch_choices,
                                label="Локации")
-    # class Meta:
-    #     model = QuestOrder
-    #     fields = '__all__'
-    #     widgets = {
-    #         'quest': forms.HiddenInput(attrs={'value': 1}),
-    #         'date': forms.HiddenInput(),
-    #         'time': forms.HiddenInput(),
-    #         'cost': forms.HiddenInput(),
-    #         'name': forms.TextInput(attrs={'placeholder': 'Имя', 'id': 'name'}),
-    #         'phone': forms.TextInput(attrs={'placeholder': 'Телефон', 'id': 'phone'}),
-    #         'email': forms.TextInput(attrs={'placeholder': 'E-mail', 'id': 'email'}),
-    #     }

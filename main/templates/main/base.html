@@ -6,8 +6,11 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.theme.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/magnific-popup.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}?3" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}?4" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/calendar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/schedule.css' %}" />
     <script src="{% static 'main/js/jquery.js' %}" ></script>
     <script src="{% static 'main/js/jquery.form.js' %}" ></script>
     <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
@@ -53,7 +56,7 @@
             <div class="quests">
                 <a href="{% url 'main:quests' %}">
                     <div class="circle quests-img"></div>
-                    <div class="text">Квесты</div>
+                    <div class="text">Расписание</div>
                 </a>
             </div>
             <div class="cards">

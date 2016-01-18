@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+        <div class="quest-description odd">
+			<a name="q2"></a>
+            <div class="description">
+                <div class="title red-font">Время «Z»</div>
+                <div class="main-description grey-font">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>
+				<div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/location.png' %}"> ул. Алтайская, 8/3
+							</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/zombie/main.jpg' %}">
+                        <img src="{% static 'main/images/quests/zombie/preview_main.png' %}">
+                    </a>
+                </div>
+                <div class="previews">
+                    <div class="popup-gallery">
+                        <a href="{% static 'main/images/quests/zombie/zombie_1.jpg' %}">
+                            <img src="{% static 'main/images/quests/zombie/zombie_preview_1.jpg' %}">
+                        </a>
+                        <a class="center" href="{% static 'main/images/quests/zombie/zombie_2.jpg' %}">
+                            <img src="{% static 'main/images/quests/zombie/zombie_preview_2.jpg' %}">
+                        </a>
+                        <a href="{% static 'main/images/quests/zombie/zombie_3.jpg' %}">
+                            <img src="{% static 'main/images/quests/zombie/zombie_preview_3.jpg' %}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

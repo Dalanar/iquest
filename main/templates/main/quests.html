@@ -1,175 +1,42 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <h1>Описание Квеструм</h1>
-	<div class="anchor-to-order">
-		<a class="button small" href="#select-quest">Забронировать</a>
-	</div>
-	<div class="quests-description">
-        <div class="quest-description odd">
-			<a name="q1"></a>
-            <div class="gallery">
-                <div class="main-image">
-                    <a href="{% static 'main/images/quests/rand/main.jpg' %}">
-                        <img src="{% static 'main/images/quests/rand/preview_main.png' %}">
-                    </a>
-                </div>
-                <div class="previews">
-                    <div class="popup-gallery">
-                        <a href="{% static 'main/images/quests/rand/1.jpg' %}">
-                            <img src="{% static 'main/images/quests/rand/preview_1.png' %}">
-                        </a>
-                        <a class="center" href="{% static 'main/images/quests/rand/2.jpg' %}">
-                            <img src="{% static 'main/images/quests/rand/preview_2.png' %}">
-                        </a>
-                        <a href="{% static 'main/images/quests/rand/3.jpg' %}">
-                            <img src="{% static 'main/images/quests/rand/preview_3.png' %}">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="description">
-                <div class="title red-font">Случайный пациент</div>
-                <div class="main-description grey-font">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал. Звонки по больницам и клиникам не принесли результата, и вы решили отправиться на настоящие поиски. Добравшись до неприметной больницы, на окраине города, вы встретили санитара, который рассказал вам, что ваш друг находится в закрытом крыле больницы и его держат для проведения ужасного эксперимента. У вас есть всего один час, чтобы спасти своего друга и скрыться, чтобы самим не стать жертвами таинственного доктора.</div>
-                <div class="quest-info">
-                    <div class="quest-info-peoples">
-                        <div class="peoples">до 4х человек</div>
-                        <div class="img-peoples">
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                        </div>
-                    </div>
-                    <div class="quest-info-time">
-                        <div class="time">60 мин</div>
-                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
-                    </div>
-					<div class="quest-address-phone">
-						<div class="quest-address">
-							<span class="quest-address-phone-wrapper">
-								<img src="{% static 'main/images/contact/location.png' %}"> ул. Алтайская, 8/3
-							</span>
-						</div>
-						<div class="quest-phone">
-							<span class="quest-address-phone-wrapper">
-								<img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10
-							</span>
-						</div>
-					</div>
-                </div>
-            </div>
-        </div>
-        <div class="quest-description even">
-			<a name="q2"></a>
-            <div class="description">
-                <div class="title red-font">Время «Z»</div>
-                <div class="main-description grey-font">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли. Вы оказываетесь в группе выживших, которые следуют в зону эвакуации. Ваш путь к спасению отрезан полчищами живых мертвецов от которых пришлось укрыться в ближайшем доме. Сумеете ли вы выбраться из этой западни?</div>
-				<div class="quest-info">
-                    <div class="quest-info-peoples">
-                        <div class="peoples">до 4х человек</div>
-                        <div class="img-peoples">
-                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
-                        </div>
-                    </div>
-                    <div class="quest-info-time">
-                        <div class="time">60 мин</div>
-                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
-                    </div>
-					<div class="quest-address-phone">
-						<div class="quest-address">
-							<span class="quest-address-phone-wrapper">
-								<img src="{% static 'main/images/contact/location.png' %}"> ул. Алтайская, 8/3
-							</span>
-						</div>
-						<div class="quest-phone">
-							<span class="quest-address-phone-wrapper">
-								<img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10
-							</span>
-						</div>
-					</div>
-                </div>
-            </div>
-            <div class="gallery">
-                <div class="main-image">
-                    <a href="{% static 'main/images/quests/zombie/main.jpg' %}">
-                        <img src="{% static 'main/images/quests/zombie/preview_main.png' %}">
-                    </a>
-                </div>
-                <div class="previews">
-                    <div class="popup-gallery">
-                        <a href="{% static 'main/images/quests/zombie/zombie_1.jpg' %}">
-                            <img src="{% static 'main/images/quests/zombie/zombie_preview_1.jpg' %}">
-                        </a>
-                        <a class="center" href="{% static 'main/images/quests/zombie/zombie_2.jpg' %}">
-                            <img src="{% static 'main/images/quests/zombie/zombie_preview_2.jpg' %}">
-                        </a>
-                        <a href="{% static 'main/images/quests/zombie/zombie_3.jpg' %}">
-                            <img src="{% static 'main/images/quests/zombie/zombie_preview_3.jpg' %}">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-	    <div class="quest-description odd">
-			<a name="q3"></a>
-            <div class="gallery">
-                <div class="main-image">
-                    <a href="{% static 'main/images/quests/enemy/main.jpg' %}">
-                        <img src="{% static 'main/images/quests/enemy/main_preview_quests.png' %}">
-                    </a>
-                </div>
-{#                <div class="previews">#}
-{#                    <div class="popup-gallery">#}
-{#                        <a href="{% static 'main/images/quests/rand/1.jpg' %}">#}
-{#                            <img src="{% static 'main/images/quests/rand/preview_1.png' %}">#}
-{#                        </a>#}
-{#                        <a class="center" href="{% static 'main/images/quests/rand/2.jpg' %}">#}
-{#                            <img src="{% static 'main/images/quests/rand/preview_2.png' %}">#}
-{#                        </a>#}
-{#                        <a href="{% static 'main/images/quests/rand/3.jpg' %}">#}
-{#                            <img src="{% static 'main/images/quests/rand/preview_3.png' %}">#}
-{#                        </a>#}
-{#                    </div>#}
-{#                </div>#}
-            </div>
-            <div class="description">
-                <div class="title red-font">Враг народа</div>
-                <div class="main-description grey-font">Лживый донос превратилcя для вас в обвинение в государственной измене. Оказавшись в следственном изоляторе, вы узнаете, что вам уже вынесен смертельный приговор, исполнение которого назначено ровно через час. Охранник дежуривший за дверью вашей камеры срочно уехал по звонку начальства. Теперь у вас есть выбор, попытаться бежать или стать очередными жертвами режима.</div>
-                <div class="quest-info">
-                    <div class="quest-info-peoples">
-                        <div class="peoples">до 4х человек</div>
-                        <div class="img-peoples">
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
-                        </div>
-                    </div>
-                    <div class="quest-info-time">
-                        <div class="time">60 мин</div>
-                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
-                    </div>
-					<div class="quest-address-phone">
-						<div class="quest-address">
-							<span class="quest-address-phone-wrapper"><img src="{% static 'main/images/contact/location.png' %}"> ул. Елизаровых, 56</span>
-						</div>
-						<div class="quest-phone">
-							<span class="quest-address-phone-wrapper">
-								<img src="{% static 'main/images/contact/phone.png' %}"> 54-06-04
-							</span>
-						</div>
-					</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Все квесты Томска</h1>
 
-	{% include "blocks/order/select-quests.html" %}
-    {% include "blocks/order/datepicker.html" %}
+{#	{% include "blocks/order/select-quests.html" %}#}
+{#    {% include "blocks/order/datepicker.html" %}#}
+<div class="calendar-wrapper">
+	<div class="calendar">
+		<div class="prev nav inline">&lt;</div>
+		<div class="date inline"></div>
+		<input type="hidden" id="datepicker">
+		<div class="next nav inline">&gt;</div>
+	</div>
+</div>
+
+{#max 9#}
+<div class="quests-schedule">
+	<div class="quest-schedule" data-quest-id="{{ questsIds.quest1 }}">
+		<div class="quest">
+			<a  href="{% url 'main:quest_occasional-patient' %}"class="button">Случайный пациент</a>
+		</div>
+		<div class="schedule"></div>
+	</div>
+
+	<div class="quest-schedule" data-quest-id="{{ questsIds.quest2 }}">
+		<div class="quest">
+			<a href="{% url 'main:quest_time-z' %}" class="button">Время «Z»</a>
+		</div>
+		<div class="schedule"></div>
+	</div>
+
+	<div class="quest-schedule" data-quest-id="{{ questsIds.quest3 }}">
+		<div class="quest">
+			<a href="{% url 'main:quest_enemy' %}" class="button">Враг народа</a>
+		</div>
+		<div class="schedule"></div>
+	</div>
+</div>
 
 	{% include "blocks/order/confirm.html" %}
 
@@ -202,7 +69,6 @@
 		</form>
 	</div>
 
-	{% include "blocks/order/time-menu.html" %}
 {% endblock %}
 
 {% block scripts %}
@@ -211,7 +77,8 @@
 		Order.init(
 			{{ orderJson|safe }},
 			{{ schedule|safe }},
-			false
+			false,
+			"{% static 'main/images/calendar_ico.png' %}"
 		);
 	});
 	</script>

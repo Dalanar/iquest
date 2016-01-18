@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+	    <div class="quest-description odd">
+			<a name="q3"></a>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/enemy/main.jpg' %}">
+                        <img src="{% static 'main/images/quests/enemy/main_preview_quests.png' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="description">
+                <div class="title red-font">Враг народа</div>
+                <div class="main-description grey-font">Лживый донос превратилcя для вас в обвинение в государственной измене. Оказавшись в следственном изоляторе, вы узнаете, что вам уже вынесен смертельный приговор, исполнение которого назначено ровно через час. Охранник дежуривший за дверью вашей камеры срочно уехал по звонку начальства. Теперь у вас есть выбор, попытаться бежать или стать очередными жертвами режима.</div>
+                <div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper"><img src="{% static 'main/images/contact/location.png' %}"> ул. Елизаровых, 56</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> 54-06-04
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
