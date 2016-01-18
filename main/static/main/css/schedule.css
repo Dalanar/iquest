@@ -2,7 +2,7 @@
 	width: 200px;
 	font-weight: bold;
 	vertical-align: top;
-    margin-top: 39px;
+    margin-top: 34px;
 }
 
 .quests-schedule .quest-schedule {
@@ -14,6 +14,9 @@
 	color: #ca624b;
 	background-color: white;
 	border: 1px solid #ca624b;
+	width: 130px;
+    text-align: center;
+    display: block;
 }
 
 .quests-schedule a.button:hover {
