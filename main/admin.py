@@ -1,8 +1,10 @@
 from daterange_filter.filter import DateRangeFilter
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from main.models import *
 from main.admin2.admin_models import PhoneImporter, PhoneImporterAdmin
 from django.contrib.admin.models import LogEntry
+from django.db.models import Q
 import datetime
 import logging
 
@@ -16,12 +18,13 @@ class QuestOrderAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(QuestOrderAdmin, self).get_queryset(request)
-        # TODO переписать на установку в админке
-        if request.user.username == "iquestA":
-            return qs.filter(quest__alias="enemy")
+        profile = request.user.profile
         if request.user.is_superuser:
             return qs
-        return qs.filter(id=1)
+        if request.user.profile:
+            branches_ids = list(map(lambda branch: branch.id, profile.branch.all()))
+            return qs.filter(quest__branch__id__in=branches_ids)
+        return qs
 
 
 
@@ -84,3 +87,17 @@ admin.site.register(Setting)
 admin.site.register(LogEntry, LogEntryAdmin)
 admin.site.register(PhoneImporter, PhoneImporterAdmin)
 #admin.site.register(Delivery, DeliveryAdmin)
+
+# Define an inline admin descriptor for Employee model
+# which acts a bit like a singleton
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    verbose_name_plural = 'профиль'
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (ProfileInline, )
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

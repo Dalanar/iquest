@@ -3,13 +3,21 @@ from django import forms
 from main.models import Branch
 from django.contrib.admin.widgets import AdminDateWidget
 
-branches = Branch.objects.all()
-branch_choices = map(lambda branch: (branch.id, branch.address), branches)
-
 
 class ReportForm(forms.Form):
     startDate = forms.DateField(widget=AdminDateWidget(), label="Дата от")
     endDate = forms.DateField(widget=AdminDateWidget(), label="Дата до")
-    branch = forms.ChoiceField(initial='', widget=forms.Select(),
-                               required=True, choices=branch_choices,
-                               label="Локации")
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(ReportForm, self).__init__(*args, **kwargs)
+        profile = self.user.profile
+        if self.user.is_superuser or not profile:
+            model = forms.ModelChoiceField(queryset=Branch.objects.all(), required=True, label="Локации")
+            self.fields['branch'] = model
+            return
+        if profile:
+            branches_ids = list(map(lambda branch: branch.id, profile.branch.all()))
+            self.fields['branch'] = \
+                forms.ModelChoiceField(
+                    queryset=Branch.objects.filter(id__in=branches_ids), required=True, label="Локации")

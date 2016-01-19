@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User
+
 
 # Филиал
 class Branch(models.Model):
@@ -14,6 +16,15 @@ class Branch(models.Model):
     class Meta:
         verbose_name = "Филиал"
         verbose_name_plural = "Филиалы"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    branch = models.ManyToManyField(Branch)
+
+    class Meta:
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
 
 
 # Подарочная карта

@@ -56,10 +56,10 @@ class ReportAdmin(ModelAdmin):
         return data_order
 
     def changelist_view(self, request, extra_context=None):
-        form = ReportForm()
+        form = ReportForm(user=request.user)
         counts = False
         if request.method == 'POST':
-            form = ReportForm(request.POST)
+            form = ReportForm(data=request.POST, user=request.user)
             if form.is_valid():
                 counts = self.count_form(form.data)
         return render(
