@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^quests/occasional-patient', TemplateView.as_view(template_name="main/quests/occasional-patient.html"), name='quest_occasional-patient'),
     url(r'^quests/time-z', TemplateView.as_view(template_name="main/quests/time-z.html"), name='quest_time-z'),
     url(r'^quests/enemy', TemplateView.as_view(template_name="main/quests/enemy.html"), name='quest_enemy'),
+    url(r'^quests/genius', TemplateView.as_view(template_name="main/quests/genius.html"), name='quest_genius'),
     url(r'^quests', views.quests_order, name='quests'),
     url(r'^franchise', views.FranchiseView.as_view(), name='franchise'),
 )

@@ -92,10 +92,6 @@ class QuestsView(BaseMixin, AjaxableResponseMixin, CreateView):
     template_name = 'main/quests.html'
 
 
-# class AdminDeliveryView(generic.TemplateView):
-#     template_name = 'admin/tools/delivery.html'
-
-
 def error_json_response(message):
     return JsonResponse({"success": False, "message": message}, status=400)
 
@@ -179,7 +175,8 @@ def quests_order(request):
         questsIds = {
             "quest1": quests[0].id,
             "quest2": quests[1].id,
-            "quest3": quests[2].id
+            "quest3": quests[2].id,
+            "quest4": quests[3].id
         }
         template = 'main/quests.html'
         if detect_mobile(request):

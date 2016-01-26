@@ -179,7 +179,6 @@ var Order = (function(){
 	function isOrdered(questId, dateText, time, cost) {
 		for (var i = 0; i < orders.length; i++) {
 			var fields = orders[i].fields;
-			console.log(fields);
 			if (
 				fields.quest == questId &&
 				fields.date == dateText &&

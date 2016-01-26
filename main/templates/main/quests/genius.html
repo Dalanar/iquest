@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+	    <div class="quest-description odd">
+			<a name="q3"></a>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/genius/main.png' %}">
+                        <img src="{% static 'main/images/quests/genius/preview_main.png' %}">
+                    </a>
+                </div>
+            </div>
+            <div class="description">
+                <div class="title red-font">У.М.Н.И.К.</div>
+                <div class="main-description grey-font">Гениальный (по другим версиям немного сумасшедший) профессор Файнгерц, в плотную подошел к созданию прибора, способного значительно повысить уровень интеллекта, любого человека. Это открытие, могло бы дать огромный толчок в развитии науки, но буквально на днях, профессор бесследно пропал. Теперь вы, как его ближайшие ученики, должны выяснить, что с ним произошло и связанно ли это с его изобретением?</div>
+                <div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper"><img src="{% static 'main/images/contact/location.png' %}"> ул. Вершинина 38</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> 34-43-34
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

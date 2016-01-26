@@ -8,6 +8,7 @@ from copy import deepcopy
 from main.schedule.hospital import *
 from main.schedule.zombie import *
 from main.schedule.enemy import *
+from main.schedule.genius import *
 
 
 def increment_month(year, month):
@@ -122,10 +123,12 @@ def create_schedule_form_template(template):
         schedule.append(to_form_costs(hospital_weekday, "quest1"))
         schedule.append(to_form_costs(zombie_weekday, "quest2"))
         schedule.append(to_form_costs(enemy_weekday, "quest3"))
+        schedule.append(to_form_costs(genius_weekday, "quest4"))
     else:
         schedule.append(to_form_costs(hospital_weekend, "quest1"))
         schedule.append(to_form_costs(zombie_weekend, "quest2"))
         schedule.append(to_form_costs(enemy_weekend, "quest3"))
+        schedule.append(to_form_costs(genius_weekend, "quest3"))
     return schedule
 
 
