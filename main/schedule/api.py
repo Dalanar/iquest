@@ -128,7 +128,7 @@ def create_schedule_form_template(template):
         schedule.append(to_form_costs(hospital_weekend, "quest1"))
         schedule.append(to_form_costs(zombie_weekend, "quest2"))
         schedule.append(to_form_costs(enemy_weekend, "quest3"))
-        schedule.append(to_form_costs(genius_weekend, "quest3"))
+        schedule.append(to_form_costs(genius_weekend, "quest4"))
     return schedule
 
 
@@ -184,4 +184,13 @@ def get_schedule():
     schedule = set_holidays(schedule)
     schedule = add_times(schedule)
     schedule = change_bool_to_int(schedule)
+    schedule = work_around_genius(schedule)
     return schedule[shifted:32]
+
+def work_around_genius(schedule):
+    for i in range(len(schedule)):
+        if schedule[i][1] < 2:
+            for j in range(len(schedule[i][4][3])):
+                schedule[i][4][3][j]['cost'] = 1500
+
+    return schedule
