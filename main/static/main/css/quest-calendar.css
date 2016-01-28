@@ -1,0 +1,61 @@
+div#datepicker .ui-datepicker {
+    width: 100%;
+}
+
+div#datepicker .ui-datepicker-title {
+    text-transform: uppercase;
+    font-size: 14pt;
+}
+
+#datepicker .ui-datepicker-next {
+    right: 400px;
+}
+
+#datepicker .ui-datepicker-prev {
+    left: 400px;
+}
+
+div#datepicker .ui-icon {
+    width: 15px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 68%;
+    margin-top: -8px;
+    cursor: pointer;
+}
+
+div#datepicker .ui-datepicker-prev .ui-icon {
+    background-image: url("../images/left.gif");
+}
+
+div#datepicker .ui-datepicker-next .ui-icon {
+    background-image: url("../images/right.gif");
+}
+
+div#datepicker .ui-state-default {
+    font-size: 14pt;
+    text-align: center;
+}
+
+div#datepicker .ui-datepicker th,
+div#datepicker .ui-datepicker td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+div#datepicker .ui-datepicker th {
+    background-color: rgb(60, 60, 60);
+    color: white;
+    font-size: 14pt;
+    width: 14%;
+}
+
+div#datepicker .ui-datepicker td a:hover {
+    background-color: #ca624b;
+}
+
+.ui-datepicker-current-day {
+    background-color: #ca624b;
+}

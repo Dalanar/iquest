@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+{% include "blocks/order/datepicker.html" %}
+
+{% include "blocks/order/confirm.html" %}
+
+<div class="fields">
+	<form id="quest-order-form" method="POST">
+		{% csrf_token %}
+		{{  form.quest }}
+		{{  form.date }}
+		{{  form.time }}
+		{{  form.cost }}
+		<div class="row">
+			<div class="input">
+				<img src="{% static 'main/images/input/input_name.png' %}">
+				{{  form.name }}
+			</div>
+			<div class="input">
+				<img src="{% static 'main/images/input/input_phone.png' %}">
+				{{  form.phone }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="input">
+				<img src="{% static 'main/images/input/mail_badge.png' %}">
+				{{  form.email }}
+			</div>
+		</div>
+		<div class="row">
+			<a href="#" id="book" class="button">ЗАБРОНИРОВАТЬ</a>
+		</div>
+	</form>
+</div>
+
+{% include "blocks/order/time-menu.html" %}
