@@ -108,6 +108,10 @@ _PATH = os.path.abspath(os.path.dirname(__file__))
 
 STATIC_ROOT = os.path.join(_PATH, 'static')
 
+if not DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+
 if platform.system() == "Windows":
     log_path = "iquest.log"
 else:
