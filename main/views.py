@@ -10,7 +10,9 @@ import datetime, time as ftime, re
 from main.smsc import SMSC
 from main.utils import *
 from main.modules.detectmobilebrowser import detect_mobile, is_mobile
+import logging
 
+logger = logging.getLogger(__name__)
 
 def get_keywords():
     try:
@@ -126,13 +128,16 @@ def quests_order(request):
             cost = int(request.POST['cost'])
             date = request.POST['date']
             quest_id = int(request.POST['quest'])
-            if quest_id == 4:
-                quest = Quest.objects.get(pk=5)
-            else:
-                quest = Quest.objects.get(pk=quest_id)
+            #if quest_id == 4:
+            #    quest = Quest.objects.get(pk=5)
+            #else:
+            quest = Quest.objects.get(pk=quest_id)
             if not quest:
                 return error_json_response("Wrong request")
             quest_id = quest_id - 1
+            # TODO remove
+            if quest_id == 4:
+                quest_id = 3
             if not check_time_in_schedule(date, time, cost, quest_id):
                 return error_json_response("Error data")
             timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
@@ -169,7 +174,8 @@ def quests_order(request):
                 return json_response("OK")
             else:
                 return error_json_response("Quest already ordered")
-        except Exception:
+        except Exception as e:
+            logger.error("Exception: " + str(e))
             return error_json_response("Something error")
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
@@ -179,7 +185,7 @@ def quests_order(request):
             "quest1": quests[0].id,
             "quest2": quests[1].id,
             "quest3": quests[2].id,
-            "quest4": quests[3].id
+            "quest4": quests[4].id
         }
         template = 'main/quests.html'
         if detect_mobile(request):
