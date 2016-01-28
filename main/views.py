@@ -126,7 +126,10 @@ def quests_order(request):
             cost = int(request.POST['cost'])
             date = request.POST['date']
             quest_id = int(request.POST['quest'])
-            quest = Quest.objects.get(pk=quest_id)
+            if quest_id == 4:
+                quest = Quest.objects.get(pk=5)
+            else:
+                quest = Quest.objects.get(pk=quest_id)
             if not quest:
                 return error_json_response("Wrong request")
             quest_id = quest_id - 1
