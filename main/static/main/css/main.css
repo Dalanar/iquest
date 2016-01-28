@@ -465,43 +465,6 @@ a.button.small {
     font-size: 12pt;
 }
 
-/*** CONTACT ***/
-h2 {
-    font-family: 'roboto-regular';
-    font-size: 36px;
-    margin-bottom: 50px;
-}
-
-div.contact-main {
-    font-family: 'roboto-light';
-    font-size: 24px;
-    color: #767676;
-    margin-bottom: 80px;
-}
-
-div.contact-main p {
-    margin-bottom: 40px;
-}
-
-div.contact-social {
-    margin-bottom: 80px;
-}
-
-div.contact-social p {
-    font-family: 'roboto-bold';
-    font-size: 24px;
-    color: #ca624b;
-    margin-bottom: 30px;
-}
-
-div.contact-social p a {
-    margin-right: 15px;
-}
-
-div.map {
-    margin-bottom: 80px;
-}
-
 /*** RULES ***/
 div.rules .row {
     height: 186px;

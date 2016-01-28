@@ -1,20 +1,37 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <h2>Контактные данные</h2>
-    <div class="contact-main">
-        <p><img src="{% static 'main/images/contact/location.png' %}"> г. Томск, ул. Алтайская 8/3</p>
-        <p><img src="{% static 'main/images/contact/mail.png' %}"> iquest.tsk@gmail.com</p>
-        <p><img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10</p>
-    </div>
-    <div class="contact-social">
-        <p>Социальные сети</p>
-        <p>
-            <a target="_blank" href="http://vk.com/iquest"><img src="{% static 'main/images/contact/vk.png' %}"></a>
-            <a target="_blank" href="https://www.facebook.com/iqtomsk"><img src="{% static 'main/images/contact/fb.png' %}"></a>
-            <a target="_blank" href="http://instagram.com/i_quest"><img src="{% static 'main/images/contact/insta.png' %}"></a>
-        </p>
-    </div>
+	<div class="contact-data">
+		<div class="contact-left">
+			<h2>Контактные данные</h2>
+			<div class="contact-main">
+				<p><img src="{% static 'main/images/contact/location.png' %}"> г. Томск, ул. Алтайская 8/3</p>
+				<p><img src="{% static 'main/images/contact/mail.png' %}"> iquest.tsk@gmail.com</p>
+				<p><img src="{% static 'main/images/contact/phone.png' %}"> 94-29-10</p>
+			</div>
+			<div class="contact-social">
+				<p>Социальные сети</p>
+				<p>
+					<a target="_blank" href="http://vk.com/iquest"><img src="{% static 'main/images/contact/vk.png' %}"></a>
+					<a target="_blank" href="https://www.facebook.com/iqtomsk"><img src="{% static 'main/images/contact/fb.png' %}"></a>
+					<a target="_blank" href="http://instagram.com/i_quest"><img src="{% static 'main/images/contact/insta.png' %}"></a>
+				</p>
+			</div>
+		</div>
+		<div class="contact-right">
+			<h2>Филиалы</h2>
+			<div class="contact-branches">
+				<div class="contact-branch">
+					<p><img src="{% static 'main/images/contact/location.png' %}"> г. Томск, ул. Елизаровых, 56</p>
+					<p><img src="{% static 'main/images/contact/phone.png' %}"> 54-06-04</p>
+				</div>
+				<div class="contact-branch">
+					<p><img src="{% static 'main/images/contact/location.png' %}"> г. Томск, ул. Вершинина, 38</p>
+					<p><img src="{% static 'main/images/contact/phone.png' %}"> 34-43-34</p>
+				</div>
+			</div>
+		</div>
+	</div>
     <div class="map">
         <script type="text/javascript" charset="utf-8" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=tW30mFQ4zJvOEP_uvt8lC4IAQAPeFlla&width=1000&height=583"></script>
     </div>
