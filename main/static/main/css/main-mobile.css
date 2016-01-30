@@ -178,20 +178,23 @@ h1 {
 
 .footer-info {
 	overflow: auto;
-	height: 30px;
 	margin: 0 auto;
 	width: 290px;
 	padding-bottom: 25px;
 }
 
 .footer-info .info {
-	float: left;
+	text-align: center;
 	line-height: 30px;
+	margin-bottom: 10px;
 }
 
 .footer .social {
-    width: 130px;
-    float: right;
+    text-align: center;
+}
+
+.footer .social a {
+	display: inline-block;
 }
 
 .footer .social a > div {
@@ -202,15 +205,21 @@ h1 {
 
 .footer .social .vk {
     background-image: url('../images/socials/vk_white.png');
+	margin-right: 10px;
 }
 
 .footer .social .insta {
     background-image: url('../images/socials/insta_white.png');
+	margin-right: 10px;
 }
 
 .footer .social .fb {
     background-image: url('../images/socials/fb_white.png');
-    margin: 0 20px;
+    margin-right: 10px;
+}
+
+.footer .social .gp {
+    background-image: url('../images/socials/gp_white.png');
 }
 
 /** Contacts*/
