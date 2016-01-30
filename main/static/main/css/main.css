@@ -70,12 +70,15 @@ body div.header-info .brain {
 
 body div.header-info .title {
     float: left;
-    width: 67%;
+    width: 580px;
     font-family: 'roboto-light';
 }
 
 body div.header-info .contacts {
     float: right;
+}
+body .header-info .contacts .phone {
+	text-align: center;
 }
 
 body div.header-info .brain img {
@@ -96,6 +99,10 @@ body div.header-info .contacts img {
 body div.header-info .contacts img.fb {
     margin-right: 10px;
     margin-left: 10px;
+}
+
+body div.header-info .contacts img.insta {
+	margin-right: 10px;
 }
 
 body div.header-info .contacts .phone {
@@ -288,7 +295,7 @@ div.footer .copyright a:visited {
 }
 
 div.footer .social {
-    width: 130px;
+    width: 160px;
     float: right;
 }
 
@@ -300,15 +307,21 @@ div.footer .social a > div {
 
 div.footer .social .vk {
     background-image: url('../images/socials/vk_white.png');
+	margin-right: 10px;
 }
 
 div.footer .social .insta {
     background-image: url('../images/socials/insta_white.png');
+	margin-right: 10px;
 }
 
 div.footer .social .fb {
     background-image: url('../images/socials/fb_white.png');
-    margin: 0 20px;
+	margin-right: 10px;
+}
+
+div.footer .social .gp {
+    background-image: url('../images/socials/gp_white.png');
 }
 
 /*** INDEX ***/
