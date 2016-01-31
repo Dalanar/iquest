@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from main import views
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
@@ -14,4 +16,4 @@ urlpatterns = patterns('',
     url(r'^quests/genius', TemplateView.as_view(template_name="main/quests/genius.html"), name='quest_genius'),
     url(r'^quests', views.quests_order, name='quests'),
     url(r'^franchise', views.FranchiseView.as_view(), name='franchise'),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

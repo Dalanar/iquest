@@ -94,9 +94,16 @@ class Quest(models.Model):
     quest = models.CharField(max_length=255, verbose_name="Квест")
     alias = models.CharField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True)
     branch = models.ForeignKey(Branch, verbose_name="Филиал", null=True, blank=True)
+    image = models.ImageField(upload_to='quests/main', null=True, blank=True)
 
     def __str__(self):
         return self.quest
+
+    def image_tag(self):
+        return '<img style="max-width: 200px; max-height: 200px;" src="%s" />' % self.image.url
+
+    image_tag.short_description = 'Картинка на главной'
+    image_tag.allow_tags = True
 
     class Meta:
         verbose_name = "Квест"
@@ -203,5 +210,22 @@ class PhoneDeliveryRelation(models.Model):
     phone = models.ForeignKey(Phone)
 
 
-# class Report(models.Model):
-#     quest = models.ForeignKey(Quest, verbose_name="Квест")
+class PromoAction(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Название")
+    description = models.TextField(verbose_name="Описание акции")
+    is_active = models.BooleanField(default=True, verbose_name="Акция активна")
+    image = models.ImageField(upload_to='promo/%Y/%m/%d')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return self.name
+
+    def image_tag(self):
+        return '<img style="max-width: 200px; max-height: 200px;" src="%s" />' % self.image.url
+
+    image_tag.short_description = 'Изображение акции'
+    image_tag.allow_tags = True
+
+    class Meta:
+        verbose_name = "Акция"
+        verbose_name_plural = "Акции"

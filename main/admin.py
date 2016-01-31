@@ -77,7 +77,6 @@ class LogEntryAdmin(admin.ModelAdmin):
 
 admin.site.register(GiftCardOrder)
 admin.site.register(QuestOrder, QuestOrderAdmin)
-admin.site.register(Quest)
 admin.site.register(Branch)
 admin.site.register(GiftCard, GiftCardAdmin)
 admin.site.register(Ban)
@@ -101,3 +100,18 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+
+class PromoActionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at',)
+    search_fields = ['name']
+    fields = ('name', 'description', 'image_tag', 'image', 'created_at',)
+    readonly_fields = ('image_tag', 'created_at',)
+
+admin.site.register(PromoAction, PromoActionAdmin)
+
+class QuestAdmin(admin.ModelAdmin):
+    fields = ('quest', 'alias', 'branch', 'image_tag', 'image',)
+    readonly_fields = ('image_tag',)
+
+admin.site.register(Quest, QuestAdmin)
