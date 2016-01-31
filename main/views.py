@@ -10,6 +10,7 @@ import datetime, time as ftime, re
 from main.smsc import SMSC
 from main.utils import *
 from main.modules.detectmobilebrowser import detect_mobile, is_mobile
+import random
 import logging
 
 logger = logging.getLogger(__name__)
@@ -38,6 +39,14 @@ class BaseMixin(object):
 
 class IndexView(BaseMixin, generic.TemplateView):
     template_name = 'main/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BaseMixin, self).get_context_data(**kwargs)
+        quests = Quest.objects.filter(is_active=True)
+        context["active_quests"] = sorted(quests, key=lambda x: random.random())
+        # quests = Quest.objects.filter(is_active=False)
+        # context["not_active_quests"] = random.shuffle(quests)
+        return context
 
 
 class ContactView(BaseMixin, generic.TemplateView):

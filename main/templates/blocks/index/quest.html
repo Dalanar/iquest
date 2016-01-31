@@ -1,0 +1,26 @@
+{% load staticfiles %}
+{% if soon %}
+	<a href="https://vk.com/iquest" target="_blank" class="quest {{ position_class }} {{ soon|default:"" }}">
+{% else %}
+	<a href="{% url url %}" class="quest {{ position_class }} {{ soon|default:"" }}">
+{% endif %}
+	<div class="quest-title">{{ name }}</div>
+	<div class="quest-img">
+		<img src="{% static image %}" alt=""/>
+		{% if soon %}
+			<div class="img-select"><div class="message">Скоро открытие</div></div>
+		{% else %}
+			<div class="img-select"><div class="message">Перейти к квесту</div></div>
+		{% endif %}
+	</div>
+	<div class="quest-info">
+		<div class="quest-info-peoples">
+			<div class="peoples">2-4 чел</div>
+			<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
+		</div>
+		<div class="quest-info-time">
+			<div class="time">60 мин</div>
+			<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
+		</div>
+	</div>
+</a>

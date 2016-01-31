@@ -95,6 +95,7 @@ class Quest(models.Model):
     alias = models.CharField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True)
     branch = models.ForeignKey(Branch, verbose_name="Филиал", null=True, blank=True)
     image = models.ImageField(upload_to='quests/main', null=True, blank=True)
+    is_active = models.BooleanField(default=False, verbose_name="Квест запущен")
 
     def __str__(self):
         return self.quest

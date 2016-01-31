@@ -2,119 +2,16 @@
 {% load staticfiles %}
 {% block content %}
     <div class="quests">
-        <a href="{% url 'main:quest_occasional-patient' %}" class="quest left">
-            <div class="quest-title">Случайный пациент</div>
-            <div class="quest-img">
-                <img src="{% static 'main/images/quests/rand/img-on-main.jpg' %}" alt=""/>
-                <div class="img-select"><div class="message">Перейти к квесту</div></div>
-            </div>
-            <div class="quest-info">
-                <div class="quest-info-peoples">
-                    <div class="peoples">2-4 чел</div>
-                    <div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-                </div>
-                <div class="quest-info-time">
-                    <div class="time">60 мин</div>
-                    <div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-                </div>
-            </div>
-        </a>
-
-        <a href="{% url 'main:quest_time-z' %}" class="quest right">
-			<div class="quest-title">Время Z</div>
-			<div class="quest-img">
-				<img src="{% static 'main/images/quests/zombi_new.png' %}" alt=""/>
-				<div class="img-select"><div class="message">Перейти к квесту</div></div>
-			</div>
-			<div class="quest-info">
-				<div class="quest-info-peoples">
-					<div class="peoples">2-4 чел</div>
-					<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-				</div>
-				<div class="quest-info-time">
-					<div class="time">60 мин</div>
-					<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-				</div>
-			</div>
-        </a>
+		{% include "blocks/index/quest.html" with name="Случайный пациент" url='main:quest_occasional-patient' position_class="left" image='main/images/quests/rand/img-on-main.jpg' %}
+		{% include "blocks/index/quest.html" with name="Время Z" url='main:quest_time-z' position_class="right" image='main/images/quests/zombi_new.png' %}
     </div>
 	<div class="quests">
-        <a href="{% url 'main:quest_enemy' %}" class="quest left">
-            <div class="quest-title">Враг народа</div>
-            <div class="quest-img">
-                <img src="{% static 'main/images/quests/enemy/main_preview.png' %}" alt=""/>
-                <div class="img-select"><div class="message">Перейти к квесту</div></div>
-            </div>
-            <div class="quest-info">
-                <div class="quest-info-peoples">
-                    <div class="peoples">2-4 чел</div>
-                    <div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-                </div>
-                <div class="quest-info-time">
-                    <div class="time">60 мин</div>
-                    <div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-                </div>
-            </div>
-        </a>
-
-        <a href="{% url 'main:quest_genius' %}" class="quest right">
-			<div class="quest-title">У.М.Н.И.К.</div>
-			<div class="quest-img">
-				<img src="{% static 'main/images/quests/genius/preview_main.jpg' %}" alt=""/>
-				<div class="img-select"><div class="message">Перейти к квесту</div></div>
-			</div>
-			<div class="quest-info">
-				<div class="quest-info-peoples">
-					<div class="peoples">2-4 чел</div>
-					<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-				</div>
-				<div class="quest-info-time">
-					<div class="time">60 мин</div>
-					<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-				</div>
-			</div>
-        </a>
+		{% include "blocks/index/quest.html" with name="Враг народа" url='main:quest_enemy' position_class="left" image='main/images/quests/enemy/main_preview.png' %}
+		{% include "blocks/index/quest.html" with name="У.М.Н.И.К." url='main:quest_genius' position_class="right" image='main/images/quests/genius/preview_main.jpg' %}
     </div>
 	<div class="quests">
-        <div class="quest left soon">
-            <a href="https://vk.com/iquest" target="_blank">
-            <div class="quest-title">Переполох в общаге</div>
-            <div class="quest-img">
-                <img src="{% static 'main/images/quests/hostel/preview_main.jpg' %}" alt=""/>
-                <div class="img-select"><div class="message">Скоро открытие</div></div>
-            </div>
-            <div class="quest-info">
-                <div class="quest-info-peoples">
-                    <div class="peoples">2-4 чел</div>
-                    <div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-                </div>
-                <div class="quest-info-time">
-                    <div class="time">60 мин</div>
-                    <div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-                </div>
-            </div>
-            </a>
-        </div>
-
-         <div class="quest right soon">
-            <a href="https://vk.com/iquest" target="_blank">
-            <div class="quest-title">За кадром</div>
-            <div class="quest-img">
-                <img src="{% static 'main/images/quests/out-frame/preview_main.jpg' %}" alt=""/>
-                <div class="img-select"><div class="message">Скоро открытие</div></div>
-            </div>
-            <div class="quest-info">
-                <div class="quest-info-peoples">
-                    <div class="peoples">2-4 чел</div>
-                    <div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-                </div>
-                <div class="quest-info-time">
-                    <div class="time">60 мин</div>
-                    <div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-                </div>
-            </div>
-            </a>
-        </div>
+		{% include "blocks/index/quest.html" with name="Переполох в общаге" soon='soon' position_class="left" image='main/images/quests/hostel/preview_main.jpg' %}
+		{% include "blocks/index/quest.html" with name="За кадром" soon='soon' position_class="right" image='main/images/quests/out-frame/preview_main.jpg' %}
     </div>
 {#	<div class="quests">#}
 {#       <a href="{% url 'main:quests' %}#q3" class="quest center">#}
