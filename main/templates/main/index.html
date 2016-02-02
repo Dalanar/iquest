@@ -1,37 +1,26 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
+{% load set_var %}
 {% block content %}
-    <div class="quests">
-		{% include "blocks/index/quest.html" with name="Случайный пациент" url='main:quest_occasional-patient' position_class="left" image='main/images/quests/rand/img-on-main.jpg' %}
-		{% include "blocks/index/quest.html" with name="Время Z" url='main:quest_time-z' position_class="right" image='main/images/quests/zombi_new.png' %}
-    </div>
 	<div class="quests">
-		{% include "blocks/index/quest.html" with name="Враг народа" url='main:quest_enemy' position_class="left" image='main/images/quests/enemy/main_preview.png' %}
-		{% include "blocks/index/quest.html" with name="У.М.Н.И.К." url='main:quest_genius' position_class="right" image='main/images/quests/genius/preview_main.jpg' %}
-    </div>
-	<div class="quests">
-		{% include "blocks/index/quest.html" with name="Переполох в общаге" soon='soon' position_class="left" image='main/images/quests/hostel/preview_main.jpg' %}
-		{% include "blocks/index/quest.html" with name="За кадром" soon='soon' position_class="right" image='main/images/quests/out-frame/preview_main.jpg' %}
-    </div>
-{#	<div class="quests">#}
-{#       <a href="{% url 'main:quests' %}#q3" class="quest center">#}
-{#			<div class="quest-title">Враг народа</div>#}
-{#			<div class="quest-img">#}
-{#				<img src="{% static 'main/images/quests/enemy/main_preview.png' %}" alt=""/>#}
-{#				<div class="img-select"><div class="message">Перейти к квесту</div></div>#}
-{#			</div>#}
-{#			<div class="quest-info">#}
-{#				<div class="quest-info-peoples">#}
-{#					<div class="peoples">2-4 чел</div>#}
-{#					<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>#}
-{#				</div>#}
-{#				<div class="quest-info-time">#}
-{#					<div class="time">60 мин</div>#}
-{#					<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>#}
-{#				</div>#}
-{#			</div>#}
-{#        </a>#}
-{#    </div>#}
+	{% for quest in quests %}
+		{% set soon = False %}
+		{% if not quest.is_active %}
+			{% set soon = "soon" %}
+		{% endif %}
+		{% if forloop.counter|divisibleby:"2" %}
+			{% include "blocks/index/quest.html" with soon=soon name=quest.quest url='main:quest_'|add:quest.alias position_class="right" image=quest.image.url %}
+		{% elif forloop.last %}
+			{% include "blocks/index/quest.html" with soon=soon name=quest.quest url='main:quest_'|add:quest.alias position_class="center" image=quest.image.url %}
+		{% else %}
+			{% include "blocks/index/quest.html" with soon=soon name=quest.quest url='main:quest_'|add:quest.alias position_class="left" image=quest.image.url %}
+		{% endif %}
+		{% if forloop.counter|divisibleby:"2" and not forloop.last %}
+			</div>
+			<div class="quests">
+		{% endif %}
+	{% endfor %}
+	</div>
     <div class="go-to-order">
         <a href="{% url 'main:quests' %}#select-quest" class="button">Перейти к бронированию</a>
     </div>

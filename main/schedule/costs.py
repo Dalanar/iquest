@@ -12,11 +12,16 @@ costs = {
         "high_cost": 3000
     },
     "quest3": {
-        "low_cost": 2000,
-        "middle_cost": 2500,
-        "high_cost": 3000
+        "low_cost": 1500,
+        "middle_cost": 2000,
+        "high_cost": 2500
     },
     "quest4": {
+        "low_cost": 1500,
+        "middle_cost": 2000,
+        "high_cost": 2500
+    },
+    "quest5": {
         "low_cost": 1500,
         "middle_cost": 2000,
         "high_cost": 2500

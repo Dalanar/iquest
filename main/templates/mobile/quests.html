@@ -1,49 +1,36 @@
 {% extends "mobile/base.html" %}
 {% load staticfiles %}
+{% load set_var %}
 {% block content %}
 	<h1>Описание Квеструм</h1>
 	<div class="quests-content">
-		<div class="quest">
-			<div class="quest-name">«Случайный пациент»</div>
-			<div class="quest-img">
-				<img src="{% static 'main/images/quests/rand/preview_main.png' %}">
+		{% for quest in quests %}
+			<div class="quest">
+				<div class="quest-name">{{ quest.quest }}</div>
+				<div class="quest-img">
+					<img src="{{ quest.image.url }}">
+				</div>
+				<div class="quest-description">{{ quest.description }}</div>
+				<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
+				<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
+				<div class="quest-button">
+					<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
+				</div>
 			</div>
-			<div class="quest-description">Ваш друг решил принять участие в безобидном медицинском исследовании, чтобы немного подзаработать, после чего бесследно пропал.</div>
-			<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
-			<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
-			<div class="quest-button">
-	        	<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
-	    	</div>
-		</div>
-
-		<div class="quest">
-			<div class="quest-name">«Время Z»</div>
-			<div class="quest-img">
-				<img src="{% static 'main/images/quests/q2-new.png' %}">
-			</div>
-			<div class="quest-description">Неизвестный вирус превратил жителей города в зомби. Спасательная операция завершится через час, после чего авиация сровняет это место с лицом земли.</div>
-			<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
-			<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
-			<div class="quest-button">
-	        	<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
-	    	</div>
-		</div>
-
-		<div class="quest">
-			<div class="quest-name">«Враг народа»</div>
-			<div class="quest-img">
-				<img src="{% static 'main/images/quests/enemy/main_preview.png' %}">
-			</div>
-			<div class="quest-description">Лживый донос превратилcя для вас в обвинение в государственной измене. Оказавшись в следственном изоляторе, вы узнаете, что вам уже вынесен смертельный приговор, исполнение которого назначено ровно через час. Охранник дежуривший за дверью вашей камеры срочно уехал по звонку начальства. Теперь у вас есть выбор, попытаться бежать или стать очередными жертвами режима.</div>
-			<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
-			<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
-			<div class="quest-button">
-	        	<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
-	    	</div>
-		</div>
+		{% endfor %}
 	</div>
 	<div class="select-quest-wrapper">
-		{% include "blocks/order/select-quests.html" %}
+		<div class="order-title">Выберите квест, дату и время посещения квеста</div>
+		<a name="select-quest"></a>
+		<div class="select-quest">
+			{% for quest in quests %}
+				{% set current = '' %}
+				{% if forloop.first %}
+					{% set current = 'current' %}
+				{% endif %}
+				<div class="order-quest {{ current }}" data-id="{{ quest.id }}">{{ quest.quest }}</div>
+			{% endfor %}
+		</div>
 	</div>
 
 	{% include "blocks/order/datepicker.html" %}

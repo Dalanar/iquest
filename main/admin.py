@@ -111,7 +111,8 @@ class PromoActionAdmin(admin.ModelAdmin):
 admin.site.register(PromoAction, PromoActionAdmin)
 
 class QuestAdmin(admin.ModelAdmin):
-    fields = ('quest', 'alias', 'is_active', 'branch', 'image_tag', 'image',)
+    fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image',)
+    list_display = ('id', 'quest',)
     readonly_fields = ('image_tag',)
 
 admin.site.register(Quest, QuestAdmin)

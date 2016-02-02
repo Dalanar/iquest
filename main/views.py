@@ -43,9 +43,10 @@ class IndexView(BaseMixin, generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
         quests = Quest.objects.filter(is_active=True)
-        context["active_quests"] = sorted(quests, key=lambda x: random.random())
-        # quests = Quest.objects.filter(is_active=False)
-        # context["not_active_quests"] = random.shuffle(quests)
+        context["quests"] = sorted(quests, key=lambda x: random.random())
+        quests = Quest.objects.filter(is_active=False)
+        quests = sorted(quests, key=lambda x: random.random())
+        context["quests"] = context["quests"] + quests
         return context
 
 
@@ -137,16 +138,10 @@ def quests_order(request):
             cost = int(request.POST['cost'])
             date = request.POST['date']
             quest_id = int(request.POST['quest'])
-            #if quest_id == 4:
-            #    quest = Quest.objects.get(pk=5)
-            #else:
             quest = Quest.objects.get(pk=quest_id)
             if not quest:
                 return error_json_response("Wrong request")
             quest_id = quest_id - 1
-            # TODO remove
-            if quest_id == 4:
-                quest_id = 3
             if not check_time_in_schedule(date, time, cost, quest_id):
                 return error_json_response("Error data")
             timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
@@ -189,13 +184,7 @@ def quests_order(request):
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
         orderJson = replace_orders(orders)
-        quests = Quest.objects.all()
-        questsIds = {
-            "quest1": quests[0].id,
-            "quest2": quests[1].id,
-            "quest3": quests[2].id,
-            "quest4": quests[4].id
-        }
+        quests = Quest.objects.filter(is_active=True)
         template = 'main/quests.html'
         if detect_mobile(request):
             template = 'mobile/quests.html'
@@ -206,8 +195,8 @@ def quests_order(request):
                 "orderJson" : orderJson,
                 "schedule": get_schedule(),
                 "keywords": get_keywords(),
-                'questsIds': questsIds,
-                'form': QuestOrderForm()
+                'form': QuestOrderForm(),
+                'quests': quests
             }
         )
 
@@ -280,6 +269,6 @@ def send_sms(quest_order):
                    quest_order.time + ' ' + \
                    quest_order.quest.branch.address + '. ' + \
                    get_additional_sms_field()
-        smsc.send_sms(quest_order.phone, template, sender="iquest")
+        # smsc.send_sms(quest_order.phone, template, sender="iquest")
     except Exception:
         return

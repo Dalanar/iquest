@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^quests/time-z', TemplateView.as_view(template_name="main/quests/time-z.html"), name='quest_time-z'),
     url(r'^quests/enemy', TemplateView.as_view(template_name="main/quests/enemy.html"), name='quest_enemy'),
     url(r'^quests/genius', TemplateView.as_view(template_name="main/quests/genius.html"), name='quest_genius'),
+    url(r'^quests/out-frame', TemplateView.as_view(template_name="main/quests/out-frame.html"), name='quest_out-frame'),
+    url(r'^quests/hostel', TemplateView.as_view(template_name="main/quests/out-frame.html"), name='quest_hostel'),
     url(r'^quests', views.quests_order, name='quests'),
     url(r'^franchise', views.FranchiseView.as_view(), name='franchise'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

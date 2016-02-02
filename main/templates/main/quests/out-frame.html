@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+        <div class="quest-description odd">
+			<a name="q2"></a>
+            <div class="description">
+                <div class="title red-font">За кадром</div>
+                <div class="main-description grey-font">Как всегда, вам досталось расследование, крайне запутанного дела, о загадочных случаях, которые происходят на съемочных площадках всей страны. Нити расследования, приводят вас прямиком к съемочному павильону, проникнуть внутрь которого удается без особых проблем. Однако, все это не спроста. Вы угодили прямиком в ловушку и теперь все зависит только от вас.</div>
+				<div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/zombie.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/location.png' %}"> ул. Елизаровых, 56
+							</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> 54-06-04
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <a href="{% static 'main/images/quests/out-frame/main.jpg' %}">
+                        <img src="{% static 'main/images/quests/out-frame/preview_main.jpg' %}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

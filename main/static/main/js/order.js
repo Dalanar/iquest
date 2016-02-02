@@ -195,9 +195,6 @@ var Order = (function(){
 		var quests = getTimesFromSchedule(date);
 		for (var i = 0; i < quests.length; i++) {
 			var questId = i + 1;
-			if (questId == 4) {
-			    questId = 5;
-			}
 			var $quest = $('[data-quest-id=' + questId + ']');
 			var $schedule = $quest.find('.schedule');
 			$schedule.html('');

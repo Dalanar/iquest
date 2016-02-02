@@ -3,8 +3,6 @@
 {% block content %}
     <h1>Все квесты Томска</h1>
 
-{#	{% include "blocks/order/select-quests.html" %}#}
-{#    {% include "blocks/order/datepicker.html" %}#}
 <div class="calendar-wrapper">
 	<div class="calendar">
 		<div class="prev nav inline">&lt;</div>
@@ -16,33 +14,16 @@
 
 {#max 9#}
 <div class="quests-schedule">
-	<div class="quest-schedule" data-quest-id="{{ questsIds.quest1 }}">
-		<div class="quest">
-			<a  href="{% url 'main:quest_occasional-patient' %}"class="button">Случайный пациент</a>
+	{% for quest in quests %}
+		<div class="quest-schedule" data-quest-id="{{ quest.id }}">
+			<div class="quest">
+				{% with url='main:quest_'|add:quest.alias %}
+					<a href="{% url url %}"class="button">{{ quest.quest }}</a>
+				{% endwith %}
+			</div>
+			<div class="schedule"></div>
 		</div>
-		<div class="schedule"></div>
-	</div>
-
-	<div class="quest-schedule" data-quest-id="{{ questsIds.quest2 }}">
-		<div class="quest">
-			<a href="{% url 'main:quest_time-z' %}" class="button">Время «Z»</a>
-		</div>
-		<div class="schedule"></div>
-	</div>
-
-	<div class="quest-schedule" data-quest-id="{{ questsIds.quest3 }}">
-		<div class="quest">
-			<a href="{% url 'main:quest_enemy' %}" class="button">Враг народа</a>
-		</div>
-		<div class="schedule"></div>
-	</div>
-
-	<div class="quest-schedule" data-quest-id="{{ questsIds.quest4 }}">
-		<div class="quest">
-			<a href="{% url 'main:quest_genius' %}" class="button">У.М.Н.И.К.</a>
-		</div>
-		<div class="schedule"></div>
-	</div>
+	{% endfor %}
 </div>
 
 	{% include "blocks/order/confirm.html" %}

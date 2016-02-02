@@ -6,7 +6,7 @@
 {% endif %}
 	<div class="quest-title">{{ name }}</div>
 	<div class="quest-img">
-		<img src="{% static image %}" alt=""/>
+		<img src="{{ image }}" alt=""/>
 		{% if soon %}
 			<div class="img-select"><div class="message">Скоро открытие</div></div>
 		{% else %}
