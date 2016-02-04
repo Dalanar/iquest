@@ -76,7 +76,7 @@ out_frame_weekend = {
         "order": 7
     },
     8: {
-        "time": "22:30",
+        "time": "23:30",
         "cost": high_cost,
         "order": 8
     }
