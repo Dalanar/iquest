@@ -195,12 +195,16 @@ div.header-menu > div:hover .cards-img {
     background-image: url('../images/circles_80/card_circle_selected.png');
 }
 
+div.header-menu .cards {
+	position: relative;
+}
+
 div.header-menu .cards:before {
     content: url('../images/circles_80/arrows.png');
     z-index: 10;
     position: absolute;
-    top: 120px;
-    left: 544px;
+	top: -10px;
+    left: 27px;
 }
 
 div.header-menu .promo-img {
