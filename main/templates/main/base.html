@@ -5,13 +5,14 @@
     <meta name="keywords" content="{{ keywords }}">
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}?6" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.theme.min.css' %}?6" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.structure.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery-ui.theme.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/magnific-popup.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}?6" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/calendar.css' %}?6" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/schedule.css' %}?6" />
-    <link rel="stylesheet" type="text/css" href="{% static 'main/css/contact.css' %}?6" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/calendar.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/schedule.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/contact.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/promo.css' %}" />
     <script src="{% static 'main/js/jquery.js' %}" ></script>
     <script src="{% static 'main/js/jquery.form.js' %}" ></script>
     <script src="{% static 'main/js/jquery-ui.js' %}" ></script>
@@ -65,6 +66,12 @@
                 <a href="{% url 'main:cards' %}">
                     <div class="circle cards-img"></div>
                     <div class="text">Подарок</div>
+                </a>
+            </div>
+            <div class="promo">
+                <a href="{% url 'main:promo' %}">
+                    <div class="circle promo-img"></div>
+                    <div class="text">Акции</div>
                 </a>
             </div>
             <div class="franchise">

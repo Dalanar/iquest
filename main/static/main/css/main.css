@@ -48,7 +48,7 @@ body > div.wrapper .header {
 
 body > div.wrapper .header-img {
     top: -1px;
-    background-image: url('../images/header_bg_arrows.png');
+    background-image: url('../images/header_bg.png');
     height: 200px;
     position: absolute;
     width: 1200px;
@@ -126,7 +126,7 @@ div.header-menu > div {
     width: 150px;
     height: 114px;
     float: left;
-    margin: 0 23px;
+    margin: 0 2px;
     font-family: 'roboto-regular';
     font-size: 12pt;
     text-align: center;
@@ -158,6 +158,7 @@ div.header-menu .franchise {
     padding-top: 20px;
 }
 
+div.header-menu .promo,
 div.header-menu .cards {
 	padding-top: 30px;
 }
@@ -192,6 +193,22 @@ div.header-menu .cards-img {
 
 div.header-menu > div:hover .cards-img {
     background-image: url('../images/circles_80/card_circle_selected.png');
+}
+
+div.header-menu .cards:before {
+    content: url('../images/circles_80/arrows.png');
+    z-index: 10;
+    position: absolute;
+    top: 120px;
+    left: 544px;
+}
+
+div.header-menu .promo-img {
+    background-image: url('../images/circles_80/promo_circle.png');
+}
+
+div.header-menu > div:hover .promo-img {
+    background-image: url('../images/circles_80/promo_circle_selected.png');
 }
 
 div.header-menu .contacts-img {

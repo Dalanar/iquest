@@ -103,9 +103,9 @@ admin.site.register(User, UserAdmin)
 
 
 class PromoActionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at',)
+    list_display = ('name', 'created_at', 'is_active', 'run_date', 'created_at',)
     search_fields = ['name']
-    fields = ('name', 'description', 'image_tag', 'image', 'created_at',)
+    fields = ('name', 'image_tag', 'image', 'full_image', 'is_active', 'run_date', 'created_at',)
     readonly_fields = ('image_tag', 'created_at',)
 
 admin.site.register(PromoAction, PromoActionAdmin)

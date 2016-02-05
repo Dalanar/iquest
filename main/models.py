@@ -214,9 +214,10 @@ class PhoneDeliveryRelation(models.Model):
 
 class PromoAction(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название")
-    description = models.TextField(verbose_name="Описание акции")
     is_active = models.BooleanField(default=True, verbose_name="Акция активна")
-    image = models.ImageField(upload_to='promo/%Y/%m/%d')
+    image = models.ImageField(upload_to='promo/%Y/%m/%d', verbose_name="Превью 400 на 600")
+    full_image = models.ImageField(upload_to='promo/%Y/%m/%d', verbose_name="Полное изображение", null=True)
+    run_date = models.DateTimeField(verbose_name="Дата запуска", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def __str__(self):

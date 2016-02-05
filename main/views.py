@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
-from main.models import QuestOrder, Quest, Ban, Setting, Phone
+from main.models import QuestOrder, Quest, Setting, Phone, PromoAction
 from main.schedule.api import get_schedule
 import datetime, time as ftime, re
 from main.smsc import SMSC
@@ -12,6 +12,8 @@ from main.utils import *
 from main.modules.detectmobilebrowser import detect_mobile, is_mobile
 import random
 import logging
+import iquest.settings as settings
+from django.db.models import Q
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +66,19 @@ class RulesView(BaseMixin, generic.TemplateView):
 
 class FranchiseView(BaseMixin, generic.TemplateView):
     template_name = 'main/franchise.html'
+
+
+class PromoView(BaseMixin, generic.TemplateView):
+    template_name = 'main/promo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BaseMixin, self).get_context_data(**kwargs)
+        promos = PromoAction.objects.filter(
+            Q(is_active=True),
+            Q(run_date__lt=datetime.datetime.now()) | Q(run_date=None)
+        )
+        context["promos"] = promos
+        return context
 
 
 class AjaxableResponseMixin(object):
@@ -269,6 +284,7 @@ def send_sms(quest_order):
                    quest_order.time + ' ' + \
                    quest_order.quest.branch.address + '. ' + \
                    get_additional_sms_field()
-        # smsc.send_sms(quest_order.phone, template, sender="iquest")
+        if not settings.debug:
+            smsc.send_sms(quest_order.phone, template, sender="iquest")
     except Exception:
         return

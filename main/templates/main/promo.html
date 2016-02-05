@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% load set_var %}
+{% block content %}
+    <h1>Акции</h1>
+	<div class="promos">
+		<div class="promo-row">
+		{% for promo in promos %}
+			{% set class_position = "" %}
+			{% if forloop.counter|divisibleby:"2" %}
+				{% set class_position = "right" %}
+			{% elif forloop.last %}
+				{% set class_position = "center" %}
+			{% else %}
+				{% set class_position = "left" %}
+			{% endif %}
+				<div class="popup-gallery {{ class_position }}">
+				{% set full_url = "" %}
+				{% if promo.full_image %}
+					{% set full_url = promo.full_image.url %}
+				{% endif %}
+					<a href="{{ full_url }}">
+						<img src="{{ promo.image.url }}">
+					</a>
+				</div>
+			{% if forloop.counter|divisibleby:"2" and not forloop.last %}
+				</div>
+				<div class="promo-row">
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+{% endblock %}
