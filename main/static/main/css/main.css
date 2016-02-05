@@ -49,7 +49,7 @@ body > div.wrapper .header {
 body > div.wrapper .header-img {
     top: -1px;
     background-image: url('../images/header_bg.png');
-    height: 200px;
+    height: 198px;
     position: absolute;
     width: 1200px;
     z-index: -1;
