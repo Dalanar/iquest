@@ -77,6 +77,12 @@ class Image(models.Model):
     image = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
     preview = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Изображние"
+        verbose_name_plural = "Изображения"
 
 # Квесты
 class Quest(models.Model):
