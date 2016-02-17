@@ -13,8 +13,8 @@
                 <div class="main-image">
 					{% if quest.gallery.all|length %}
 						{% with quest.gallery.all|first as mainImage %}
-							<a href="{% static  mainImage.image.url %}">
-								<img src="{% static  mainImage.preview.url %}">
+							<a href="{{ mainImage.image.url }}">
+								<img src="{{ mainImage.preview.url }}">
 							</a>
 						{% endwith %}
 					{% endif %}
@@ -23,8 +23,8 @@
 					<div class="previews">
 						<div class="popup-gallery">
 							{% for image in images %}
-								<a href="{% static image.image.url %}">
-									<img src="{% static image.preview.url %}">
+								<a href="{{ image.image.url }}">
+									<img src="{{ image.preview.url }}">
 								</a>
 							{% endfor %}
 						</div>
