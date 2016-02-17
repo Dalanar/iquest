@@ -17,9 +17,7 @@
 	{% for quest in quests %}
 		<div class="quest-schedule" data-quest-id="{{ quest.id }}">
 			<div class="quest">
-				{% with url='main:quest_'|add:quest.alias %}
-					<a href="{% url url %}"class="button">{{ quest.quest }}</a>
-				{% endwith %}
+				<a href="{% url 'main:show_quest' quest.alias %}"class="button">{{ quest.quest }}</a>
 			</div>
 			<div class="schedule"></div>
 		</div>

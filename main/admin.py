@@ -111,8 +111,10 @@ class PromoActionAdmin(admin.ModelAdmin):
 admin.site.register(PromoAction, PromoActionAdmin)
 
 class QuestAdmin(admin.ModelAdmin):
-    fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image',)
+    fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image', 'gallery',)
     list_display = ('id', 'quest',)
     readonly_fields = ('image_tag',)
+    filter_horizontal = ["gallery", ]
 
 admin.site.register(Quest, QuestAdmin)
+admin.site.register(Image)

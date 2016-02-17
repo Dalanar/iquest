@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% load set_var %}
+{% block content %}
+    <h1>Описание Квеструм</h1>
+	<div class="anchor-to-order">
+		<a class="button small" href="{% url 'main:quests' %}">Забронировать</a>
+	</div>
+	<div class="quests-description">
+	    <div class="quest-description odd">
+			<a name="q3"></a>
+            <div class="gallery">
+                <div class="main-image">
+					{% if quest.gallery.all|length %}
+						{% with quest.gallery.all|first as mainImage %}
+							<a href="{% static  mainImage.image.url %}">
+								<img src="{% static  mainImage.preview.url %}">
+							</a>
+						{% endwith %}
+					{% endif %}
+                </div>
+				{% with quest.gallery.all|slice:"1:" as images %}
+					<div class="previews">
+						<div class="popup-gallery">
+							{% for image in images %}
+								<a href="{% static image.image.url %}">
+									<img src="{% static image.preview.url %}">
+								</a>
+							{% endfor %}
+						</div>
+					</div>
+				{% endwith %}
+            </div>
+            <div class="description">
+                <div class="title red-font">{{ quest.quest }}</div>
+                <div class="main-description grey-font">{{ quest.description }}</div>
+                <div class="quest-info">
+                    <div class="quest-info-peoples">
+                        <div class="peoples">до 4х человек</div>
+                        <div class="img-peoples">
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                            <img src="{% static 'main/images/quests/doc.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="quest-info-time">
+                        <div class="time">60 мин</div>
+                        <div class="img-time"><img src="{% static 'main/images/quests/clock.png' %}" alt="" /></div>
+                    </div>
+					<div class="quest-address-phone">
+						<div class="quest-address">
+							<span class="quest-address-phone-wrapper"><img src="{% static 'main/images/contact/location.png' %}"> {{ quest.branch.address }}</span>
+						</div>
+						<div class="quest-phone">
+							<span class="quest-address-phone-wrapper">
+								<img src="{% static 'main/images/contact/phone.png' %}"> {{ quest.branch.phone }}
+							</span>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

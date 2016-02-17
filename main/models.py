@@ -59,23 +59,6 @@ class GiftCard(models.Model):
         verbose_name_plural = "Подарочные карты"
 
 
-# @receiver(post_save, sender=GiftCard, dispatch_uid="generate_card_number_uid")
-# def generate_card_number(sender, instance, **kwargs):
-#     prefix = instance.branch.prefix
-#     id = str(instance.id)
-#     if len(id) == 1:
-#         id = '000' + id
-#     elif len(id) == 2:
-#         id = '00' + id
-#     elif len(id) == 3:
-#         id = '0' + id
-#     if prefix:
-#         instance.card_number = prefix + id
-#     else:
-#         instance.card_number = id
-#     instance.save()
-
-
 # Заявка на карту
 class GiftCardOrder(models.Model):
     name = models.CharField(max_length=255, verbose_name="Имя")
@@ -89,14 +72,21 @@ class GiftCardOrder(models.Model):
         verbose_name_plural = "Заявки на подарочные карты"
 
 
+class Image(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Имя изображения", unique=True)
+    image = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
+    preview = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
+
+
 # Квесты
 class Quest(models.Model):
     quest = models.CharField(max_length=255, verbose_name="Квест")
-    alias = models.CharField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True)
+    alias = models.SlugField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True, unique=True)
     branch = models.ForeignKey(Branch, verbose_name="Филиал", null=True, blank=True)
     image = models.ImageField(upload_to='quests/main', null=True, blank=True)
     is_active = models.BooleanField(default=False, verbose_name="Квест запущен")
     description = models.TextField(verbose_name="Описание квеста", default="")
+    gallery = models.ManyToManyField(Image)
 
     def __str__(self):
         return self.quest

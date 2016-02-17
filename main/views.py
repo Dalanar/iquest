@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, SingleObjectMixin
+from django.views.generic.detail import DetailView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
@@ -14,6 +15,9 @@ import random
 import logging
 import iquest.settings as settings
 from django.db.models import Q
+from django.http import Http404
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 logger = logging.getLogger(__name__)
 
@@ -113,10 +117,28 @@ class CardsView(BaseMixin, AjaxableResponseMixin, CreateView):
     template_name = 'main/cards.html'
 
 
-class QuestsView(BaseMixin, AjaxableResponseMixin, CreateView):
+# class QuestDetailView(BaseMixin, AjaxableResponseMixin, CreateView):
+
+
+class QuestView(BaseMixin, AjaxableResponseMixin, CreateView, DetailView):
     form_class = QuestOrderForm
     success_url = "/"
-    template_name = 'main/quests.html'
+    model = Quest
+    template_name = 'blocks/quests/quest.html'
+    slug_field = 'alias'
+
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            return redirect(reverse('main:quests'))
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestView, self).get_context_data(**kwargs)
+        return context
 
 
 def error_json_response(message):

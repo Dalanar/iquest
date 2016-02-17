@@ -2,7 +2,7 @@
 {% if soon %}
 	<a href="https://vk.com/iquest" target="_blank" class="quest {{ position_class }} {{ soon|default:"" }}">
 {% else %}
-	<a href="{% url url %}" class="quest {{ position_class }} {{ soon|default:"" }}">
+	<a href="{% url 'main:show_quest' alias %}" class="quest {{ position_class }} {{ soon|default:"" }}">
 {% endif %}
 	<div class="quest-title">{{ name }}</div>
 	<div class="quest-img">
