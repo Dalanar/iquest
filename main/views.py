@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
 from main.models import QuestOrder, Quest, Setting, Phone, PromoAction
-from main.schedule.api import get_schedule
+from main.schedule.api import get_schedule, check_time_in_schedule
 import datetime, time as ftime, re
 from main.smsc import SMSC
 from main.utils import *
@@ -21,6 +21,7 @@ from django.shortcuts import redirect
 
 logger = logging.getLogger(__name__)
 
+
 def get_keywords():
     try:
         return Setting.objects.get(key="keywords").value
@@ -34,7 +35,6 @@ class BaseMixin(object):
         if detect_mobile(self.request):
             return self.template_name.replace('main', 'mobile')
         return self.template_name
-
 
     def get_context_data(self, **kwargs):
         context = super(BaseMixin, self).get_context_data(**kwargs)
@@ -117,16 +117,12 @@ class CardsView(BaseMixin, AjaxableResponseMixin, CreateView):
     template_name = 'main/cards.html'
 
 
-# class QuestDetailView(BaseMixin, AjaxableResponseMixin, CreateView):
-
-
 class QuestView(BaseMixin, AjaxableResponseMixin, CreateView, DetailView):
     form_class = QuestOrderForm
     success_url = "/"
     model = Quest
     template_name = 'blocks/quests/quest.html'
     slug_field = 'alias'
-
 
     def get(self, request, *args, **kwargs):
         try:
@@ -149,28 +145,9 @@ def json_response(message):
     return JsonResponse({"success": True, "message": message}, status=200)
 
 
-def check_time_in_schedule(date, time, cost, quest):
-    schedule = get_schedule()
-    order_date = datetime.datetime.strptime(date, "%Y-%m-%d")
-    for schedule_date in schedule:
-        if schedule_date[0] == order_date.year and \
-                        schedule_date[1] == order_date.month and \
-                        schedule_date[2] == order_date.day:
-            for key in schedule_date[4][quest]:
-                if schedule_date[4][quest][key]["time"] == time and \
-                                schedule_date[4][quest][key]["cost"] == cost:
-                    return True
-    return False
-
-
 def quests_order(request):
     if request.method == "POST":
         try:
-            ip = get_client_ip(request)
-            # bans = Ban.objects.all()
-            # for ban in bans:
-            #     if ban.ip == ip:
-            #         return error_json_response("Banned")
             time = request.POST['time']
             cost = int(request.POST['cost'])
             date = request.POST['date']
@@ -181,7 +158,9 @@ def quests_order(request):
             quest_id = quest_id - 1
             if not check_time_in_schedule(date, time, cost, quest_id):
                 return error_json_response("Error data")
-            timestamp = int(ftime.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
+            timestamp = int(ftime.mktime(
+                datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()
+            ))
             current_time = int(ftime.time()) - 86400
             if timestamp < current_time:
                 return error_json_response("Wrong time")
@@ -207,7 +186,7 @@ def quests_order(request):
                     time=time,
                     date=date,
                     cost=cost,
-                    ip=ip
+                    ip=""
                 )
                 quest_order.save()
                 send_sms(quest_order)
@@ -220,7 +199,7 @@ def quests_order(request):
             return error_json_response("Something error")
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
-        orderJson = replace_orders(orders)
+        order_json = replace_orders(orders)
         quests = Quest.objects.filter(is_active=True)
         template = 'main/quests.html'
         if detect_mobile(request):
@@ -229,7 +208,7 @@ def quests_order(request):
             request,
             template,
             {
-                "orderJson" : orderJson,
+                "orderJson": order_json,
                 "schedule": get_schedule(),
                 "keywords": get_keywords(),
                 'form': QuestOrderForm(),
@@ -261,23 +240,6 @@ def data_validate(name, phone):
     if not re.match(r"^[0-9\+\- ]+$", phone):
         return False
     return True
-
-
-def get_client_ip(request):
-    return ""
-    # x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    # if x_forwarded_for:
-    #     ip = x_forwarded_for
-    # else:
-    #     ip = request.META.get('REMOTE_ADDR')
-    try:
-        http_x_real_ip = request.META.get('HTTP_X_FORWARDED_FOR')
-        if http_x_real_ip:
-            return http_x_real_ip
-        else:
-            return request.META.get('REMOTE_ADDR')
-    except Exception:
-        return ""
 
 
 def get_additional_sms_field():

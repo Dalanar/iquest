@@ -10,6 +10,7 @@ from main.schedule.zombie import *
 from main.schedule.enemy import *
 from main.schedule.genius import *
 from main.schedule.out_frame import *
+from main.schedule.hostel import *
 
 
 def increment_month(year, month):
@@ -117,8 +118,10 @@ def to_form_costs(template, quest):
     return clone
 
 
-# Создает расписание для двух квестов с различными ценами
 def create_schedule_form_template(template):
+    '''
+    Создает расписание для двух квестов с различными ценами
+    '''
     schedule = []
     if template == "weekday" or template == "before_weekend":
         schedule.append(to_form_costs(hospital_weekday, "quest1"))
@@ -126,17 +129,21 @@ def create_schedule_form_template(template):
         schedule.append(to_form_costs(enemy_weekday, "quest3"))
         schedule.append(to_form_costs(out_frame_weekday, "quest4"))
         schedule.append(to_form_costs(genius_weekday, "quest5"))
+        schedule.append(to_form_costs(hostel_weekday, "quest6"))
     else:
         schedule.append(to_form_costs(hospital_weekend, "quest1"))
         schedule.append(to_form_costs(zombie_weekend, "quest2"))
         schedule.append(to_form_costs(enemy_weekend, "quest3"))
         schedule.append(to_form_costs(out_frame_weekend, "quest4"))
         schedule.append(to_form_costs(genius_weekend, "quest5"))
+        schedule.append(to_form_costs(hostel_weekend, "quest6"))
     return schedule
 
 
-# Добавляем время с учетом следующего дня
 def add_times(schedule):
+    '''
+    Добавляем время с учетом следующего дня
+    '''
     for i in range(len(schedule) - 1):
         day = schedule[i]
         next_day = schedule[i + 1]
@@ -157,8 +164,10 @@ def change_bool_to_int(schedule):
     return schedule
 
 
-# Создаем расписание
 def get_schedule():
+    '''
+    Генерация расписания
+    '''
     shifted = 2
     # Берем 34 дня, но возвращаем 30, чтобы на грницах расписания были
     # правильные времена бронирования и цены
@@ -190,10 +199,28 @@ def get_schedule():
     schedule = work_around_enemy(schedule)
     return schedule[shifted:32]
 
+
 def work_around_enemy(schedule):
+    '''
+    Костыль для врага народа TODO удалить в марте
+    '''
     for i in range(len(schedule)):
         if schedule[i][1] < 3:
             for j in range(len(schedule[i][4][3])):
                 schedule[i][4][2][j]['cost'] = 3000
 
     return schedule
+
+
+def check_time_in_schedule(date, time, cost, quest):
+    schedule = get_schedule()
+    order_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+    for schedule_date in schedule:
+        if schedule_date[0] == order_date.year and \
+                schedule_date[1] == order_date.month and \
+                schedule_date[2] == order_date.day:
+            for key in schedule_date[4][quest]:
+                if schedule_date[4][quest][key]["time"] == time and \
+                        schedule_date[4][quest][key]["cost"] == cost:
+                    return True
+    return False
