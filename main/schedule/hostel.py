@@ -4,7 +4,7 @@ from main.schedule.costs import *
 
 hostel_weekday = {
     0: {
-        "time": "10:30",
+        "time": "10:00",
         "cost": low_cost,
         "order": 0
     },
@@ -57,7 +57,7 @@ hostel_weekday = {
 
 hostel_weekend = {
     0: {
-        "time": "10:30",
+        "time": "10:00",
         "cost": middle_cost,
         "order": 0
     },
