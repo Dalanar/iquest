@@ -75,7 +75,6 @@ var Order = (function(){
 		var $col1 = $('.time-cost .col1').empty();
 		var $col2 = $('.time-cost .col2').empty();
 		var currentQuest = $('.order-quest.current').data('id');
-		currentQuest--;
 		$.each(
 			getTimesFromSchedule(date_arr, currentQuest),
 			function(index, value) {

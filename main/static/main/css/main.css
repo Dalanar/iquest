@@ -444,6 +444,11 @@ div.i-description {
     height: 286px;
 }
 
+
+.quest .promo-img {
+	position: absolute;
+}
+
 .quest .img-select {
     display: none;
 }
@@ -688,6 +693,15 @@ div.quest-description .description .main-description {
     font-size: 20px;
     line-height: 1.2;
     margin-bottom: 17px;
+}
+
+.quest-description .quest-promo {
+	font-family: 'roboto-light';
+    font-size: 20px;
+    line-height: 1.2;
+	border: 4px dashed #ca624b;
+    padding: 5px 10px;
+	margin-top: 20px;
 }
 
 div.gallery .main-image {

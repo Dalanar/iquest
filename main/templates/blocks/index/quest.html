@@ -1,12 +1,17 @@
 {% load staticfiles %}
+{% load set_var %}
 {% if soon %}
 	<a href="https://vk.com/iquest" target="_blank" class="quest {{ position_class }} {{ soon|default:"" }}">
 {% else %}
-	<a href="{% url 'main:show_quest' alias %}" class="quest {{ position_class }} {{ soon|default:"" }}">
+	<a href="{% url 'main:show_quest' quest.alias %}" class="quest {{ position_class }} {{ soon|default:"" }}">
 {% endif %}
-	<div class="quest-title">{{ name }}</div>
+
+	<div class="quest-title">{{ quest.quest }}</div>
 	<div class="quest-img">
-		<img src="{{ image }}" alt=""/>
+		{% if quest.questpromo and quest.questpromo.run_date.timestamp < today.timestamp %}
+			<img src="{% static 'main/images/promo.png' %}" class="promo-img" alt=""/>
+		{% endif %}
+		<img src="{{ quest.image.url }}" alt=""/>
 		{% if soon %}
 			<div class="img-select"><div class="message">Скоро открытие</div></div>
 		{% else %}

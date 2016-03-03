@@ -53,23 +53,12 @@ class IndexView(BaseMixin, generic.TemplateView):
         quests = Quest.objects.filter(is_active=False)
         quests = sorted(quests, key=lambda x: random.random())
         context["quests"] = context["quests"] + quests
+        context["today"] = datetime.datetime.now()
         return context
 
 
-class ContactView(BaseMixin, generic.TemplateView):
-    template_name = 'main/contact.html'
-
-
-class StubView(BaseMixin, generic.TemplateView):
-    template_name = 'main/stub.html'
-
-
-class RulesView(BaseMixin, generic.TemplateView):
-    template_name = 'main/rules.html'
-
-
-class FranchiseView(BaseMixin, generic.TemplateView):
-    template_name = 'main/franchise.html'
+class BaseTemplateView(BaseMixin, generic.TemplateView):
+    template_name = ''
 
 
 class PromoView(BaseMixin, generic.TemplateView):
@@ -134,6 +123,7 @@ class QuestView(BaseMixin, AjaxableResponseMixin, CreateView, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(QuestView, self).get_context_data(**kwargs)
+        context['today'] = datetime.datetime.now()
         return context
 
 
@@ -146,6 +136,7 @@ def json_response(message):
 
 
 def quests_order(request):
+    quests = Quest.objects.filter(is_active=True)
     if request.method == "POST":
         try:
             time = request.POST['time']
@@ -155,8 +146,7 @@ def quests_order(request):
             quest = Quest.objects.get(pk=quest_id)
             if not quest:
                 return error_json_response("Wrong request")
-            quest_id = quest_id - 1
-            if not check_time_in_schedule(date, time, cost, quest_id):
+            if not check_time_in_schedule(date, time, cost, quest_id, quests):
                 return error_json_response("Error data")
             timestamp = int(ftime.mktime(
                 datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()
@@ -200,7 +190,6 @@ def quests_order(request):
     else:
         orders = QuestOrder.objects.filter(date__gte=timezone.now())
         order_json = replace_orders(orders)
-        quests = Quest.objects.filter(is_active=True)
         template = 'main/quests.html'
         if detect_mobile(request):
             template = 'mobile/quests.html'
@@ -209,7 +198,7 @@ def quests_order(request):
             template,
             {
                 "orderJson": order_json,
-                "schedule": get_schedule(),
+                "schedule": get_schedule(quests),
                 "keywords": get_keywords(),
                 'form': QuestOrderForm(),
                 'quests': quests

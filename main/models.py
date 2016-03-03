@@ -73,6 +73,9 @@ class GiftCardOrder(models.Model):
 
 
 class Image(models.Model):
+    '''
+    Изображения для квестов
+    '''
     name = models.CharField(max_length=255, verbose_name="Имя изображения", unique=True)
     image = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
     preview = models.ImageField(upload_to='quests/gallery', null=True, blank=True)
@@ -84,12 +87,15 @@ class Image(models.Model):
         verbose_name = "Изображние"
         verbose_name_plural = "Изображения"
 
-# Квесты
+
 class Quest(models.Model):
+    '''
+    Квесты
+    '''
     quest = models.CharField(max_length=255, verbose_name="Квест")
     alias = models.SlugField(max_length=255, verbose_name="Псевдоним для обращения", null=True, blank=True, unique=True)
     branch = models.ForeignKey(Branch, verbose_name="Филиал", null=True, blank=True)
-    image = models.ImageField(upload_to='quests/main', null=True, blank=True)
+    image = models.ImageField(upload_to='quests/main', verbose_name="Галерея", null=True, blank=True)
     is_active = models.BooleanField(default=False, verbose_name="Квест запущен")
     description = models.TextField(verbose_name="Описание квеста", default="")
     gallery = models.ManyToManyField(Image)
@@ -108,6 +114,20 @@ class Quest(models.Model):
         verbose_name_plural = "Квесты"
 
 
+class QuestPromo(models.Model):
+    quest = models.OneToOneField(Quest, on_delete=models.CASCADE)
+    text = models.TextField(verbose_name="Текст акции", default="")
+    run_date = models.DateTimeField(verbose_name="Дата запуска", null=True, blank=True)
+
+
+class Schedule(models.Model):
+    quest = models.OneToOneField(Quest, on_delete=models.CASCADE)
+    weekday = models.TextField(verbose_name="Расписание на будние дни", default="")
+    weekday_before_weekend = models.TextField(verbose_name="Будний день перед выходным", default="")
+    weekend = models.TextField(verbose_name="Расписание на выходные", default="")
+    weekend_before_weekday = models.TextField(verbose_name="Выходной перед будним днем", default="")
+
+
 # Баны
 class Ban(models.Model):
     ip = models.CharField(max_length=11)
@@ -120,7 +140,6 @@ class Ban(models.Model):
         verbose_name_plural = "Баны"
 
 
-# Бронирование квеста
 class QuestOrder(models.Model):
     """
     Бронирование квеста
@@ -143,7 +162,6 @@ class QuestOrder(models.Model):
         verbose_name_plural = "Забронированные квесты"
 
 
-# Настройки
 class Setting(models.Model):
     """
     Таблица настроек
@@ -165,10 +183,9 @@ class Delivery(models.Model):
         verbose_name = 'Рассылка'
 
 
-# Номера телефонов для рассылок
 class Phone(models.Model):
     """
-    База телефонов для спама
+    База телефонов для рассылок
     """
     number = models.CharField(max_length=20, verbose_name="Телефон")
 
@@ -180,7 +197,6 @@ class Phone(models.Model):
         verbose_name_plural = "Телефоны"
 
 
-# Смс рассылка
 class SmsDelivery(models.Model):
     """
     Смс рассылка

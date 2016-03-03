@@ -193,12 +193,10 @@ var Order = (function(){
 
 	function generateSchedule(date) {
 		var quests = getTimesFromSchedule(date);
-		for (var i = 0; i < quests.length; i++) {
-			var questId = i + 1;
+		$.each(quests, function(questId, times){
 			var $quest = $('[data-quest-id=' + questId + ']');
 			var $schedule = $quest.find('.schedule');
 			$schedule.html('');
-			var times = quests[i];
 			$.each(times, function(i, el){
 				var dateText =
 					$datepicker.datepicker({ dateFormat: 'yy-mm-dd' }).val();
@@ -213,7 +211,7 @@ var Order = (function(){
 					'</div>'
 				);
 			});
-		}
+		});
 		$('.time-cost .cost')
 			.off('click')
 			.on('click', clickTimeCostHandler)

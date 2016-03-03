@@ -110,11 +110,20 @@ class PromoActionAdmin(admin.ModelAdmin):
 
 admin.site.register(PromoAction, PromoActionAdmin)
 
+
+class ScheduleInline(admin.StackedInline):
+    model = Schedule
+
+class QuestPromoInline(admin.TabularInline):
+    model = QuestPromo
+
+
 class QuestAdmin(admin.ModelAdmin):
     fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image', 'gallery',)
     list_display = ('id', 'quest',)
     readonly_fields = ('image_tag',)
     filter_horizontal = ["gallery", ]
+    inlines = (QuestPromoInline, ScheduleInline,)
 
 admin.site.register(Quest, QuestAdmin)
 admin.site.register(Image)

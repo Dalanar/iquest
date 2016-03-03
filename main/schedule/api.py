@@ -4,14 +4,6 @@ __author__ = 'Stepan'
 import calendar
 import datetime
 
-from copy import deepcopy
-from main.schedule.hospital import *
-from main.schedule.zombie import *
-from main.schedule.enemy import *
-from main.schedule.genius import *
-from main.schedule.out_frame import *
-from main.schedule.hostel import *
-
 
 def increment_month(year, month):
     """
@@ -34,7 +26,7 @@ def is_holiday(month, day):
         [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
         [2, 23],
         [3, 8],
-        [5, 1], [5, 9],
+        [5, 1], [5, 2], [5, 3], [5, 9],
         [6, 12],
         [11, 4]
     ]
@@ -55,8 +47,10 @@ def is_weekend(year, month, day):
     return False
 
 
-# Заполняем расписание
-def fill_schedule(schedule, year, month, current_day, amount_days):
+def fill_calendar(schedule, year, month, current_day, amount_days):
+    '''
+    Заполняем расписание днями
+    '''
     days_in_month = calendar.monthrange(year, month)[1]
     for day in range(current_day, days_in_month + 1):
         amount_days -= 1
@@ -89,9 +83,11 @@ def set_holidays(schedule):
     return schedule
 
 
-# Получаем дату со двигом в два дня, т.к. если сегодня понедельник, а в субботу
-# был праздник, то понедельник должен быть выходной
 def get_shifted_date():
+    '''
+    Получаем дату отчета со двигом в два дня, т.к. если сегодня понедельник,
+    а в субботу был праздник, то понедельник должен быть выходной
+    '''
     today = datetime.date.today()
     day = today.day
     month = today.month
@@ -109,53 +105,64 @@ def get_shifted_date():
             return [year, month, days_in_month]
 
 
-# Заполняет шаблон расписания ценами для соответствующего квеста
-def to_form_costs(template, quest):
-    clone = deepcopy(template)
-    for i in clone.keys():
-        cost = clone[i]["cost"]
-        clone[i]["cost"] = costs[quest][cost]
-    return clone
+def create_schedule_obj(times):
+    obj = []
+    arr_times = times.split()
+    for time in arr_times:
+        time_cost = time.split('=')
+        if len(time_cost) != 2:
+            continue
+        obj.append({
+            'time': time_cost[0].strip(),
+            'cost': time_cost[1].strip()
+        })
+    return obj
 
 
-def create_schedule_form_template(template):
+def create_schedule_form_template(template, quests):
     '''
-    Создает расписание для двух квестов с различными ценами
+    Создает расписание для квестов с различными ценами
     '''
-    schedule = []
-    if template == "weekday" or template == "before_weekend":
-        schedule.append(to_form_costs(hospital_weekday, "quest1"))
-        schedule.append(to_form_costs(zombie_weekday, "quest2"))
-        schedule.append(to_form_costs(enemy_weekday, "quest3"))
-        schedule.append(to_form_costs(out_frame_weekday, "quest4"))
-        schedule.append(to_form_costs(genius_weekday, "quest5"))
-        schedule.append(to_form_costs(hostel_weekday, "quest6"))
-    else:
-        schedule.append(to_form_costs(hospital_weekend, "quest1"))
-        schedule.append(to_form_costs(zombie_weekend, "quest2"))
-        schedule.append(to_form_costs(enemy_weekend, "quest3"))
-        schedule.append(to_form_costs(out_frame_weekend, "quest4"))
-        schedule.append(to_form_costs(genius_weekend, "quest5"))
-        schedule.append(to_form_costs(hostel_weekend, "quest6"))
-    return schedule
+    schedule_arr = {}
+    for quest in quests:
+        try:
+            schedule = quest.schedule
+        except:
+            continue
+        if template == "weekday":
+            schedule_arr[quest.id] = create_schedule_obj(schedule.weekday)
+        elif template == "before_weekend":
+            schedule_arr[quest.id] = \
+                create_schedule_obj(schedule.weekday_before_weekend)
+        elif template == "weekend":
+            schedule_arr[quest.id] = \
+                create_schedule_obj(schedule.weekend)
+        else:
+            schedule_arr[quest.id] = \
+                create_schedule_obj(schedule.weekend_before_weekday)
+    return schedule_arr
 
 
-def add_times(schedule):
+def add_times(quest_calendar, quests):
     '''
     Добавляем время с учетом следующего дня
     '''
-    for i in range(len(schedule) - 1):
-        day = schedule[i]
-        next_day = schedule[i + 1]
+    for i in range(len(quest_calendar) - 1):
+        day = quest_calendar[i]
+        next_day = quest_calendar[i + 1]
         if not day[3] and not next_day[3]:
-            schedule[i].append(create_schedule_form_template("weekday"))
+            day_type = "weekday"
         elif not day[3] and next_day[3]:
-            schedule[i].append(create_schedule_form_template("before_weekend"))
+            day_type = "before_weekend"
         elif day[3] and next_day[3]:
-            schedule[i].append(create_schedule_form_template("weekend"))
-        elif day[3] and not next_day[3]:
-            schedule[i].append(create_schedule_form_template("weekend_before_weekday"))
-    return schedule
+            day_type = "weekend"
+        else:
+            # elif day[3] and not next_day[3]:
+            day_type = "weekend_before_weekday"
+        quest_calendar[i].append(
+            create_schedule_form_template(day_type, quests)
+        )
+    return quest_calendar
 
 
 def change_bool_to_int(schedule):
@@ -164,19 +171,19 @@ def change_bool_to_int(schedule):
     return schedule
 
 
-def get_schedule():
+def get_schedule(quests):
     '''
     Генерация расписания
+    Берем 34 дня, но возвращаем 30, чтобы на грницах расписания были
+    правильные времена бронирования и цены
     '''
     shifted = 2
-    # Берем 34 дня, но возвращаем 30, чтобы на грницах расписания были
-    # правильные времена бронирования и цены
     amount_days = 34
     [year, month, day] = get_shifted_date()
-    schedule = []
-    [schedule, amount_days] = \
-        fill_schedule(
-            schedule,
+    quest_calendar = []
+    [quest_calendar, amount_days] = \
+        fill_calendar(
+            quest_calendar,
             year,
             month,
             day,
@@ -185,42 +192,29 @@ def get_schedule():
     while amount_days > 0:
         [year, month] = \
             increment_month(year, month)
-        [schedule, amount_days] = \
-            fill_schedule(
-                schedule,
+        [quest_calendar, amount_days] = \
+            fill_calendar(
+                quest_calendar,
                 year,
                 month,
                 1,
                 amount_days
             )
-    schedule = set_holidays(schedule)
-    schedule = add_times(schedule)
+    quest_calendar = set_holidays(quest_calendar)
+    schedule = add_times(quest_calendar, quests)
     schedule = change_bool_to_int(schedule)
-    schedule = work_around_enemy(schedule)
     return schedule[shifted:32]
 
 
-def work_around_enemy(schedule):
-    '''
-    Костыль для врага народа TODO удалить в марте
-    '''
-    for i in range(len(schedule)):
-        if schedule[i][1] < 3:
-            for j in range(len(schedule[i][4][3])):
-                schedule[i][4][2][j]['cost'] = 3000
-
-    return schedule
-
-
-def check_time_in_schedule(date, time, cost, quest):
-    schedule = get_schedule()
+def check_time_in_schedule(date, time, cost, quest_id, quests):
+    schedule = get_schedule(quests)
     order_date = datetime.datetime.strptime(date, "%Y-%m-%d")
     for schedule_date in schedule:
         if schedule_date[0] == order_date.year and \
                 schedule_date[1] == order_date.month and \
                 schedule_date[2] == order_date.day:
-            for key in schedule_date[4][quest]:
-                if schedule_date[4][quest][key]["time"] == time and \
-                        schedule_date[4][quest][key]["cost"] == cost:
+            for key in schedule_date[4][quest_id]:
+                if key["time"] == time and \
+                    key["cost"] == str(cost):
                     return True
     return False

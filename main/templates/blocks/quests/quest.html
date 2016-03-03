@@ -59,6 +59,9 @@
 						</div>
 					</div>
                 </div>
+				{% if quest.questpromo and quest.questpromo.run_date.timestamp < today.timestamp %}
+					<div class="quest-promo">{{ quest.questpromo.text }}</div>
+				{% endif %}
             </div>
         </div>
     </div>

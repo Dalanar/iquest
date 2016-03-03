@@ -9,11 +9,11 @@
 			{% set soon = "soon" %}
 		{% endif %}
 		{% if forloop.counter|divisibleby:"2" %}
-			{% include "blocks/index/quest.html" with soon=soon name=quest.quest alias=quest.alias position_class="right" image=quest.image.url %}
+			{% include "blocks/index/quest.html" with soon=soon quest=quest position_class="right" %}
 		{% elif forloop.last %}
-			{% include "blocks/index/quest.html" with soon=soon name=quest.quest alias=quest.alias position_class="center" image=quest.image.url %}
+			{% include "blocks/index/quest.html" with soon=soon quest=quest position_class="center" %}
 		{% else %}
-			{% include "blocks/index/quest.html" with soon=soon name=quest.quest alias=quest.alias position_class="left" image=quest.image.url %}
+			{% include "blocks/index/quest.html" with soon=soon quest=quest position_class="left" %}
 		{% endif %}
 		{% if forloop.counter|divisibleby:"2" and not forloop.last %}
 			</div>
