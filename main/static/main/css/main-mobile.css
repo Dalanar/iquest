@@ -200,6 +200,11 @@ h1 {
 	text-align: center;
 }
 
+.quests-list .full-info .quest-image img {
+	max-width: 100%;
+    max-height: 100%;
+}
+
 .button-wrapper {
 	text-align: center;
 	margin-top: 25px;
