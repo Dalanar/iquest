@@ -4,7 +4,7 @@
 
 var MobileSite = (function() {
 
-	var $menu = $('.menu-open');
+	var $menu = $('.menu-open'), $questSlideDown = $('.quest-info-right');
 
 	function menuHandler() {
 		if ($menu.hasClass('opened')) {
@@ -14,8 +14,23 @@ var MobileSite = (function() {
 		}
 	}
 
+	function questSlideDownHandler(event) {
+		var $target = $(event.target),
+			$quest = $target.closest('.quest'),
+			$fullInfo = $quest.find('.full-info');
+		console.log($fullInfo);
+		if ($quest.hasClass('opened')) {
+			$quest.removeClass('opened');
+			$fullInfo.slideUp();
+		} else {
+			$quest.addClass('opened');
+			$fullInfo.slideDown();
+		}
+	}
+
 	function init() {
 		$menu.on('click', menuHandler);
+		$questSlideDown.on('click', questSlideDownHandler);
 	}
 
 	return {

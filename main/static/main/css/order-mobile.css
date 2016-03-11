@@ -1,0 +1,213 @@
+/** quests content */
+.order-menu {
+	border: 1px solid #ca624b;
+	border-radius: 4px;
+	color: #777578;
+	font-size: 16px;
+	font-family: 'roboto-regular';
+	margin-bottom: 28px;
+}
+
+.order-menu .order-menu-header {
+	background-color: #ca624b;
+	color: white;
+}
+
+.order-menu .order-menu-header {
+	font-size: 20px;
+}
+
+.order-menu.confirm .order-menu-content .item {
+	border: none;
+	padding: 20px 35px 0 35px;
+}
+
+.order-menu .item {
+	border-top: 1px solid #ca624b;
+	padding: 14px 14px 18px 14px;
+}
+
+.order-menu .order-menu-content .item {
+	padding-left: 35px;
+	padding-right: 35px;
+}
+
+.order-menu .item.current {
+	color: white;
+	background-color: #e78974;
+}
+
+.order-menu .item.button-wrapper .button {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+}
+
+.order-menu .item .quest-cost {
+	font-size: 24px;
+}
+
+.order-menu .item input {
+	height: 32px;
+	width: 100%;
+	padding: 0 10px;
+	text-align: center;
+	border: 1px solid #ca624b;
+	box-sizing: border-box;
+}
+
+.order-menu.calendar {
+	background-color: white;
+}
+
+.order-title {
+	text-align: center;
+	font-family: roboto-medium;
+	font-size: 18px;
+	color: #505050;
+	margin-bottom: 20px;
+}
+
+.order {
+	margin: 0 auto;
+}
+
+/** datepicker */
+.datepicker-wrapper .ui-datepicker {
+	padding: 0;
+}
+
+.datepicker-wrapper .ui-datepicker {
+	width: 100%;
+}
+
+.ui-datepicker-calendar {
+	font-family: roboto-regular;
+	font-size: 11px;
+}
+
+.ui-datepicker-calendar .ui-datepicker-unselectable {
+	color: #aeaeae;
+}
+
+.ui-datepicker td {
+	height: 40px;
+	width: 40px;
+	text-align: center;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+	display: inline-block;
+    height: 18px;
+    width: 18px;
+	text-align: center;
+}
+
+.ui-datepicker-calendar .ui-datepicker-current-day a.ui-state-active {
+	position: relative;
+	border-radius: 28px;
+	border: 1px solid #ca624b;
+	background-color: #ca624b;
+	color: white;
+}
+
+.ui-datepicker-calendar a {
+	color: #505050;
+}
+
+.ui-datepicker-calendar thead tr {
+	background-color: #ca624b;
+	color: white;
+}
+
+.ui-datepicker-month::first-letter {
+	text-transform: uppercase;
+}
+
+div#datepicker .ui-icon {
+    width: 20px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -11px;
+    top: 68%;
+    margin-top: -14px;
+    cursor: pointer;
+}
+
+div#datepicker .ui-datepicker-prev .ui-icon {
+    background-image: url("../images/mobile/arrow_left.png");
+}
+
+div#datepicker .ui-datepicker-next .ui-icon {
+    background-image: url("../images/mobile/arrow_right.png");
+}
+
+/** confirm */
+.confirm .order-menu-header .item {
+	padding-left: 35px;
+}
+
+.red-font {
+	color: #ca624b;
+	font-family: 'roboto-bold';
+}
+/** выбор времени */
+.time-cost {
+	border: 2px solid #ca624b;
+	border-radius: 4px;
+	margin: 0 auto 20px auto;
+}
+
+.time-cost .item.disabled {
+	opacity: 0.5;
+}
+
+.time-cost .time,
+.time-cost .cost {
+	display: inline;
+}
+
+.time-cost .time {
+	color: #ca624b;
+}
+
+.time-cost .current .time {
+	color: white;
+}
+
+/** Поля для заполнения */
+.fields .row {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.fields .row div.input {
+    display: inline-block;
+    margin: 0 30px;
+}
+
+.fields .row div.input img {
+    display: block;
+    float: left;
+}
+
+.fields .row div.input input{
+    height: 31px;
+    border-radius: 0 9px 9px 0;
+    outline: 0;
+    border: 1px solid #b5b5b5;
+    float: left;
+    line-height: 31px;
+    padding-left: 5px;
+    width: 160px;
+}
+
+.pre-order-notification {
+    font-size: 15px;
+    color: #505050;
+    min-width: 280px;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+}

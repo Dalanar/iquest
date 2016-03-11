@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.shortcuts import render
 from django.utils import timezone
 from main.forms import GiftCardOrderForm, QuestOrderForm
-from main.models import QuestOrder, Quest, Setting, Phone, PromoAction
+from main.models import QuestOrder, Quest, Setting, Phone, PromoAction, Branch
 from main.schedule.api import get_schedule, check_time_in_schedule
 import datetime, time as ftime, re
 from main.smsc import SMSC
@@ -59,6 +59,21 @@ class IndexView(BaseMixin, generic.TemplateView):
 
 class BaseTemplateView(BaseMixin, generic.TemplateView):
     template_name = ''
+
+
+class ContactView(BaseMixin, generic.TemplateView):
+    template_name = 'main/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BaseMixin, self).get_context_data(**kwargs)
+        branches = Branch.objects.all()
+        context["branches"] = []
+        for branch in branches:
+            if branch.id == 2:
+                context['main_branch'] = branch
+            else:
+                context["branches"].append(branch)
+        return context
 
 
 class PromoView(BaseMixin, generic.TemplateView):

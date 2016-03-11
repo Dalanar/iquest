@@ -6,15 +6,15 @@
 	<div class="contact-main">
         <div class="contact-line">
 			<div class="contact-img">
-				<img src="{% static 'main/images/contact/location.png' %}">
+				<img src="{% static 'main/images/mobile/contact/location.png' %}">
 			</div>
 			<div class="contact-info">
-				г. Томск, ул. Алтайская 8/3
+				г. Томск, ул. {{ main_branch.address }}
 			</div>
         </div>
 		<div class="contact-line">
-			<div class="contact-img">
-				<img src="{% static 'main/images/contact/mail.png' %}">
+			<div class="contact-img mail">
+				<img src="{% static 'main/images/mobile/contact/mail.png' %}">
 			</div>
 			<div class="contact-info">
 				iquest.tsk@gmail.com
@@ -22,22 +22,39 @@
         </div>
 		<div class="contact-line">
 			<div class="contact-img">
-				<img src="{% static 'main/images/contact/phone.png' %}">
+				<img src="{% static 'main/images/mobile/contact/phone.png' %}">
 			</div>
 			<div class="contact-info">
-				94-29-10
+				{{ main_branch.phone }}
 			</div>
         </div>
     </div>
-    <div class="contact-social">
-        <div class="contact-social-title">Социальные сети</div>
-        <p>
-            <a target="_blank" href="http://vk.com/iquest"><img src="{% static 'main/images/contact/vk.png' %}"></a>
-            <a target="_blank" href="https://www.facebook.com/iqtomsk"><img src="{% static 'main/images/contact/fb.png' %}"></a>
-            <a target="_blank" href="http://instagram.com/i_quest"><img src="{% static 'main/images/contact/insta.png' %}"></a>
-            <a target="_blank" href="https://plus.google.com/+KvestTomsk"><img src="{% static 'main/images/contact/gp.png' %}"></a>
-        </p>
-    </div>
+
+	<h1>Филиалы</h1>
+
+	<div class="branches">
+		{% for branch in branches %}
+			<div class="contact-main">
+				<div class="contact-line">
+					<div class="contact-img">
+						<img src="{% static 'main/images/mobile/contact/location.png' %}">
+					</div>
+					<div class="contact-info">
+						г. Томск, ул. {{ branch.address }}
+					</div>
+				</div>
+
+				<div class="contact-line">
+					<div class="contact-img">
+						<img src="{% static 'main/images/mobile/contact/phone.png' %}">
+					</div>
+					<div class="contact-info">
+						{{ branch.phone }}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
     <div id="jmap" class="map">
 
     </div>

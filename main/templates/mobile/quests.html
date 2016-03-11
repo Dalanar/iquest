@@ -2,73 +2,128 @@
 {% load staticfiles %}
 {% load set_var %}
 {% block content %}
-	<h1>Описание Квеструм</h1>
-	<div class="quests-content">
-		{% for quest in quests %}
-			<div class="quest">
-				<div class="quest-name">{{ quest.quest }}</div>
-				<div class="quest-img">
-					<img src="{{ quest.image.url }}">
-				</div>
-				<div class="quest-description">{{ quest.description }}</div>
-				<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>
-				<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>
-				<div class="quest-button">
-					<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
-	<div class="select-quest-wrapper">
-		<div class="order-title">Выберите квест, дату и время посещения квеста</div>
-		<a name="select-quest"></a>
-		<div class="select-quest">
+	<h1>Бронирование</h1>
+	<div class="order-menu select-quest">
+		<div class="order-menu-header">
+			<div class="item">1. Выберите квест</div>
+		</div>
+		<div class="order-menu-content">
 			{% for quest in quests %}
-				{% set current = '' %}
-				{% if forloop.first %}
-					{% set current = 'current' %}
-				{% endif %}
-				<div class="order-quest {{ current }}" data-id="{{ quest.id }}">{{ quest.quest }}</div>
+				<div class="item" data-id="{{ quest.id }}">{{ quest.quest }}</div>
 			{% endfor %}
 		</div>
 	</div>
+{#	<div class="quests-content">#}
+{#		{% for quest in quests %}#}
+{#			<div class="quest">#}
+{#				<div class="quest-name">{{ quest.quest }}</div>#}
+{#				<div class="quest-img">#}
+{#					<img src="{{ quest.image.url }}">#}
+{#				</div>#}
+{#				<div class="quest-description">{{ quest.description }}</div>#}
+{#				<div class="quest-rules">Кол-во игроков: <span>до 4-х</span></div>#}
+{#				<div class="quest-rules">Время на прохождение: <span>60 мин.</span></div>#}
+{#				<div class="quest-button">#}
+{#					<a href="#select-quest" id="submit-card-form" class="button">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>#}
+{#				</div>#}
+{#			</div>#}
+{#		{% endfor %}#}
+{#	</div>#}
+{#	<div class="select-quest-wrapper">#}
+{#		<div class="order-title">Выберите квест, дату и время посещения квеста</div>#}
+{#		<a name="select-quest"></a>#}
+{#		<div class="select-quest">#}
+{#			{% for quest in quests %}#}
+{#				{% set current = '' %}#}
+{#				{% if forloop.first %}#}
+{#					{% set current = 'current' %}#}
+{#				{% endif %}#}
+{#				<div class="order-quest {{ current }}" data-id="{{ quest.id }}">{{ quest.quest }}</div>#}
+{#			{% endfor %}#}
+{#		</div>#}
+{#	</div>#}
 
-	{% include "blocks/order/datepicker.html" %}
+	<div class="order-menu calendar">
+		<div class="order-menu-header">
+			<div class="item">2. Выберите дату</div>
+		</div>
+		<div class="order-menu-content">
+			{% include "blocks/order/datepicker.html" %}
+		</div>
+	</div>
+
 	<div name="order" class="">
 		<div id="datepicker"></div>
 	</div>
-	<div class="time-cost">
-		<div class="time-cost-title"><span class="red-font">Время</span> - цена</div>
-		<div class="col1"></div>
-		<div class="col2"></div>
+	<div class="order-menu time-cost">
+		<div class="order-menu-header">
+			<div class="item">3. Выберите время</div>
+		</div>
+		<div class="order-menu-content"></div>
 	</div>
 
-	{% include "blocks/order/confirm.html" %}
-
-	<div class="fields">
-		<form id="quest-order-form" method="POST">
-			{% csrf_token %}
-			{{  form.quest }}
-			{{  form.date }}
-			{{  form.time }}
-			{{  form.cost }}
-			<div class="row">
-				<div class="input">
-					<img src="{% static 'main/images/input/input_name.png' %}">
+	<form id="quest-order-form" method="POST">
+		<div class="order-menu confirm">
+			<div class="order-menu-header">
+				<div class="item">Вы выбрали:</div>
+			</div>
+			<div class="order-menu-content">
+				<div class="item">
+					<span>Квест: </span>
+					<span class="quest-name red-font"></span>
+				</div>
+				<div class="item">
+					<span>Дата: </span>
+					<span class="quest-date red-font"></span>
+				</div>
+				<div class="item">
+					<span>Время: </span>
+					<span class="quest-time red-font"></span>
+				</div>
+				<div class="item">
+					<span>Цена: </span>
+					<span class="quest-cost red-font"></span>
+				</div>
+				<div class="item">
 					{{  form.name }}
 				</div>
-			</div>
-			<div class="row">
-				<div class="input">
-					<img src="{% static 'main/images/input/input_phone.png' %}">
+				<div class="item">
 					{{  form.phone }}
 				</div>
+				<div class="item button-wrapper">
+					<a href="#" id="book" class="button red">Забронировать</a>
+				</div>
 			</div>
-			<div class="row">
-				<a href="#" id="book" class="button">Сделать заказ</a>
-			</div>
-		</form>
-	</div>
+		</div>
+		{% csrf_token %}
+		{{  form.quest }}
+		{{  form.date }}
+		{{  form.time }}
+		{{  form.cost }}
+	</form>
+
+{#	{% include "blocks/order/confirm.html" %}#}
+
+{#	<div class="fields">#}
+{#		<form id="quest-order-form" method="POST">#}
+{##}
+{#			<div class="row">#}
+{#				<div class="input">#}
+{#					<img src="{% static 'main/images/input/input_name.png' %}">#}
+{#					{{  form.name }}#}
+{#				</div>#}
+{#			</div>#}
+{#			<div class="row">#}
+{#				<div class="input">#}
+{#					<img src="{% static 'main/images/input/input_phone.png' %}">#}
+{#					{{  form.phone }}#}
+{#				</div>#}
+{#			</div>#}
+{#			<div class="row">#}
+{#				<a href="#" id="book" class="button">Сделать заказ</a>#}
+{#			</div>#}
+{#		</form>#}
+{#	</div>#}
 	<div class="pre-order-notification">При бронировании игры, уточните, что используете подарочную карту  в качестве оплаты. </div>
 
 	<div class="full-version">
@@ -86,6 +141,7 @@
 			{{ schedule|safe }},
 			true
 		);
+		$('input[type="text"]').placeholder();
 	});
 	</script>
 {% endblock %}

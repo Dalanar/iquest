@@ -1,13 +1,41 @@
 {% extends "mobile/base.html" %}
 {% load staticfiles %}
+{% load set_var %}
 
 {% block content %}
-	<div class="logo"><img src="{% static 'main/images/mobile/logo.png' %}"></div>
 	<h1>Квесты в реальности</h1>
 	<div class="description">
-	IQuest – это интеллектуальная игра. Вы попадаете в закрытое помещение, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы и самое главное включать свой ум и смекалку.
+	<span class="bold">IQuest</span> – это интеллектуальная игра. Вы попадаете в закрытое помещение, где вам предстоит разгадывать головоломки, находить секреты и подсказки в самых непредсказуемых местах, использовать ключевые предметы и самое главное включать свой ум и смекалку.
 	</div>
-	<div class="button-wrapper">
-		<a class="button" href="{% url 'main:quests' %}">ПЕРЕЙТИ К БРОНИРОВАНИЮ</a>
+	<div class="index-phone"><a href="tel.:94-29-10">8 (3822) 94-29-10</a></div>
+
+	<div class="quests-list">
+	{% for quest in quests %}
+		{% set soon = False %}
+		{% if not quest.is_active %}
+			{% set soon = "soon" %}
+		{% endif %}
+		<div class="quest">
+			<div class="short-info">
+				<div class="quest-info-left">
+					<div class="quest-title">{{ quest.quest }}</div>
+					<div class="peoples-time">
+						<div class="peoples"><img src="{% static 'main/images/mobile/person.png' %}" /> 2-4 человека</div>
+						<div class="time"><img src="{% static 'main/images/mobile/time_icon.png' %}" />60 минут</div>
+					</div>
+				</div>
+				<div class="quest-info-right"></div>
+			</div>
+			<div class="full-info">
+				<div class="quest-image"><img src="{{ quest.image.url }}" alt=""/></div>
+				<div class="quest-description">
+					{{ quest.description }}
+				</div>
+				<div class="button-wrapper">
+					<a class="button" href="{% url 'main:quests' %}">ЗАБРОНИРОВАТЬ</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 	</div>
 {% endblock %}

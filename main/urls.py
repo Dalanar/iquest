@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^contact$', views.BaseTemplateView.as_view(template_name="main/contact.html"), name='contact'),
+    url(r'^contact$', views.ContactView.as_view(), name='contact'),
     url(r'^rules$', views.BaseTemplateView.as_view(template_name="main/rules.html"), name='rules'),
     url(r'^cards', views.CardsView.as_view(), name='cards'),
     url(r'^promo', views.PromoView.as_view(), name='promo'),

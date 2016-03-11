@@ -18,6 +18,10 @@
     src: url('../fonts/Roboto-Medium.ttf'); /* Путь к файлу со шрифтом */
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .hidden {
     display: none;
 }
@@ -26,51 +30,34 @@ html, body {
     padding: 0px;
     margin: 0px;
     font-family: 'roboto-regular';
-	background-color: #f5f5f5;
+	background-color: white;
 }
 
 .menu {
 	height: 35px;
-	background-color: #c9705d;
+	background-color: #ca624b;
 	color: white;
-	margin-bottom: 40px;
+	margin-bottom: 28px;
 	width: 100%;
 	text-align: center;
 	position: relative;
 }
-
-/*.menu > div {*/
-	/*display: inline-block;*/
-/*}*/
 
 .menu .menu-open {
 	float: left;
 }
 
 .menu .title {
+	padding-top: 4px;
 	display: inline-block;
-	font-size: 18px;
-	font-family: roboto-bold;
-	line-height: 35px;
+	font-size: 24px;
+	font-family: roboto-light;
+	line-height: 24px;
 }
 
-.menu .phone {
-	float: right;
-	padding-right: 16px;
-	font-size: 13px;
-	line-height: 35px;
-}
-
-.menu .phone a {
-	text-decoration: none;
-	color: white;
-}
-
-.menu .phone:before {
-	content: url('../images/mobile/phone.png');
-	position: relative;
-    left: -3px;
-    top: 3px;
+.menu .title img {
+	vertical-align: top;
+    display: inline-block;
 }
 
 .menu-open {
@@ -110,8 +97,11 @@ html, body {
 }
 
 h1 {
-	font-size: 24px;
-	font-family: roboto-medium;
+	font-size: 32px;
+	font-family: roboto-regular;
+	color: #ca624b;
+    font-weight: normal;
+	margin-bottom: 28px;
 }
 
 .logo {
@@ -121,23 +111,114 @@ h1 {
 }
 
 .description {
-	margin-bottom: 25px;
-	font-size: 16px;
+	margin-bottom: 20px;
+	font-size: 12px;
+	font-family: roboto-light;
+}
+
+.index-phone {
+	font-family: roboto-bold;
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.index-phone a {
+	text-decoration: none;
+	color: #000000;
+}
+
+.index-phone:before {
+	content: url('../images/mobile/phone.png');
+	position: relative;
+    left: -3px;
+    top: 3px;
+}
+
+.quests-list {
+	margin-bottom: 35px;
+}
+
+.quests-list .quest {
+	background-color: #ca624b;
+	color: white;
+	margin-bottom: 12px;
+	border-radius: 5px;
+	padding: 15px;
+}
+
+.quests-list .quest-title {
+	font-family: roboto-regular;
+	font-size: 20px;
+	margin-bottom: 12px;
+}
+
+.quests-list .peoples-time {
+	font-family: roboto-light;
+	font-size: 12px;
+}
+
+.quests-list .quest.opened .peoples-time {
+	margin-bottom: 15px;
+}
+
+.quests-list .peoples {
+	margin-right: 20px;
+}
+
+.quests-list .peoples,
+.quests-list .time {
+	display: inline-block;
+}
+
+.quests-list .peoples-time img {
+	margin-right: 3px;
+	vertical-align: bottom;
+}
+
+.quests-list .quest-info-left {
+	display: inline-block;
+}
+
+.quests-list .quest .quest-info-right {
+	display: inline-block;
+	width: 35px;
+    height: 35px;
+    float: right;
+	background-image: url('../images/mobile/arrow-down.png');
+}
+
+.quests-list .quest.opened .quest-info-right {
+	background-image: url('../images/mobile/arrow-up.png');
+}
+
+.quests-list .quest .full-info {
+	display: none;
+}
+
+.quests-list .full-info .quest-image {
+	text-align: center;
 }
 
 .button-wrapper {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-top: 25px;
 }
 
 .button {
-	padding: 16px 30px 14px 30px;
-	background-color: #c9705d;
-	color: white;
+	padding: 16px 30px 16px 30px;
+	background-color: #ffffff;
+	color: #ca624b;
 	font-family: roboto-bold;
 	display: inline-block;
 	border: none;
+	font-size: 16px;
 	text-decoration: none;
+}
+
+.button.red {
+	background-color: #ca624b;
+	color: #ffffff;
 }
 
 .full-version {
@@ -147,7 +228,7 @@ h1 {
 }
 
 .full-version a {
-	color: #c9705d;
+	color: #ca624b;
 	text-decoration: none;
 	font-size: 13px;
 }
@@ -224,39 +305,45 @@ h1 {
 
 /** Contacts*/
 
+.branches {
+	margin-bottom: 50px;
+}
+
 .contact-main {
-	line-height: 30px;
+	border: 1px solid #ca624b;
+	padding: 23px;
+	color: #777578;
+	margin-bottom: 12px;
+}
+
+.contact-main .contact-line:first-child {
+	margin-top: 0;
 }
 
 .contact-line {
 	height: 30px;
-	margin-bottom: 25px;
-	font-size: 18px;
+	margin-top: 25px;
+	font-size: 16px;
 }
 
-.contact-line > div:first-child {
+.contact-line .contact-img {
 	float: left;
-	width: 26px;
-	margin-right: 20px;
+	width: 23px;
+	margin-right: 10px;
+	text-align: center;
 }
 
-.contact-social-title {
-	font-family: roboto-regular;
-	font-size: 18px;
+.contact-line .contact-img.mail {
+	padding-top: 3px;
 }
 
-.map,
-.contact-social {
+.map {
 	margin-bottom: 20px;
-}
-
-.contact-social a {
-	margin-right: 20px;
 }
 
 .rules .number {
 	vertical-align: baseline;
-	color: #c9705d;
+	color: #ca624b;
 	font-size: 36px;
 	font-family: roboto-regular;
 	padding-right: 10px;
@@ -363,284 +450,4 @@ div.form input {
 	font-family: 'roboto-regular';
 	font-size: 16px;
 	margin-bottom: 40px;
-}
-
-/** quests content */
-
-.quests-content {
-	font-size: 16px;
-	font-family: roboto-light;
-	color: #505050;
-}
-
-.quests-content .quest {
-	border-top: 1px solid #dadada;
-	border-bottom: 1px solid #dadada;
-}
-
-.quests-content .quest-name {
-	color: #ca624b;
-	margin: 25px 0 25px 0;
-	font-family: roboto-medium;
-	font-size: 18px;
-}
-
-.quests-content .quest-img {
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.quests-content .quest-img img {
-	max-height: 100%;
-	max-width: 100%;
-}
-
-.quests-content .quest-description {
-	margin-bottom: 30px;
-}
-
-.quests-content .quest-rules {
-	color: #ca624b;
-}
-
-.quests-content .quest-rules:first-child {
-	margin-bottom: 10px;
-}
-
-.quests-content .quest-rules span {
-	color: #505050;
-}
-
-.quest-button {
-	text-align: center;
-	margin-bottom: 15px;
-}
-
-.quest-button {
-	margin-top: 23px;
-}
-
-
-.quests-content {
-	margin-bottom: 20px;
-}
-
-.order-title {
-	text-align: center;
-	font-family: roboto-medium;
-	font-size: 18px;
-	color: #505050;
-	margin-bottom: 20px;
-}
-
-.order {
-	margin: 0 auto;
-}
-
-/** datepicker */
-.datepicker-wrapper {
-	width: 280px;
-	margin: 0 auto;
-}
-
-.ui-datepicker-calendar {
-	font-family: roboto-regular;
-	font-size: 11px;
-}
-
-.ui-datepicker-calendar .ui-datepicker-unselectable {
-	color: #aeaeae;
-}
-
-.ui-datepicker td {
-	height: 40px;
-	width: 40px;
-}
-
-.ui-datepicker td span, .ui-datepicker td a {
-	text-align: center;
-}
-
-.ui-datepicker-calendar .ui-datepicker-current-day a.ui-state-active {
-	color: #ea8157;
-	position: relative;
-}
-
-.ui-datepicker-calendar .ui-datepicker-current-day a.ui-state-default.ui-state-active:after {
-    content: "";
-    display: block;
-    height: 25px;
-    width: 25px;
-    position: absolute;
-    border: 1px solid #ea8157;
-    border-radius: 28px;
-    top: 0;
-    left: 5px;
-}
-
-.ui-datepicker-calendar a {
-	color: #505050;
-}
-
-.ui-datepicker-calendar thead tr {
-	background-color: #cdcdcd;
-	color: white;
-}
-
-div#datepicker .ui-icon {
-    width: 15px;
-    display: block;
-    position: absolute;
-    left: 50%;
-    margin-left: -8px;
-    top: 68%;
-    margin-top: -8px;
-    cursor: pointer;
-}
-
-div#datepicker .ui-datepicker-prev .ui-icon {
-    background-image: url("../images/left.gif");
-}
-
-div#datepicker .ui-datepicker-next .ui-icon {
-    background-image: url("../images/right.gif");
-}
-
-
-/** select quest */
-.select-quest-wrapper {
-	text-align: center;
-}
-
-.select-quest-wrapper .select-quest {
-	display: inline-block;
-}
-
-.select-quest .order-quest {
-    display: inline-block;
-    font-family: 'roboto-medium';
-    font-size: 12px;
-    background-color: white;
-    color: #ca624b;
-    border: 2px solid #ca624b;
-    padding: 3px;
-    width: 130px;
-    text-align: center;
-}
-
-/*.select-quest .order-quest.medic {*/
-	/*border-bottom-left-radius: 5px;*/
-	/*border-top-left-radius: 5px;*/
-/*}*/
-
-/*.select-quest .order-quest.zombie {*/
-	/*border-bottom-right-radius: 5px;*/
-	/*border-top-right-radius: 5px;*/
-/*}*/
-
-.select-quest .order-quest.current {
-    color: white;
-    background-color: #ca624b;
-    border: 2px solid #ca624b;
-}
-
-.select-quest .order-quest:hover {
-    cursor: pointer;
-}
-
-.select-quest .order-quest.wide {
-	width: 420px;
-}
-
-/** confirm */
-.confirm {
-    text-align: center;
-    font-family: 'roboto-regular';
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.red-font {
-	color: #ca624b;
-}
-/** выбор времени */
-.time-cost {
-	border: 2px solid #ca624b;
-	border-radius: 4px;
-	width: 280px;
-	margin: 0 auto 20px auto;
-}
-
-.time-cost-title {
-	text-align: center;
-	margin-top: 10px;
-	margin-bottom: 14px;
-}
-
-.time-cost .row {
-	display: block;
-	margin-bottom: 14px;
-}
-
-.time-cost .row.disabled {
-	opacity: 0.5;
-}
-
-.time-cost .col1,
-.time-cost .col2 {
-	display: inline-block;
-	width: 110px;
-	font-size: 15px;
-	padding-left: 14px;
-	padding-right: 14px;
-	vertical-align: text-top;
-}
-
-.time-cost .time,
-.time-cost .cost {
-	display: inline;
-}
-
-.time-cost .time {
-	color: #ca624b;
-}
-
-.time-cost .cost {
-	padding-right: 12px;
-}
-
-/** Поля для заполнения */
-.fields .row {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.fields .row div.input {
-    display: inline-block;
-    margin: 0 30px;
-}
-
-.fields .row div.input img {
-    display: block;
-    float: left;
-}
-
-.fields .row div.input input{
-    height: 31px;
-    border-radius: 0 9px 9px 0;
-    outline: 0;
-    border: 1px solid #b5b5b5;
-    float: left;
-    line-height: 31px;
-    padding-left: 5px;
-    width: 160px;
-}
-
-.pre-order-notification {
-    font-size: 15px;
-    color: #505050;
-    min-width: 280px;
-    max-width: 600px;
-    margin: 0 auto 20px auto;
-    text-align: center;
 }
