@@ -17,19 +17,9 @@
 	font-size: 20px;
 }
 
-.order-menu.confirm .order-menu-content .item {
-	border: none;
-	padding: 20px 35px 0 35px;
-}
-
 .order-menu .item {
 	border-top: 1px solid #ca624b;
 	padding: 14px 14px 18px 14px;
-}
-
-.order-menu .order-menu-content .item {
-	padding-left: 35px;
-	padding-right: 35px;
 }
 
 .order-menu .item.current {
@@ -39,8 +29,10 @@
 
 .order-menu .item.button-wrapper .button {
 	width: 100%;
-	box-sizing: border-box;
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 
 .order-menu .item .quest-cost {
@@ -50,10 +42,8 @@
 .order-menu .item input {
 	height: 32px;
 	width: 100%;
-	padding: 0 10px;
 	text-align: center;
 	border: 1px solid #ca624b;
-	box-sizing: border-box;
 }
 
 .order-menu.calendar {
@@ -144,8 +134,17 @@ div#datepicker .ui-datepicker-next .ui-icon {
 }
 
 /** confirm */
-.confirm .order-menu-header .item {
+.order-menu.confirm .order-menu-header .item {
 	padding-left: 35px;
+}
+
+.order-menu.confirm .order-menu-content .items-wrapper {
+	margin: 0 35px 0 35px;
+}
+
+.order-menu.confirm .order-menu-content .item {
+	border: none;
+	padding: 20px 0 0 0;
 }
 
 .red-font {
