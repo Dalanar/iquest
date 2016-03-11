@@ -178,6 +178,7 @@ h1 {
 
 .quests-list .quest-info-left {
 	display: inline-block;
+	width: 210px;
 }
 
 .quests-list .quest .quest-info-right {
