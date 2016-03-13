@@ -55,6 +55,12 @@ html, body {
 	line-height: 24px;
 }
 
+.menu .title a:visited,
+.menu .title a {
+	color: white;
+	text-decoration: none;
+}
+
 .menu .title img {
 	vertical-align: top;
     display: inline-block;
@@ -220,6 +226,7 @@ h1 {
 	border: none;
 	font-size: 16px;
 	text-decoration: none;
+	border-radius: 3px;
 }
 
 .button.red {
@@ -248,8 +255,14 @@ h1 {
 	text-align: center;
 	font-family: roboto-medium;
 	font-size: 16px;
-	padding-bottom: 25px;
-	padding-top: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.footer-title a,
+.footer-title a:visited {
+	color: white;
+	text-decoration: none;
 }
 
 .footer-list {
@@ -267,7 +280,6 @@ h1 {
 	overflow: auto;
 	margin: 0 auto;
 	width: 290px;
-	padding-bottom: 25px;
 }
 
 .footer-info .info {
@@ -320,6 +332,7 @@ h1 {
 	padding: 23px;
 	color: #777578;
 	margin-bottom: 12px;
+	border-radius: 3px;
 }
 
 .contact-main .contact-line:first-child {
@@ -341,6 +354,12 @@ h1 {
 
 .contact-line .contact-img.mail {
 	padding-top: 3px;
+}
+
+.contact-line a,
+.contact-line a:visited {
+	color: #777578;
+	text-decoration: none;
 }
 
 .map {

@@ -122,10 +122,6 @@ var Order = (function(){
                 error = 'Некоректно заполнен телефон';
                 return;
             }
-            if ($(this).is('[name=email]') && !validateEmail(value)) {
-                error = 'Некоректно заполнен email';
-                return;
-            }
         });
         if (error) {
             alert(error);
@@ -143,11 +139,6 @@ var Order = (function(){
             }
         });
 	}
-
-    function validateEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
 
 	var datepickerInit = function() {
 		$datepicker = $("#datepicker");
@@ -175,12 +166,22 @@ var Order = (function(){
 		$datepicker.datepicker(datepickerData);
 	};
 
+	function inputsKeypressHandler(event) {
+		var $target = $(event.target);
+		if ($target.val() != "") {
+			$target.addClass("filled");
+		} else {
+			$target.removeClass("filled");
+		}
+	}
+
 	var init = function(option1, option2, isMobileOpt) {
 		orders = option1;
 		schedule = option2;
 		isMobile = isMobileOpt;
 		$(".select-quest .order-menu-content .item").on('click', selectQuestHandler);
 		$('#book').on('click', orderHandler);
+		$('[name=name], [name=phone]').on('keypress', inputsKeypressHandler);
 	};
 
 	return {

@@ -43,6 +43,10 @@
 	height: 32px;
 	width: 100%;
 	text-align: center;
+	border: 1px solid #777578;
+}
+
+.order-menu .item input.filled {
 	border: 1px solid #ca624b;
 }
 

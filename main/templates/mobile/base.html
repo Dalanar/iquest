@@ -40,7 +40,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="title"><img src="{% static 'main/images/mobile/small_logo.png' %}"> IQuest</div>
+	<div class="title">
+		<a href="{% url 'main:index' %}">
+			<img src="{% static 'main/images/mobile/small_logo.png' %}"> IQuest
+		</a>
+	</div>
 </div>
 {% endspaceless %}
 <div class="content">
@@ -54,23 +58,15 @@
 
 </div>
 <div class="footer">
-	<div class="footer-title">IQuest. Реалити-квест</div>
-	<div class="footer-list">
-		<a href="{% url 'main:index' %}">Главная</a>
-		<a href="{% url 'main:quests' %}">Бронирование</a>
-		<a href="{% url 'main:franchise' %}">Франшиза</a>
-		<a href="{% url 'main:rules' %}">Правила</a>
-		<a href="{% url 'main:cards' %}">Подарочные карты</a>
-		<a href="{% url 'main:contact' %}">Контакты</a>
-	</div>
+	<div class="footer-title"><a href="tel:94-29-10">8 (3822) 94-29-10</a></div>
 	<div class="footer-info">
-		<div class="info">© 2015 «IQuest»</div>
 		<div class="social">
 			<a target="_blank" href="http://vk.com/iquest"><div class="vk"></div></a>
 			<a target="_blank" href="https://www.facebook.com/iqtomsk"><div class="fb"></div></a>
 			<a target="_blank" href="http://instagram.com/i_quest"><div class="insta"></div></a>
 			<a target="_blank" href="https://plus.google.com/+KvestTomsk"><div class="gp"></div></a>
 		</div>
+		<div class="info">© 2016 «IQuest»</div>
 	</div>
 </div>
 
