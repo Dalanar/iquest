@@ -18,14 +18,20 @@
 			<div class="img-select"><div class="message">Перейти к квесту</div></div>
 		{% endif %}
 	</div>
-	<div class="quest-info">
-		<div class="quest-info-peoples">
-			<div class="peoples">2-4 чел</div>
-			<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
-		</div>
-		<div class="quest-info-time">
-			<div class="time">60 мин</div>
-			<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
-		</div>
-	</div>
+	<table class="quest-info">
+		<tr>
+			<td class="quest-info-peoples">
+				<div class="peoples">2-4 чел</div>
+				<div class="img-peoples"><img src="{% static 'main/images/white_people_icon.png' %}" alt="" /></div>
+			</td>
+			<td class="quest-info-time">
+				<div class="time">60 мин</div>
+				<div class="img-time"><img src="{% static 'main/images/white_clock.png' %}" alt="" /></div>
+			</td>
+			<td class="quest-info-phone">
+				<div class="img-loc-phone"><img src="{% static 'main/images/contact/phone.png' %}" alt="" /></div>
+				<div class="location-phone">{{ quest.branch.phone }}</div>
+			</td>
+		</tr>
+	</table>
 </a>

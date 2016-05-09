@@ -409,34 +409,51 @@ div.i-description {
     position: absolute;
     bottom: 10px;
     color: white;
-    width: 138px;
-    left: 30px;
+    left: 20px;
+    border: 0;
 }
 
 .quest .quest-info .quest-info-peoples {
-    float: left;
-    margin-right: 25px;
+    width: 90px;
 }
 
 .quest .quest-info .quest-info-peoples .peoples {
     text-align: center;
 }
 
-.quest .quest-info .img-peoples {
+.quest .quest-info .quest-info-peoples .img-peoples {
     height: 13px;
     width: 59px;
+    margin: 0 auto;
     line-height: 0;
 }
 
 .quest .quest-info .quest-info-time {
-    float: right;
+    width: 90px;
 }
 
-.quest .quest-info .img-time {
+.quest .quest-info .quest-info-time .time{
+    text-align: center;
+}
+
+.quest .quest-info .quest-info-time .img-time {
     height: 13px;
     width: 13px;
     margin: 0 auto;
     line-height: 0;
+}
+
+.quest .quest-info .quest-info-phone .img-loc-phone {
+    float: left;
+    height: 30px;
+    width: 28px;
+    margin: 0 auto;
+}
+
+.quest .quest-info .quest-info-phone .location-phone {
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
 }
 
 .quest .quest-img {
