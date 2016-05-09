@@ -119,7 +119,7 @@ class QuestPromoInline(admin.TabularInline):
 
 
 class QuestAdmin(admin.ModelAdmin):
-    fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image', 'gallery',)
+    fields = ('quest', 'description', 'alias', 'is_active', 'branch', 'image_tag', 'image', 'gallery', 'short_name',)
     list_display = ('id', 'quest',)
     readonly_fields = ('image_tag',)
     filter_horizontal = ["gallery", ]

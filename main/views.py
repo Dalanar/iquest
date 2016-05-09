@@ -202,6 +202,8 @@ def quests_order(request):
                 quest_order.save()
                 send_sms(quest_order)
                 add_phone_to_subscription(phone)
+                if datetime.datetime.strptime(date, "%Y-%m-%d").date() == datetime.date.today():
+                    notify_operator(quest_order)
                 return json_response("OK")
             else:
                 return error_json_response("Quest already ordered")
@@ -281,4 +283,16 @@ def send_sms(quest_order):
         if not settings.debug:
             smsc.send_sms(quest_order.phone, template, sender="iquest")
     except Exception:
+        return
+
+
+def notify_operator(quest_order):
+    try:
+        smsc = SMSC()
+        message = ', '.join([quest_order.quest.short_name,
+                            str(quest_order.time),
+                            quest_order.phone])
+        if not settings.debug:
+            smsc.send_sms(quest_order.quest.branch.operator_phone, message, sender="iquest")
+    except Exception as ex:
         return

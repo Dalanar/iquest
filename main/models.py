@@ -9,6 +9,7 @@ class Branch(models.Model):
     address = models.CharField(max_length=255, verbose_name="Адрес", null=True, blank=True)
     phone = models.CharField(max_length=255, verbose_name="Телефон", null=True, blank=True)
     prefix = models.CharField(max_length=5, verbose_name="Префикс", null=True, blank=True)
+    operator_phone = models.CharField(max_length=20, verbose_name="Телефон оператора", blank=True)
 
     def __str__(self):
         return self.address
@@ -99,6 +100,7 @@ class Quest(models.Model):
     is_active = models.BooleanField(default=False, verbose_name="Квест запущен")
     description = models.TextField(verbose_name="Описание квеста", default="")
     gallery = models.ManyToManyField(Image)
+    short_name = models.CharField(max_length=5, verbose_name="Сокращенное название")
 
     def __str__(self):
         return self.quest
