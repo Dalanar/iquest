@@ -63,6 +63,67 @@
 					<div class="quest-promo">{{ quest.questpromo.text }}</div>
 				{% endif %}
             </div>
-        </div>
-    </div>
+		</div>
+	</div>
+
+	<div class="quest-order">
+		<div class="calendar-wrapper">
+			<div class="calendar">
+				<div class="prev nav inline">&lt;</div>
+				<div class="date inline"></div>
+				<input type="hidden" id="datepicker">
+				<div class="next nav inline">&gt;</div>
+			</div>
+		</div>
+
+		<div class="quests-schedule">
+			<div class="quest-schedule" data-quest-id="{{ quest.id }}">
+				<div class="schedule"></div>
+			</div>
+		</div>
+
+		{% include "blocks/order/confirm.html" %}
+
+		<div class="fields">
+			<form id="quest-order-form" method="POST" action="{% url 'main:quests' %}">
+				{% csrf_token %}
+				{{  form.quest }}
+				{{  form.date }}
+				{{  form.time }}
+				{{  form.cost }}
+				<div class="row">
+					<div class="input">
+						<img src="{% static 'main/images/input/input_name.png' %}">
+						{{  form.name }}
+					</div>
+					<div class="input">
+						<img src="{% static 'main/images/input/input_phone.png' %}">
+						{{  form.phone }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="input">
+						<img src="{% static 'main/images/input/mail_badge.png' %}">
+						{{  form.email }}
+					</div>
+				</div>
+				<div class="row">
+					<a href="#" id="book" class="button">ЗАБРОНИРОВАТЬ</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+	$(document).ready(function(){
+		Order.init(
+			{{ orderJson|safe }},
+			{{ schedule|safe }},
+			false,
+			"{% static 'main/images/calendar_ico.png' %}"
+		);
+	});
+	</script>
 {% endblock %}

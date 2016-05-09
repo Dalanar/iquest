@@ -139,6 +139,12 @@ class QuestView(BaseMixin, AjaxableResponseMixin, CreateView, DetailView):
     def get_context_data(self, **kwargs):
         context = super(QuestView, self).get_context_data(**kwargs)
         context['today'] = datetime.datetime.now()
+        orders = QuestOrder.objects.filter(date__gte=timezone.now())
+        order_json = replace_orders(orders)
+        context['orderJson'] = order_json
+        context['schedule'] = get_schedule([self.object])
+        context['keywords'] = get_keywords()
+        context['form'] = QuestOrderForm()
         return context
 
 
